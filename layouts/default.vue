@@ -3,27 +3,38 @@
     <!-- Hamburger Menu Button -->
     <button
       @click="menuOpen = !menuOpen"
-      class="fixed top-6 right-6 z-50 p-3 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200 border border-neutral-200"
+      :class="[
+        'fixed top-6 right-6 z-50 p-4 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border backdrop-blur-sm group',
+        menuOpen
+          ? 'bg-gradient-to-br from-indigo-500 to-purple-600 border-white/30 shadow-2xl scale-110'
+          : 'bg-white/90 border-white/50 hover:bg-white hover:scale-105',
+      ]"
       aria-label="Toggle Menu"
     >
       <!-- Hamburger Icon -->
       <div class="w-6 h-6 flex flex-col justify-center items-center space-y-1">
         <span
           :class="[
-            'block h-0.5 w-6 bg-neutral-800 transition-all duration-300',
-            menuOpen ? 'rotate-45 translate-y-1.5' : '',
+            'block h-0.5 w-6 transition-all duration-300',
+            menuOpen
+              ? 'rotate-45 translate-y-1.5 bg-white'
+              : 'bg-gradient-to-r from-indigo-600 to-purple-600 group-hover:from-indigo-500 group-hover:to-purple-500',
           ]"
         ></span>
         <span
           :class="[
-            'block h-0.5 w-6 bg-neutral-800 transition-all duration-300',
-            menuOpen ? 'opacity-0' : '',
+            'block h-0.5 w-6 transition-all duration-300',
+            menuOpen
+              ? 'opacity-0 bg-white'
+              : 'bg-gradient-to-r from-indigo-600 to-purple-600 group-hover:from-indigo-500 group-hover:to-purple-500',
           ]"
         ></span>
         <span
           :class="[
-            'block h-0.5 w-6 bg-neutral-800 transition-all duration-300',
-            menuOpen ? '-rotate-45 -translate-y-1.5' : '',
+            'block h-0.5 w-6 transition-all duration-300',
+            menuOpen
+              ? '-rotate-45 -translate-y-1.5 bg-white'
+              : 'bg-gradient-to-r from-indigo-600 to-purple-600 group-hover:from-indigo-500 group-hover:to-purple-500',
           ]"
         ></span>
       </div>
@@ -33,34 +44,63 @@
     <Teleport to="body">
       <nav
         :class="[
-          'fixed inset-0 bg-slate-800 z-50 transform transition-transform duration-300 ease-in-out',
-          menuOpen ? 'translate-x-0' : '-translate-x-full',
+          'fixed inset-0 z-50 transform transition-all duration-500 ease-in-out -translate-x-full overflow-hidden',
+          'bg-gradient-to-br from-slate-900 via-indigo-900 to-purple-900',
+          menuOpen ? 'translate-x-0' : '',
         ]"
       >
-        <div class="flex items-center justify-center h-full">
-          <div class="space-y-8 text-center">
+        <!-- Animated background elements -->
+        <div class="absolute inset-0 overflow-hidden">
+          <div
+            class="absolute top-20 left-20 w-96 h-96 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 rounded-full blur-3xl animate-pulse"
+          ></div>
+          <div
+            class="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full blur-3xl animate-pulse animation-delay-2000"
+          ></div>
+          <div
+            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-teal-500/20 to-cyan-500/20 rounded-full blur-3xl animate-pulse animation-delay-4000"
+          ></div>
+        </div>
+
+        <!-- Menu content -->
+        <div class="relative z-10 flex items-center justify-center h-full">
+          <div class="space-y-12 text-center">
+            <!-- Menu title -->
+
+            <!-- Navigation links -->
             <NuxtLink
               to="/"
               @click="handleNavigation"
-              class="block text-3xl font-display text-white hover:text-blue-300 transition-colors duration-200"
+              class="group block text-4xl font-display text-white hover:text-transparent hover:bg-gradient-to-r hover:from-indigo-300 hover:to-purple-300 hover:bg-clip-text transition-all duration-300 transform hover:scale-110"
             >
-              Home
+              <span
+                class="inline-block transition-transform duration-300 group-hover:translate-x-2"
+                >Home</span
+              >
             </NuxtLink>
+
             <NuxtLink
               to="/resume"
               @click="handleNavigation"
-              class="block text-3xl font-display text-white hover:text-blue-300 transition-colors duration-200"
+              class="group block text-4xl font-display text-white hover:text-transparent hover:bg-gradient-to-r hover:from-purple-300 hover:to-pink-300 hover:bg-clip-text transition-all duration-300 transform hover:scale-110"
             >
-              Resume
+              <span
+                class="inline-block transition-transform duration-300 group-hover:translate-x-2"
+                >Resume</span
+              >
             </NuxtLink>
+
             <a
               href="https://github.com/tcober"
               target="_blank"
               rel="noopener"
               @click="menuOpen = false"
-              class="block text-3xl font-display text-white hover:text-blue-300 transition-colors duration-200"
+              class="group block text-4xl font-display text-white hover:text-transparent hover:bg-gradient-to-r hover:from-teal-300 hover:to-cyan-300 hover:bg-clip-text transition-all duration-300 transform hover:scale-110"
             >
-              GitHub
+              <span
+                class="inline-block transition-transform duration-300 group-hover:translate-x-2"
+                >GitHub</span
+              >
             </a>
           </div>
         </div>
@@ -73,35 +113,11 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-neutral-200 py-12 mt-20">
+    <footer class="py-8 mt-20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center">
-          <p class="text-neutral-600 mb-4">
-            Built with
-            <a
-              href="https://nuxt.com"
-              target="_blank"
-              rel="noopener"
-              class="text-primary-600 hover:text-primary-800 font-medium"
-              >Nuxt</a
-            >,
-            <a
-              href="https://storyblok.com"
-              target="_blank"
-              rel="noopener"
-              class="text-primary-600 hover:text-primary-800 font-medium"
-              >Storyblok</a
-            >, and
-            <a
-              href="https://tailwindcss.com"
-              target="_blank"
-              rel="noopener"
-              class="text-primary-600 hover:text-primary-800 font-medium"
-              >Tailwind CSS</a
-            >
-          </p>
           <p class="text-sm text-neutral-500">
-            © {{ new Date().getFullYear() }} Portfolio. All rights reserved.
+            © {{ new Date().getFullYear() }} Thomas Cober. All rights reserved.
           </p>
         </div>
       </div>
@@ -151,3 +167,42 @@ onMounted(() => {
   });
 });
 </script>
+
+<style scoped>
+/* Gradient animation for menu title */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 4s ease infinite;
+}
+
+/* Animation delays for background elements */
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* Enhanced hover effects for navigation links */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+</style>

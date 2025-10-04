@@ -1,5 +1,3 @@
-import { useStoryblokApi } from "#imports";
-
 export const useFeedStore = defineStore("feed", {
   state: () => ({
     posts: [],
