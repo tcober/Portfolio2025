@@ -2,14 +2,7 @@
   list-style-type: circle;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  /* Use Tailwind's 'uppercase' class in your Vue templates instead of this rule for consistency */
-}
+/* h1-h6 styles: Use Tailwind's 'uppercase' class in your Vue templates for consistency */
 
 h1 {
   font-weight: bold;
