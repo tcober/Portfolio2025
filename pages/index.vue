@@ -1,31 +1,19 @@
 <template>
-  <div class="min-h-screen bg-slate-900 relative overflow-hidden">
-    <!-- Decorative background blocks -->
-    <div class="absolute inset-0 overflow-hidden pointer-events-none">
-      <div
-        class="absolute top-20 left-10 w-80 h-80 bg-blue-600 rounded-xl opacity-40 animate-blob"
-      ></div>
-      <div
-        class="absolute top-40 right-10 w-72 h-72 bg-green-600 rounded-2xl opacity-40 animate-blob animation-delay-2000"
-      ></div>
-      <div
-        class="absolute -bottom-8 left-20 w-96 h-64 bg-yellow-500 rounded-3xl opacity-35 animate-blob animation-delay-4000"
-      ></div>
-      <div
-        class="absolute top-1/2 right-1/4 w-48 h-48 bg-blue-500 rounded-xl opacity-30 animate-blob animation-delay-1000"
-      ></div>
-    </div>
-
+  <div class="min-h-screen bg-slate-900 relative">
     <!-- Timeline Section -->
     <main class="relative z-10 max-w-5xl mx-auto px-4 py-16">
       <!-- Feed Header -->
       <div class="text-center mb-16">
-        <div class="inline-block bg-blue-600 px-8 py-4 rounded-2xl mb-4">
-          <h1 class="text-5xl md:text-6xl font-display text-white">FEED</h1>
-        </div>
+        <h1
+          class="text-5xl md:text-6xl font-display bg-gradient-to-r from-blue-400 via-green-400 to-blue-500 bg-clip-text text-transparent"
+        >
+          FEED
+        </h1>
       </div>
       <div v-if="loading" class="text-center py-16">
-        <div class="inline-block bg-blue-600 p-6 rounded-2xl">
+        <div
+          class="inline-block bg-blue-600 p-6 rounded-2xl shadow-2xl shadow-blue-500/30"
+        >
           <div
             class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-white"
           ></div>
@@ -34,7 +22,9 @@
       </div>
 
       <div v-else-if="error" class="text-center py-16">
-        <div class="inline-block bg-red-600 px-8 py-6 rounded-2xl">
+        <div
+          class="inline-block bg-red-600 px-8 py-6 rounded-2xl shadow-2xl shadow-red-500/30"
+        >
           <div class="text-6xl mb-4">⚠️</div>
           <h2 class="text-2xl font-semibold text-white mb-2">
             Something went wrong
@@ -43,7 +33,7 @@
             {{ error }}
           </p>
           <button
-            class="inline-flex items-center px-6 py-3 rounded-xl bg-yellow-500 text-slate-900 font-medium hover:bg-yellow-400 transition-colors duration-200"
+            class="inline-flex items-center px-6 py-3 rounded-xl bg-yellow-500 text-slate-900 font-medium hover:bg-yellow-400 transition-colors duration-200 shadow-lg shadow-yellow-500/30 hover:shadow-yellow-400/40"
             @click="refresh()"
           >
             Try again
@@ -52,7 +42,9 @@
       </div>
 
       <div v-else-if="!posts || posts.length === 0" class="text-center py-16">
-        <div class="inline-block bg-green-600 px-8 py-6 rounded-2xl">
+        <div
+          class="inline-block bg-green-600 px-8 py-6 rounded-2xl shadow-2xl shadow-green-500/30"
+        >
           <div class="text-6xl mb-4">📝</div>
           <h2 class="text-2xl font-semibold text-white mb-2">No posts yet</h2>
           <p class="text-green-100">Check back soon for updates!</p>
@@ -62,7 +54,7 @@
       <div v-else class="relative">
         <!-- Timeline line -->
         <div
-          class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-blue-400 rounded-full"
+          class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-blue-400 rounded-full shadow-lg shadow-blue-400/50"
         ></div>
 
         <div class="space-y-12">
@@ -82,10 +74,10 @@
               :class="[
                 'absolute top-8 w-6 h-6 rounded-xl border-2 border-slate-800 z-10',
                 index % 3 === 0
-                  ? 'bg-blue-500'
+                  ? 'bg-blue-500 shadow-lg shadow-blue-500/60'
                   : index % 3 === 1
-                  ? 'bg-green-500'
-                  : 'bg-yellow-500',
+                  ? 'bg-green-500 shadow-lg shadow-green-500/60'
+                  : 'bg-yellow-500 shadow-lg shadow-yellow-500/60',
                 index % 2 === 0
                   ? 'md:right-1/2 md:transform md:translate-x-3'
                   : 'md:left-1/2 md:transform md:-translate-x-3',
@@ -102,12 +94,12 @@
             >
               <div
                 :class="[
-                  'group rounded-2xl p-8 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden',
+                  'group rounded-2xl p-8 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden shadow-xl',
                   index % 3 === 0
-                    ? 'bg-slate-800 hover:bg-slate-700'
+                    ? 'bg-slate-800 hover:bg-slate-700 shadow-blue-500/10 hover:shadow-blue-500/20'
                     : index % 3 === 1
-                    ? 'bg-slate-800 hover:bg-slate-700'
-                    : 'bg-slate-800 hover:bg-slate-700',
+                    ? 'bg-slate-800 hover:bg-slate-700 shadow-green-500/10 hover:shadow-green-500/20'
+                    : 'bg-slate-800 hover:bg-slate-700 shadow-yellow-500/10 hover:shadow-yellow-500/20',
                 ]"
               >
                 <!-- Card decoration -->
@@ -125,12 +117,12 @@
                 <!-- Post number -->
                 <div
                   :class="[
-                    'absolute top-4 font-mono text-xs font-bold px-4 py-2 rounded-xl',
+                    'absolute top-4 font-mono text-xs font-bold px-4 py-2 rounded-xl shadow-lg',
                     index % 3 === 0
-                      ? 'bg-blue-600 text-white'
+                      ? 'bg-blue-600 text-white shadow-blue-500/50'
                       : index % 3 === 1
-                      ? 'bg-green-600 text-white'
-                      : 'bg-yellow-500 text-slate-900',
+                      ? 'bg-green-600 text-white shadow-green-500/50'
+                      : 'bg-yellow-500 text-slate-900 shadow-yellow-500/50',
                     index % 2 === 0 ? 'md:right-4 right-4' : 'md:left-4 left-4',
                   ]"
                 >
@@ -271,33 +263,6 @@ onBeforeUnmount(() => {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
-}
-
-@keyframes blob {
-  0% {
-    transform: translate(0px, 0px) scale(1);
-  }
-  33% {
-    transform: translate(30px, -50px) scale(1.1);
-  }
-  66% {
-    transform: translate(-20px, 20px) scale(0.9);
-  }
-  100% {
-    transform: translate(0px, 0px) scale(1);
-  }
-}
-
-.animate-blob {
-  animation: blob 7s infinite;
-}
-
-.animation-delay-2000 {
-  animation-delay: 2s;
-}
-
-.animation-delay-4000 {
-  animation-delay: 4s;
 }
 
 .animate-on-scroll {

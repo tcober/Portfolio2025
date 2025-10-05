@@ -1,34 +1,17 @@
 <template>
   <div class="relative my-8 group component-quote">
-    <!-- Simple background block -->
-    <div
-      class="absolute inset-0 bg-blue-600 rounded-2xl transform rotate-1 group-hover:rotate-2 transition-all duration-300 ease-out"
-    ></div>
-
-    <!-- Decorative corner elements -->
-    <div
-      class="absolute -top-2 -right-2 w-6 h-6 bg-yellow-500 rounded-lg opacity-90 group-hover:scale-110 group-hover:opacity-100 transition-all duration-300"
-    ></div>
-    <div
-      class="absolute -bottom-2 -left-2 w-4 h-4 bg-green-500 rounded-lg opacity-80 group-hover:scale-110 group-hover:opacity-90 transition-all duration-300"
-    ></div>
-
     <blockquote
-      class="relative bg-slate-800 rounded-2xl p-8 transform group-hover:scale-[1.01] transition-all duration-300 ease-out overflow-hidden"
+      class="relative bg-slate-800 rounded-2xl p-8 transform group-hover:scale-[1.01] transition-all duration-300 ease-out overflow-hidden shadow-xl shadow-blue-500/20 hover:shadow-blue-500/30 border border-slate-700"
     >
-      <!-- Simple quote mark -->
+      <!-- Opening quote accent -->
       <div
-        class="absolute -top-2 -left-2 w-10 h-10 bg-green-600 rounded-xl flex items-center justify-center text-white font-bold text-lg transform group-hover:scale-110 transition-all duration-300"
-      >
-        <span>"</span>
-      </div>
+        class="absolute -top-1 -left-1 w-6 h-6 bg-blue-500 rounded-full opacity-70 group-hover:opacity-100 transition-all duration-300 shadow-lg shadow-blue-500/50"
+      ></div>
 
-      <!-- Closing quote mark -->
+      <!-- Closing quote accent -->
       <div
-        class="absolute -bottom-1 -right-1 w-8 h-8 bg-yellow-500 rounded-lg flex items-center justify-center text-slate-900 font-bold text-sm transform group-hover:scale-110 transition-all duration-300"
-      >
-        <span class="transform rotate-180">"</span>
-      </div>
+        class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full opacity-70 group-hover:opacity-100 transition-all duration-300 shadow-lg shadow-green-500/50"
+      ></div>
 
       <!-- Quote text -->
       <p
@@ -47,7 +30,7 @@
 
         <!-- Author name -->
         <span
-          class="font-semibold px-4 py-2 rounded-xl bg-blue-600 text-white group-hover:bg-blue-700 transition-colors duration-300"
+          class="font-semibold px-4 py-2 rounded-xl bg-blue-600 text-white group-hover:bg-blue-700 transition-all duration-300 shadow-lg shadow-blue-500/40 hover:shadow-blue-500/60"
         >
           — {{ blok.author }}
         </span>
