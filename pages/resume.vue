@@ -1,44 +1,21 @@
 <template>
   <div class="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 py-16">
     <div class="max-w-4xl mx-auto px-4">
-      <!-- Header -->
-      <header class="text-center mb-16 animate-fade-in">
-        <h1 class="text-4xl md:text-5xl font-display text-white mb-4">
+      <!-- Header with Gradient Theme -->
+      <header class="text-center mb-16">
+        <h1 class="text-4xl md:text-5xl font-display bg-gradient-to-r from-blue-400 via-green-400 to-blue-500 bg-clip-text text-transparent mb-8">
           Resume
         </h1>
-        <p class="text-xl text-slate-300 mb-8">
-          My professional journey and experience
-        </p>
-        <div class="flex justify-center space-x-4">
-          <button class="btn btn-primary">
-            <svg
-              class="w-4 h-4 mr-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2z"
-              />
+        <div class="flex justify-center space-x-4 mb-8">
+          <button class="inline-flex items-center px-6 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-blue-700 text-white font-medium hover:from-blue-400 hover:to-blue-600 transition-all duration-200 shadow-lg shadow-blue-500/30">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
             </svg>
             Download PDF
           </button>
-          <button @click="handlePrint" class="btn btn-secondary">
-            <svg
-              class="w-4 h-4 mr-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"
-              />
+          <button @click="handlePrint" class="inline-flex items-center px-6 py-3 rounded-xl bg-gradient-to-r from-green-500 to-green-700 text-white font-medium hover:from-green-400 hover:to-green-600 transition-all duration-200 shadow-lg shadow-green-500/30">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
             </svg>
             Print
           </button>
@@ -46,309 +23,305 @@
       </header>
 
       <!-- Resume Content -->
-      <div
-        class="bg-slate-800 rounded-lg shadow-sm border border-slate-700 p-8 mb-8 animate-slide-up"
-      >
-        <!-- Personal Info -->
-        <section class="mb-12">
-          <div
-            class="flex flex-col md:flex-row md:items-center md:justify-between mb-6"
-          >
-            <div>
-              <h2 class="text-3xl font-bold text-white mb-2">Your Name</h2>
-              <p class="text-xl text-slate-300">Full Stack Developer</p>
+      <main class="bg-gradient-to-br from-slate-800 via-slate-800 to-slate-700 rounded-2xl shadow-xl shadow-blue-500/10 border border-slate-700 p-8">
+        <!-- Header Section -->
+        <header class="flex flex-col sm:flex-row justify-start sm:items-center mb-8 pb-8 border-b border-slate-600">
+          <div class="profile-pic mb-5 sm:mb-0 sm:mr-6">
+            <img
+              src="https://a-us.storyblok.com/f/1002617/800x800/3cde4e7148/profile-pic.jpg"
+              alt="Thomas Cober Profile Picture"
+              class="w-24 h-24 rounded-full border-4 border-blue-500 shadow-lg shadow-blue-500/30"
+            />
+          </div>
+          <div class="flex flex-col sm:flex-row sm:items-end justify-start">
+            <div class="profile-header mr-6 mb-1 sm:mb-0">
+              <h1 class="text-3xl font-bold text-white mb-1">Thomas Cober</h1>
+              <h2 class="text-xl text-blue-300">Senior Javascript Engineer</h2>
             </div>
-            <div class="mt-4 md:mt-0 text-sm space-y-1 md:text-right">
-              <div class="flex items-center md:justify-end">
-                <svg
-                  class="w-4 h-4 mr-2 text-slate-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                  />
-                </svg>
-                <span class="text-slate-300">your.email@example.com</span>
-              </div>
-              <div class="flex items-center md:justify-end">
-                <svg
-                  class="w-4 h-4 mr-2 text-slate-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                  />
-                </svg>
-                <span class="text-slate-300">(555) 123-4567</span>
-              </div>
-              <div class="flex items-center md:justify-end">
-                <svg
-                  class="w-4 h-4 mr-2 text-neutral-500"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                  />
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
-                Your City, State
-              </div>
+            <div class="mb-0.5 text-slate-300">
+              <p class="text-sm">tcober5@gmail.com</p>
+              <p class="text-sm">thomascober.com</p>
             </div>
           </div>
+        </header>
 
-          <div class="prose-custom">
-            <p>
-              Passionate full-stack developer with expertise in modern web
-              technologies. Focused on creating efficient, scalable, and
-              user-friendly applications with attention to detail and best
-              practices.
-            </p>
-          </div>
-        </section>
+        <!-- Main Content -->
+        <div class="flex sm:flex-row flex-col-reverse">
+          <!-- Left Column - Experience & Education -->
+          <div class="sm:w-1/2 sm:border-r sm:border-slate-600 sm:pr-8">
+            <!-- Experience Section -->
+            <div class="mb-8">
+              <div class="mb-6">
+                <h3 class="text-2xl font-bold text-white mb-2">Experience</h3>
+                <div class="w-12 h-1 bg-gradient-to-r from-blue-500 to-green-500 rounded-full"></div>
+              </div>
 
-        <!-- Experience -->
-        <section class="mb-12">
-          <h3
-            class="text-2xl font-semibold text-slate-100 mb-6 border-b border-slate-600 pb-2"
-          >
-            Experience
-          </h3>
-          <div class="timeline-container">
-            <div class="timeline-item">
-              <div class="timeline-content">
-                <div
-                  class="flex flex-col md:flex-row md:items-start md:justify-between mb-3"
-                >
-                  <div>
-                    <h4 class="text-lg font-semibold text-slate-100">
-                      Senior Full Stack Developer
-                    </h4>
-                    <p class="text-blue-400 font-medium">Tech Company Inc.</p>
-                  </div>
-                  <div class="text-sm text-slate-400 mt-1 md:mt-0">
-                    Jan 2022 - Present
-                  </div>
+              <!-- RBC -->
+              <section class="mb-6">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-bold text-lg text-blue-300">RBC</h3>
+                  <span class="text-sm text-slate-400 italic">02/2020 - Present</span>
                 </div>
-                <ul class="list-disc list-inside space-y-1 text-slate-300">
-                  <li>
-                    Led development of microservices architecture using Node.js
-                    and Docker
-                  </li>
-                  <li>
-                    Improved application performance by 40% through optimization
-                    techniques
-                  </li>
-                  <li>Mentored junior developers and conducted code reviews</li>
-                  <li>
-                    Collaborated with product team to deliver user-centric
-                    features
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="timeline-item">
-              <div class="timeline-content">
-                <div
-                  class="flex flex-col md:flex-row md:items-start md:justify-between mb-3"
-                >
-                  <div>
-                    <h4 class="text-lg font-semibold text-slate-100">
-                      Full Stack Developer
-                    </h4>
-                    <p class="text-green-400 font-medium">
-                      Startup Solutions LLC
-                    </p>
-                  </div>
-                  <div class="text-sm text-slate-400 mt-1 md:mt-0">
-                    Mar 2020 - Dec 2021
-                  </div>
-                </div>
-                <ul class="list-disc list-inside space-y-1 text-slate-300">
-                  <li>
-                    Built responsive web applications using React and Vue.js
-                  </li>
-                  <li>Designed and implemented RESTful APIs with Express.js</li>
-                  <li>
-                    Integrated third-party services and payment processing
-                  </li>
-                  <li>Participated in agile development processes</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Skills -->
-        <section class="mb-12">
-          <h3
-            class="text-2xl font-semibold text-slate-100 mb-6 border-b border-slate-600 pb-2"
-          >
-            Technical Skills
-          </h3>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="card">
-              <h4 class="card-title">Frontend</h4>
-              <div class="flex flex-wrap gap-2">
-                <span
-                  class="px-3 py-1 bg-blue-600 text-white rounded-full text-sm font-medium"
-                  >Vue.js</span
-                >
-                <span
-                  class="px-3 py-1 bg-green-600 text-white rounded-full text-sm font-medium"
-                  >React</span
-                >
-                <span
-                  class="px-3 py-1 bg-yellow-600 text-slate-900 rounded-full text-sm font-medium"
-                  >TypeScript</span
-                >
-                <span
-                  class="px-3 py-1 bg-blue-600 text-white rounded-full text-sm font-medium"
-                  >Tailwind CSS</span
-                >
-              </div>
-            </div>
-
-            <div class="card">
-              <h4 class="card-title">Backend</h4>
-              <div class="flex flex-wrap gap-2">
-                <span
-                  class="px-3 py-1 bg-accent-100 text-accent-800 rounded-full text-sm font-medium"
-                  >Node.js</span
-                >
-                <span
-                  class="px-3 py-1 bg-accent-100 text-accent-800 rounded-full text-sm font-medium"
-                  >Express</span
-                >
-                <span
-                  class="px-3 py-1 bg-accent-100 text-accent-800 rounded-full text-sm font-medium"
-                  >PostgreSQL</span
-                >
-                <span
-                  class="px-3 py-1 bg-accent-100 text-accent-800 rounded-full text-sm font-medium"
-                  >MongoDB</span
-                >
-              </div>
-            </div>
-
-            <div class="card">
-              <h4 class="card-title">Tools & Platforms</h4>
-              <div class="flex flex-wrap gap-2">
-                <span
-                  class="px-3 py-1 bg-secondary-100 text-secondary-800 rounded-full text-sm font-medium"
-                  >Docker</span
-                >
-                <span
-                  class="px-3 py-1 bg-secondary-100 text-secondary-800 rounded-full text-sm font-medium"
-                  >AWS</span
-                >
-                <span
-                  class="px-3 py-1 bg-secondary-100 text-secondary-800 rounded-full text-sm font-medium"
-                  >Git</span
-                >
-                <span
-                  class="px-3 py-1 bg-secondary-100 text-secondary-800 rounded-full text-sm font-medium"
-                  >Figma</span
-                >
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Education -->
-        <section class="mb-12">
-          <h3
-            class="text-2xl font-semibold text-slate-100 mb-6 border-b border-slate-600 pb-2"
-          >
-            Education
-          </h3>
-
-          <div class="card">
-            <div
-              class="flex flex-col md:flex-row md:items-start md:justify-between"
-            >
-              <div>
-                <h4 class="text-lg font-semibold text-slate-100">
-                  Bachelor of Science in Computer Science
-                </h4>
-                <p class="text-green-400 font-medium">University Name</p>
-                <p class="text-slate-300 text-sm mt-1">
-                  Relevant coursework: Data Structures, Algorithms, Software
-                  Engineering
+                <h4 class="text-green-300 font-semibold mb-2">Senior Developer</h4>
+                <p class="text-sm text-slate-300 mb-3">
+                  Royal Bank of Canada Wealth Management helps people manage their financial future.
                 </p>
+                <ul class="text-sm text-slate-300 list-disc list-inside space-y-1">
+                  <li>Contributed to an A+ Vue frontend</li>
+                  <li>Refactored and contributed to a Node middle tier</li>
+                </ul>
+              </section>
+
+              <!-- SDG -->
+              <section class="mb-6">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-bold text-lg text-blue-300">SDG</h3>
+                  <span class="text-sm text-slate-400 italic">05/2018 - 09/2019</span>
+                </div>
+                <h4 class="text-green-300 font-semibold mb-2">Contract Front End Developer</h4>
+                <p class="text-sm text-slate-300 mb-3">
+                  Solution Design Group provides staffing augmentation to help companies all around the world meet their digital needs.
+                </p>
+                <ul class="text-sm text-slate-300 list-disc list-inside space-y-1">
+                  <li>Built 2 enterprise sized web apps</li>
+                  <li>Learned how to be a great contractor</li>
+                </ul>
+              </section>
+
+              <!-- Pediatric Home Service -->
+              <section class="mb-6">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-bold text-lg text-blue-300">Pediatric Home Service</h3>
+                  <span class="text-sm text-slate-400 italic">04/2017 - 05/2018</span>
+                </div>
+                <h4 class="text-green-300 font-semibold mb-2">Front End Developer</h4>
+                <p class="text-sm text-slate-300 mb-3">
+                  Pediatric Home Service helps severely disabled children get the medical help they need so they are able to live at home safely.
+                </p>
+                <ul class="text-sm text-slate-300 list-disc list-inside space-y-1">
+                  <li>Built an ecommerce web app for delivering medical supplies</li>
+                  <li>Maintained and built several promotional Wordpress sites</li>
+                </ul>
+              </section>
+
+              <!-- Iron Horse Interactive -->
+              <section class="mb-6">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-bold text-lg text-blue-300">Iron Horse Interactive</h3>
+                  <span class="text-sm text-slate-400 italic">10/2016 - 04/2017</span>
+                </div>
+                <h4 class="text-green-300 font-semibold mb-2">Front End Developer</h4>
+                <p class="text-sm text-slate-300 mb-3">
+                  Iron Horse Interactive is a B2B marketing company focusing on the VR/AR industry.
+                </p>
+                <ul class="text-sm text-slate-300 list-disc list-inside space-y-1">
+                  <li>Helped with marketing site development</li>
+                  <li>Installed analytics</li>
+                  <li>Made SEO optimizations</li>
+                </ul>
+              </section>
+
+              <!-- Lytics -->
+              <section class="mb-6">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-bold text-lg text-blue-300">Lytics</h3>
+                  <span class="text-sm text-slate-400 italic">10/2015 - 09/2016</span>
+                </div>
+                <h4 class="text-green-300 font-semibold mb-2">Junior Developer</h4>
+                <p class="text-sm text-slate-300 mb-3">
+                  Lytics is a marketing analytics customer data platform that consolidates data and uses AI to analyze that data.
+                </p>
+                <ul class="text-sm text-slate-300 list-disc list-inside space-y-1">
+                  <li>Learned foundational developer skills</li>
+                  <li>Designed and programmed a new marketing site</li>
+                  <li>Designed and programmed promotional sites</li>
+                </ul>
+              </section>
+            </div>
+
+            <!-- Education Section -->
+            <div class="mt-8 sm:mt-0">
+              <div class="mb-6">
+                <h3 class="text-2xl font-bold text-white mb-2">Education</h3>
+                <div class="w-12 h-1 bg-gradient-to-r from-green-500 to-yellow-500 rounded-full"></div>
               </div>
-              <div class="text-sm text-slate-400 mt-2 md:mt-0">2016 - 2020</div>
+
+              <section class="mb-4">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-bold text-lg text-blue-300">Portland State University</h3>
+                  <span class="text-sm text-slate-400 italic">09/2010 - 06/2013</span>
+                </div>
+                <h4 class="text-green-300 text-sm">Bachelors in Graphic and Interactive Design</h4>
+              </section>
+
+              <section class="mb-4">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-bold text-lg text-blue-300">Kishwaukee Community College</h3>
+                  <span class="text-sm text-slate-400 italic">09/2008 - 06/2009</span>
+                </div>
+                <h4 class="text-green-300 text-sm">Associates in General Studies</h4>
+              </section>
             </div>
           </div>
-        </section>
-      </div>
+
+          <!-- Right Column - Skills -->
+          <div class="sm:w-1/2 sm:pl-8 mb-8 sm:mb-0">
+            <div class="mb-6">
+              <h3 class="text-2xl font-bold text-white mb-2">Skills</h3>
+              <div class="w-12 h-1 bg-gradient-to-r from-yellow-500 to-blue-500 rounded-full"></div>
+            </div>
+
+            <div class="space-y-4">
+              <!-- Vue -->
+              <div class="flex items-center">
+                <h4 class="w-32 font-light text-slate-300">Vue</h4>
+                <div class="flex space-x-1">
+                  <FontAwesomeIcon v-for="index in 5" :key="index" icon="fa-solid fa-circle" class="text-blue-400" />
+                </div>
+              </div>
+
+              <!-- HTML -->
+              <div class="flex items-center">
+                <h4 class="w-32 font-light text-slate-300">HTML</h4>
+                <div class="flex space-x-1">
+                  <FontAwesomeIcon v-for="index in 5" :key="index" icon="fa-solid fa-circle" class="text-green-400" />
+                </div>
+              </div>
+
+              <!-- CSS/SASS -->
+              <div class="flex items-center">
+                <h4 class="w-32 font-light text-slate-300">CSS/SASS</h4>
+                <div class="flex space-x-1">
+                  <FontAwesomeIcon v-for="index in 5" :key="index" icon="fa-solid fa-circle" class="text-yellow-400" />
+                </div>
+              </div>
+
+              <!-- JavaScript -->
+              <div class="flex items-center">
+                <h4 class="w-32 font-light text-slate-300">JavaScript</h4>
+                <div class="flex space-x-1">
+                  <FontAwesomeIcon v-for="index in 5" :key="index" icon="fa-solid fa-circle" class="text-blue-400" />
+                </div>
+              </div>
+
+              <!-- Angular -->
+              <div class="flex items-center">
+                <h4 class="w-32 font-light text-slate-300">Angular 2+</h4>
+                <div class="flex space-x-1">
+                  <FontAwesomeIcon v-for="index in 3" :key="index" icon="fa-solid fa-circle" class="text-green-400" />
+                </div>
+              </div>
+
+              <!-- Node -->
+              <div class="flex items-center">
+                <h4 class="w-32 font-light text-slate-300">Node</h4>
+                <div class="flex space-x-1">
+                  <FontAwesomeIcon v-for="index in 3" :key="index" icon="fa-solid fa-circle" class="text-yellow-400" />
+                </div>
+              </div>
+
+              <!-- Git -->
+              <div class="flex items-center">
+                <h4 class="w-32 font-light text-slate-300">Git</h4>
+                <div class="flex space-x-1">
+                  <FontAwesomeIcon v-for="index in 4" :key="index" icon="fa-solid fa-circle" class="text-blue-400" />
+                </div>
+              </div>
+
+              <!-- Jest -->
+              <div class="flex items-center">
+                <h4 class="w-32 font-light text-slate-300">Jest</h4>
+                <div class="flex space-x-1">
+                  <FontAwesomeIcon v-for="index in 4" :key="index" icon="fa-solid fa-circle" class="text-green-400" />
+                </div>
+              </div>
+
+              <!-- Storyblok -->
+              <div class="flex items-center">
+                <h4 class="w-32 font-light text-slate-300">Storyblok</h4>
+                <div class="flex space-x-1">
+                  <FontAwesomeIcon v-for="index in 3" :key="index" icon="fa-solid fa-circle" class="text-yellow-400" />
+                </div>
+              </div>
+
+              <!-- CL Tools -->
+              <div class="flex items-center">
+                <h4 class="w-32 font-light text-slate-300">CL Tools</h4>
+                <div class="flex space-x-1">
+                  <FontAwesomeIcon v-for="index in 4" :key="index" icon="fa-solid fa-circle" class="text-blue-400" />
+                </div>
+              </div>
+
+              <!-- Fun Skills -->
+              <div class="flex items-center">
+                <h4 class="w-32 font-light text-slate-300">Losing Keys</h4>
+                <div class="flex space-x-1">
+                  <FontAwesomeIcon v-for="index in 5" :key="index" icon="fa-solid fa-circle" class="text-red-400" />
+                </div>
+              </div>
+
+              <div class="flex items-center">
+                <h4 class="w-32 font-light text-slate-300">Team Support</h4>
+                <div class="flex space-x-1">
+                  <FontAwesomeIcon v-for="index in 5" :key="index" icon="fa-solid fa-circle" class="text-green-400" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
   </div>
 </template>
 
 <script setup>
-// SEO meta tags with useSeoMeta for better optimization
+// SEO Meta
 useSeoMeta({
-  title: "Resume - Thomas Cober | Professional Experience",
-  description:
-    "Professional resume showcasing my experience, skills, and education in software development. View my career progression, technical expertise, and achievements.",
-  ogTitle: "Resume - Thomas Cober | Professional Experience",
-  ogDescription:
-    "Professional resume showcasing my experience, skills, and education in software development. View my career progression, technical expertise, and achievements.",
-  ogType: "profile",
-  twitterCard: "summary",
-  robots: "index, follow",
-});
+  title: 'Resume - Thomas Cober',
+  description: 'Senior Javascript Engineer with expertise in Vue, Node.js, and full-stack development.',
+  ogTitle: 'Resume - Thomas Cober',
+  ogDescription: 'Senior Javascript Engineer with expertise in Vue, Node.js, and full-stack development.',
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
+})
 
-// Print handler with client-side check
-function handlePrint() {
-  if (process.client) {
-    window.print();
-  }
+// Print functionality
+const handlePrint = () => {
+  window.print();
 }
 </script>
 
 <style scoped>
 /* Print styles */
 @media print {
-  .no-print,
-  nav,
-  footer {
+  .print\:hidden {
     display: none !important;
   }
-
+  
+  body {
+    background: white;
+  }
+  
   .bg-gradient-to-br {
     background: white !important;
   }
-
-  .shadow-sm,
-  .shadow-md {
-    box-shadow: none !important;
+  
+  .text-slate-300,
+  .text-slate-400 {
+    color: #374151 !important;
   }
-
-  .timeline-item::before {
-    background: #000 !important;
+  
+  .text-white {
+    color: #000 !important;
+  }
+  
+  .border-slate-600,
+  .border-slate-700 {
+    border-color: #d1d5db !important;
+  }
+  
+  .bg-slate-800 {
+    background: white !important;
   }
 }
 </style>

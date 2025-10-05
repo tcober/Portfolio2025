@@ -17,7 +17,7 @@
 
       <!-- Author name -->
       <span
-        class="font-semibold px-4 py-2 rounded-xl bg-blue-600 text-white group-hover:bg-blue-700 transition-all duration-300 shadow-lg shadow-blue-500/40 hover:shadow-blue-500/60"
+        class="font-semibold px-4 py-2 rounded-xl bg-gradient-to-r from-blue-500 to-green-600 text-white group-hover:from-blue-400 group-hover:to-green-500 transition-all duration-300 shadow-lg shadow-blue-500/40 hover:shadow-blue-500/60"
       >
         — {{ blok.author }}
       </span>

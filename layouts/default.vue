@@ -1,5 +1,7 @@
 <template>
-  <div class="min-h-screen bg-slate-900">
+  <div
+    class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-900 to-slate-800"
+  >
     <!-- Hamburger Menu Button -->
     <button
       @click="menuOpen = !menuOpen"
@@ -7,7 +9,7 @@
         'fixed top-6 right-6 z-50 p-4 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border backdrop-blur-sm group',
         menuOpen
           ? 'bg-gradient-to-br from-blue-600 to-green-600 border-white/30 shadow-2xl scale-110'
-          : 'bg-slate-800/90 border-slate-700/50 hover:bg-slate-700 hover:scale-105',
+          : 'bg-gradient-to-br from-slate-800/90 to-slate-700/90 border-slate-700/50 hover:from-slate-700/90 hover:to-slate-600/90 hover:scale-105',
       ]"
       aria-label="Toggle Menu"
     >
