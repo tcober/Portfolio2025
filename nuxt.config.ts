@@ -2,6 +2,21 @@
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
+
+  // Route rules for hybrid rendering and performance optimization
+  routeRules: {
+    "/": { prerender: true },
+    "/resume": { prerender: true },
+  },
+
+  // Performance optimizations
+  experimental: {
+    defaults: {
+      nuxtLink: {
+        prefetchOn: { interaction: true },
+      },
+    },
+  },
   modules: [
     [
       "@storyblok/nuxt",
@@ -33,5 +48,29 @@ export default defineNuxtConfig({
     prefetch: true,
     download: true,
     base64: false,
+  },
+
+  // App configuration for SEO and meta defaults
+  app: {
+    head: {
+      charset: "utf-8",
+      viewport: "width=device-width, initial-scale=1",
+      title: "Portfolio 2025 - Thomas Cober",
+      htmlAttrs: {
+        lang: "en",
+      },
+      meta: [
+        { name: "author", content: "Thomas Cober" },
+        { name: "theme-color", content: "#6366f1" },
+      ],
+    },
+  },
+
+  // CSS configuration for better performance
+  css: ["~/assets/css/tailwind.css"],
+
+  // Enable compression and optimization
+  nitro: {
+    compressPublicAssets: true,
   },
 });

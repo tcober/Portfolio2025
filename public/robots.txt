@@ -1,2 +1,9 @@
 User-Agent: *
-Disallow:
+Allow: /
+
+# Sitemap
+Sitemap: https://portfolio2025.netlify.app/sitemap.xml
+
+# Main pages
+Allow: /
+Allow: /resume

@@ -1,51 +1,81 @@
-const CACHE_DURATION_MS = 5 * 60 * 1000;
+import { defineStore } from "pinia";
+import { ref, readonly, computed } from "vue";
 
-export const useFeedStore = defineStore("feed", {
-  state: () => ({
-    posts: [],
-    loading: false,
-    error: null,
-    lastFetchedAt: 0,
-  }),
-  actions: {
-    async fetchPosts({ force = false } = {}) {
-      if (this.loading) {
-        return this.posts;
+export const useFeedStore = defineStore("feed", () => {
+  const posts = ref([]);
+  const loading = ref(false);
+  const error = ref(null);
+  const lastFetch = ref(null);
+  const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
+  const isCacheValid = () => {
+    if (!lastFetch.value) return false;
+    return Date.now() - lastFetch.value < CACHE_DURATION;
+  };
+
+  const fetchPosts = async (options = {}) => {
+    const { force = false } = options;
+
+    // Return cached data if valid and not forcing refresh
+      }
+      return posts.value;
+    }
+
+    loading.value = true;
+    error.value = null;
+
+    try {
+      const storyblokApi = useStoryblokApi();
+
+      const response = await storyblokApi.get("cdn/stories", {
+        starts_with: "posts/",
+        version: process.env.NODE_ENV === "production" ? "published" : "draft",
+        sort_by: "created_at:desc",
+      });
+
+      posts.value = response.data.stories || [];
+      lastFetch.value = Date.now();
       }
 
-      const shouldUseCache =
-        !force &&
-        this.posts.length > 0 &&
-        Date.now() - this.lastFetchedAt < CACHE_DURATION_MS;
-      if (shouldUseCache) {
-        return this.posts;
-      }
+      return posts.value;
+    } catch (err) {
+      const errorMessage =
+        err instanceof Error ? err.message : "Failed to fetch posts";
+      error.value = errorMessage;
+      console.error("❌ Error fetching posts:", err);
 
-      this.loading = true;
-      this.error = null;
+      // Return empty array on error to prevent template issues
+      return [];
+    } finally {
+      loading.value = false;
+    }
+  };
 
-      try {
-        const storyblokApi = useStoryblokApi();
-        const { data } = await storyblokApi.get("cdn/stories", {
-          version: import.meta.dev ? "draft" : "published",
-          starts_with: "posts/",
-          sort_by: "first_published_at:desc",
-        });
+  const refreshPosts = () => {
+    return fetchPosts({ force: true });
+  };
 
-        this.posts = Array.isArray(data?.stories) ? data.stories : [];
-        this.lastFetchedAt = Date.now();
-        return this.posts;
-      } catch (error) {
-        this.error =
-          error instanceof Error ? error.message : "Unable to load posts";
-        if (import.meta.dev) {
-          // eslint-disable-next-line no-console
-          console.error("feedStore.fetchPosts", error);
-        }
-        return [];
-      } finally {
-        this.loading = false;
-      }
-    },
-  },
+  const clearCache = () => {
+    posts.value = [];
+    lastFetch.value = null;
+    error.value = null;
+  };
+
+  return {
+    // State - Remove readonly to allow proper hydration
+    posts,
+    loading: readonly(loading),
+    error: readonly(error),
+
+    // Getters
+    postsCount: computed(() => posts.value.length),
+    isDataFresh: computed(() => isCacheValid()),
+
+    // State
+    // 'posts' is intentionally mutable to support Nuxt/Pinia hydration and updates,
+    // while 'loading' and 'error' are exposed as readonly for safety.
+    posts,
+    loading: readonly(loading),
+    error: readonly(error),
+  };
 });

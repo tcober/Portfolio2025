@@ -12,6 +12,8 @@
           :title="image.title || image.name"
           class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 cursor-pointer"
           loading="lazy"
+          decoding="async"
+          fetchpriority="high"
           @click="openLightbox(image, index)"
         />
       </div>

@@ -25,30 +25,30 @@
           FEED
         </h1>
       </div>
-      <div v-if="feedStore.loading" class="text-center py-16">
+      <div v-if="loading" class="text-center py-16">
         <div
           class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"
         ></div>
         <p class="mt-4 text-neutral-600">Loading posts...</p>
       </div>
 
-      <div v-else-if="feedStore.error" class="text-center py-16">
+      <div v-else-if="error" class="text-center py-16">
         <div class="text-6xl mb-4">⚠️</div>
         <h2 class="text-2xl font-semibold text-neutral-700 mb-2">
           Something went wrong
         </h2>
         <p class="text-neutral-600">
-          {{ feedStore.error }}
+          {{ error }}
         </p>
         <button
           class="mt-6 inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-medium shadow hover:shadow-lg transition-transform hover:-translate-y-0.5"
-          @click="feedStore.fetchPosts({ force: true })"
+          @click="refresh()"
         >
           Try again
         </button>
       </div>
 
-      <div v-else-if="feedStore.posts.length === 0" class="text-center py-16">
+      <div v-else-if="!posts || posts.length === 0" class="text-center py-16">
         <div class="text-6xl mb-4">📝</div>
         <h2 class="text-2xl font-semibold text-neutral-700 mb-2">
           No posts yet
@@ -64,7 +64,7 @@
 
         <div class="space-y-12">
           <article
-            v-for="(post, index) in feedStore.posts"
+            v-for="(post, index) in posts"
             :key="post.id"
             :class="[
               'relative animate-on-scroll',
@@ -154,30 +154,45 @@
 import { useFeedStore } from "~/stores/feedStore";
 import { nextTick, onBeforeUnmount, onMounted, shallowRef, watch } from "vue";
 
-// Meta tags
-useHead({
+// SEO meta tags with useSeoMeta for better optimization
+useSeoMeta({
   title: "Portfolio Timeline - My Journey",
-  meta: [
-    {
-      name: "description",
-      content:
-        "A timeline view of my professional journey, projects, and thoughts.",
-    },
-    { property: "og:title", content: "Portfolio Timeline - My Journey" },
-    {
-      property: "og:description",
-      content:
-        "A timeline view of my professional journey, projects, and thoughts.",
-    },
-  ],
+  description:
+    "A timeline view of my professional journey, projects, and thoughts. Explore my work, experiences, and creative process through an interactive timeline.",
+  ogTitle: "Portfolio Timeline - My Journey",
+  ogDescription:
+    "A timeline view of my professional journey, projects, and thoughts. Explore my work, experiences, and creative process through an interactive timeline.",
+  ogType: "website",
+  twitterCard: "summary_large_image",
+  robots: "index, follow",
 });
 
-const feedStore = useFeedStore();
-try {
-  await useAsyncData("feed-posts", () => feedStore.fetchPosts());
-} catch (error) {
-  feedStore.error = error instanceof Error ? error.message : String(error);
-}
+// Use useAsyncData directly for proper SSR/client hydration
+const {
+  data: posts,
+  pending: loading,
+  error,
+  refresh,
+} = await useAsyncData("feed-posts", async () => {
+  try {
+    const storyblokApi = useStoryblokApi();
+    const response = await storyblokApi.get("cdn/stories", {
+      starts_with: "posts/",
+      version: process.env.NODE_ENV === "production" ? "published" : "draft",
+      sort_by: "created_at:desc",
+    });
+
+    if (process.env.NODE_ENV !== "production") {
+      console.log("Fetched posts:", response.data.stories?.length || 0);
+    }
+    if (process.env.NODE_ENV !== "production") {
+      console.error("Error fetching posts:", err);
+    }
+    throw err;
+    console.error("Error fetching posts:", err);
+    throw err;
+  }
+});
 
 const observer = shallowRef(null);
 
@@ -224,7 +239,7 @@ onMounted(() => {
 });
 
 watch(
-  () => feedStore.posts.length,
+  () => posts.value?.length || 0,
   (count) => {
     if (count > 0) {
       ensureObserver();

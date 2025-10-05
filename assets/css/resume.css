@@ -8,48 +8,55 @@ h3,
 h4,
 h5,
 h6 {
-  @apply uppercase;
+  /* Use Tailwind's 'uppercase' class in your Vue templates instead of this rule for consistency */
 }
 
 h1 {
-  @apply font-bold text-4xl tracking-wide;
+  font-weight: bold;
+  font-size: 2.25rem;
+  letter-spacing: 0.025em;
 }
 
 h2 {
-  @apply text-base tracking-wider;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
 }
 
 h3 {
-  @apply text-sm tracking-wider;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
 }
 
 h4 {
-  @apply text-xs;
+  font-size: 0.75rem;
 }
 
 h5 {
   font-size: 11px;
-  @apply font-light;
+  font-weight: 300;
 }
 
 h6 {
   font-size: 10px;
-  @apply font-normal;
+  font-weight: 400;
 }
 
 blockquote {
   font-size: 11px;
-  @apply font-normal italic my-3 mx-6;
+  font-weight: 400;
+  font-style: italic;
+  margin: 0.75rem 1.5rem;
 }
 
 /*
- * Use Tailwind's text-gray-500 for consistent color styling.
+ * Use consistent color styling.
  */
 em {
-  @apply text-gray-500;
+  color: #6b7280;
 }
-``` .left-column ul {
-  @apply mt-2.5;
+
+.left-column ul {
+  margin-top: 0.625rem;
 }
 
 ul.minimal li {
@@ -74,12 +81,11 @@ ul.two-column li {
 .container {
   padding-top: 20px;
 }
-border-top: 1px solid var(--color-primary, #5d0184);
+
 .keyline {
   width: 45px;
   margin: 8px 0 10px;
-  /* Use Tailwind's purple-800 or a custom property for the border color */
-  border-top: 1px solid var(--primary-accent, #5d0184);
+  border-top: 1px solid #5d0184;
 }
 
 .clearfix:after {
@@ -92,8 +98,7 @@ border-top: 1px solid var(--color-primary, #5d0184);
   height: 100px;
   width: 100px;
   border-radius: 50%;
-  /* Use Tailwind's purple-800 or a custom property for the border color */
-  border: 2px solid var(--primary-accent, #5d0184);
+  border: 2px solid #5d0184;
 }
 
 .summary {
@@ -135,7 +140,9 @@ border-top: 1px solid var(--color-primary, #5d0184);
 /* Components */
 .info-tag-container {
   margin-bottom: 5px;
-  @apply justify-between items-center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .info-tag-container .fa {
   font-size: 14px;

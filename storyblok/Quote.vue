@@ -40,10 +40,25 @@
 </template>
 
 <script setup>
+// Define props with validation
+/**
+ * blok structure:
+ * {
+ *   quote: string (required),
+ *   author?: string (optional)
+ * }
+ */
 const props = defineProps({
   blok: {
     type: Object,
     required: true,
+    validator: (blok) => {
+      return (
+        blok &&
+        typeof blok.quote === "string" &&
+        (blok.author === undefined || typeof blok.author === "string")
+      );
+    },
   },
 });
 </script>

@@ -317,22 +317,17 @@
 </template>
 
 <script setup>
-// Meta tags
-useHead({
-  title: "Resume - Professional Experience",
-  meta: [
-    {
-      name: "description",
-      content:
-        "Professional resume showcasing my experience, skills, and education in software development.",
-    },
-    { property: "og:title", content: "Resume - Professional Experience" },
-    {
-      property: "og:description",
-      content:
-        "Professional resume showcasing my experience, skills, and education in software development.",
-    },
-  ],
+// SEO meta tags with useSeoMeta for better optimization
+useSeoMeta({
+  title: "Resume - Thomas Cober | Professional Experience",
+  description:
+    "Professional resume showcasing my experience, skills, and education in software development. View my career progression, technical expertise, and achievements.",
+  ogTitle: "Resume - Thomas Cober | Professional Experience",
+  ogDescription:
+    "Professional resume showcasing my experience, skills, and education in software development. View my career progression, technical expertise, and achievements.",
+  ogType: "profile",
+  twitterCard: "summary",
+  robots: "index, follow",
 });
 
 // Print handler with client-side check
