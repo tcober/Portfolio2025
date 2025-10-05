@@ -1,17 +1,18 @@
 <template>
-  <div
-    class="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-cyan-50 relative overflow-hidden"
-  >
-    <!-- Decorative background elements -->
+  <div class="min-h-screen bg-slate-100 relative overflow-hidden">
+    <!-- Decorative background blocks -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
       <div
-        class="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"
+        class="absolute top-20 left-10 w-80 h-80 bg-indigo-200 rounded-xl opacity-60 animate-blob"
       ></div>
       <div
-        class="absolute top-40 right-10 w-72 h-72 bg-gradient-to-r from-yellow-100 to-pink-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"
+        class="absolute top-40 right-10 w-72 h-72 bg-purple-200 rounded-2xl opacity-60 animate-blob animation-delay-2000"
       ></div>
       <div
-        class="absolute -bottom-8 left-20 w-72 h-72 bg-gradient-to-r from-green-100 to-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"
+        class="absolute -bottom-8 left-20 w-96 h-64 bg-teal-200 rounded-3xl opacity-50 animate-blob animation-delay-4000"
+      ></div>
+      <div
+        class="absolute top-1/2 right-1/4 w-48 h-48 bg-pink-200 rounded-xl opacity-40 animate-blob animation-delay-1000"
       ></div>
     </div>
 
@@ -19,47 +20,49 @@
     <main class="relative z-10 max-w-5xl mx-auto px-4 py-16">
       <!-- Feed Header -->
       <div class="text-center mb-16">
-        <h1
-          class="text-5xl md:text-6xl font-display bg-gradient-to-r from-indigo-600 via-purple-600 to-teal-600 bg-clip-text text-transparent mb-4"
-        >
-          FEED
-        </h1>
+        <div class="inline-block bg-indigo-600 px-8 py-4 rounded-2xl mb-4">
+          <h1 class="text-5xl md:text-6xl font-display text-white">FEED</h1>
+        </div>
       </div>
       <div v-if="loading" class="text-center py-16">
-        <div
-          class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"
-        ></div>
-        <p class="mt-4 text-neutral-600">Loading posts...</p>
+        <div class="inline-block bg-indigo-500 p-6 rounded-2xl">
+          <div
+            class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-white"
+          ></div>
+          <p class="mt-4 text-white font-medium">Loading posts...</p>
+        </div>
       </div>
 
       <div v-else-if="error" class="text-center py-16">
-        <div class="text-6xl mb-4">⚠️</div>
-        <h2 class="text-2xl font-semibold text-neutral-700 mb-2">
-          Something went wrong
-        </h2>
-        <p class="text-neutral-600">
-          {{ error }}
-        </p>
-        <button
-          class="mt-6 inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-medium shadow hover:shadow-lg transition-transform hover:-translate-y-0.5"
-          @click="refresh()"
-        >
-          Try again
-        </button>
+        <div class="inline-block bg-red-500 px-8 py-6 rounded-2xl">
+          <div class="text-6xl mb-4">⚠️</div>
+          <h2 class="text-2xl font-semibold text-white mb-2">
+            Something went wrong
+          </h2>
+          <p class="text-red-100 mb-4">
+            {{ error }}
+          </p>
+          <button
+            class="inline-flex items-center px-6 py-3 rounded-xl bg-white text-red-600 font-medium hover:bg-red-50 transition-colors duration-200"
+            @click="refresh()"
+          >
+            Try again
+          </button>
+        </div>
       </div>
 
       <div v-else-if="!posts || posts.length === 0" class="text-center py-16">
-        <div class="text-6xl mb-4">📝</div>
-        <h2 class="text-2xl font-semibold text-neutral-700 mb-2">
-          No posts yet
-        </h2>
-        <p class="text-neutral-600">Check back soon for updates!</p>
+        <div class="inline-block bg-slate-500 px-8 py-6 rounded-2xl">
+          <div class="text-6xl mb-4">📝</div>
+          <h2 class="text-2xl font-semibold text-white mb-2">No posts yet</h2>
+          <p class="text-slate-200">Check back soon for updates!</p>
+        </div>
       </div>
 
       <div v-else class="relative">
         <!-- Timeline line -->
         <div
-          class="absolute left-1/2 transform -translate-x-0.5 h-full w-0.5 bg-gradient-to-b from-indigo-200 via-purple-200 to-teal-200"
+          class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-indigo-400 rounded-full"
         ></div>
 
         <div class="space-y-12">
@@ -77,16 +80,15 @@
             <!-- Timeline dot -->
             <div
               :class="[
-                'absolute top-8 w-4 h-4 rounded-full border-4 border-white shadow-lg z-10',
-                'bg-gradient-to-r',
+                'absolute top-8 w-6 h-6 rounded-xl border-2 border-slate-100 z-10',
                 index % 3 === 0
-                  ? 'from-indigo-400 to-purple-500'
+                  ? 'bg-indigo-500'
                   : index % 3 === 1
-                  ? 'from-purple-400 to-pink-500'
-                  : 'from-teal-400 to-cyan-500',
+                  ? 'bg-purple-500'
+                  : 'bg-teal-500',
                 index % 2 === 0
-                  ? 'md:right-1/2 md:transform md:translate-x-2'
-                  : 'md:left-1/2 md:transform md:-translate-x-2',
+                  ? 'md:right-1/2 md:transform md:translate-x-3'
+                  : 'md:left-1/2 md:transform md:-translate-x-3',
                 'left-4 md:left-auto md:right-auto',
               ]"
             ></div>
@@ -100,32 +102,35 @@
             >
               <div
                 :class="[
-                  'group bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-white/20 p-8 transition-all duration-500 hover:shadow-2xl hover:scale-[1.02] hover:bg-white/90',
-                  'relative overflow-hidden',
+                  'group rounded-2xl p-8 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden',
+                  index % 3 === 0
+                    ? 'bg-indigo-50 hover:bg-indigo-100'
+                    : index % 3 === 1
+                    ? 'bg-purple-50 hover:bg-purple-100'
+                    : 'bg-teal-50 hover:bg-teal-100',
                 ]"
               >
                 <!-- Card decoration -->
                 <div
                   :class="[
-                    'absolute top-0 left-0 w-full h-1 bg-gradient-to-r',
+                    'absolute top-0 left-0 w-full h-2 rounded-t-2xl',
                     index % 3 === 0
-                      ? 'from-indigo-400 to-purple-500'
+                      ? 'bg-indigo-500'
                       : index % 3 === 1
-                      ? 'from-purple-400 to-pink-500'
-                      : 'from-teal-400 to-cyan-500',
+                      ? 'bg-purple-500'
+                      : 'bg-teal-500',
                   ]"
                 ></div>
 
                 <!-- Post number -->
                 <div
                   :class="[
-                    'absolute top-4 font-mono text-xs font-medium px-3 py-1 rounded-full',
-                    'bg-gradient-to-r text-white',
+                    'absolute top-4 font-mono text-xs font-bold px-4 py-2 rounded-xl text-white',
                     index % 3 === 0
-                      ? 'from-indigo-400 to-purple-500'
+                      ? 'bg-indigo-600'
                       : index % 3 === 1
-                      ? 'from-purple-400 to-pink-500'
-                      : 'from-teal-400 to-cyan-500',
+                      ? 'bg-purple-600'
+                      : 'bg-teal-600',
                     index % 2 === 0 ? 'md:right-4 right-4' : 'md:left-4 left-4',
                   ]"
                 >
@@ -136,11 +141,6 @@
                 <div class="pt-4">
                   <StoryblokComponent :blok="post.content" />
                 </div>
-
-                <!-- Hover effect -->
-                <div
-                  class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 -skew-x-12 transform translate-x-full group-hover:translate-x-[-100%] transition-all duration-1000"
-                ></div>
               </div>
             </div>
           </article>

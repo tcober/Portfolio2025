@@ -1,39 +1,56 @@
 <template>
-  <div class="relative my-6 group">
-    <!-- Quote background with gradient -->
+  <div class="relative my-8 group component-quote">
+    <!-- Simple background block -->
     <div
-      class="absolute inset-0 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl transform rotate-1 group-hover:rotate-2 transition-transform duration-300"
+      class="absolute inset-0 bg-purple-200 rounded-2xl transform rotate-1 group-hover:rotate-2 transition-all duration-300 ease-out"
+    ></div>
+
+    <!-- Decorative corner elements -->
+    <div
+      class="absolute -top-2 -right-2 w-6 h-6 bg-yellow-400 rounded-lg opacity-80 group-hover:scale-110 group-hover:opacity-100 transition-all duration-300"
     ></div>
     <div
-      class="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl transform -rotate-1 group-hover:-rotate-2 transition-transform duration-300 opacity-60"
+      class="absolute -bottom-2 -left-2 w-4 h-4 bg-pink-400 rounded-lg opacity-70 group-hover:scale-110 group-hover:opacity-90 transition-all duration-300"
     ></div>
 
     <blockquote
-      class="relative bg-white/90 backdrop-blur-sm rounded-2xl p-8 border border-white/50 shadow-lg"
+      class="relative bg-slate-50 rounded-2xl p-8 transform group-hover:scale-[1.01] transition-all duration-300 ease-out overflow-hidden"
     >
-      <!-- Decorative quote mark -->
+      <!-- Simple quote mark -->
       <div
-        class="absolute -top-2 -left-2 w-8 h-8 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-sm transform group-hover:scale-110 transition-transform duration-300"
+        class="absolute -top-2 -left-2 w-10 h-10 bg-indigo-500 rounded-xl flex items-center justify-center text-white font-bold text-lg transform group-hover:scale-110 transition-all duration-300"
       >
-        "
+        <span>"</span>
+      </div>
+
+      <!-- Closing quote mark -->
+      <div
+        class="absolute -bottom-1 -right-1 w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center text-white font-bold text-sm transform group-hover:scale-110 transition-all duration-300"
+      >
+        <span class="transform rotate-180">"</span>
       </div>
 
       <!-- Quote text -->
       <p
-        class="text-xl leading-relaxed text-neutral-800 font-medium italic mb-6 pl-4"
+        class="relative z-10 text-xl md:text-2xl leading-relaxed text-slate-800 font-medium italic mb-6 pl-6 pr-4 font-serif custom-lineheight"
       >
         {{ blok.quote }}
       </p>
 
-      <!-- Author with styling -->
+      <!-- Author section -->
       <cite
         v-if="blok.author"
-        class="flex items-center justify-end text-neutral-600 not-italic"
+        class="relative z-10 flex items-center justify-end text-slate-600 not-italic group-hover:text-slate-700 transition-colors duration-300"
       >
-        <div
-          class="w-12 h-0.5 bg-gradient-to-r from-transparent to-indigo-300 mr-3"
-        ></div>
-        <span class="font-medium">{{ blok.author }}</span>
+        <!-- Simple decorative line -->
+        <div class="mr-4 flex-1 max-w-16 h-0.5 bg-slate-300"></div>
+
+        <!-- Author name -->
+        <span
+          class="font-semibold px-4 py-2 rounded-xl bg-indigo-500 text-white group-hover:bg-indigo-600 transition-colors duration-300"
+        >
+          — {{ blok.author }}
+        </span>
       </cite>
     </blockquote>
   </div>
@@ -64,5 +81,21 @@ const props = defineProps({
 </script>
 
 <style scoped>
-/* Any custom styles that can't be achieved with Tailwind can go here */
+/* Custom animations for the enhanced quote component */
+
+/* Custom line height for quote text */
+.custom-lineheight {
+  line-height: 1.4;
+}
+
+/* Simple selection styling */
+::selection {
+  background: rgba(99, 102, 241, 0.2);
+  color: inherit;
+}
+
+/* Smooth transitions for hover effects */
+.component-quote * {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
 </style>
