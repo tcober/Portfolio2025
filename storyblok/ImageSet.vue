@@ -4,7 +4,7 @@
       <div
         v-for="(image, index) in images"
         :key="index"
-        class="group overflow-hidden rounded-xl bg-slate-200 aspect-square relative cursor-pointer transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+        class="group overflow-hidden rounded-xl bg-slate-700 aspect-square relative cursor-pointer transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
         :class="{
           'hover:z-10': images.length > 1,
           'single-image': images.length === 1,

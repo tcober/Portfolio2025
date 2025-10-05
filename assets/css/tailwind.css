@@ -8,7 +8,7 @@
   }
 
   body {
-    @apply font-sans text-neutral-900 bg-white selection:bg-primary-100 selection:text-primary-900;
+    @apply font-sans text-slate-100 bg-slate-900 selection:bg-blue-200 selection:text-blue-900;
   }
 
   /* Font family utilities */
@@ -22,7 +22,7 @@
   h4,
   h5,
   h6 {
-    @apply font-semibold text-neutral-900;
+    @apply font-semibold text-slate-100;
   }
 
   a {
@@ -41,33 +41,33 @@
   }
 
   .timeline-item {
-    @apply relative pl-8 pb-8 border-l-2 border-neutral-200 last:border-l-0 last:pb-0;
+    @apply relative pl-8 pb-8 border-l-2 border-slate-600 last:border-l-0 last:pb-0;
   }
 
   .timeline-item::before {
-    @apply absolute -left-2 top-0 w-4 h-4 bg-primary-500 rounded-full border-4 border-white shadow-sm;
+    @apply absolute -left-2 top-0 w-4 h-4 bg-blue-500 rounded-full border-4 border-slate-800 shadow-sm;
     content: "";
   }
 
   .timeline-content {
-    @apply bg-white rounded-lg shadow-sm border border-neutral-200 p-6 ml-4 transition-all duration-200 hover:shadow-md hover:border-neutral-300;
+    @apply bg-slate-800 rounded-lg shadow-sm border border-slate-700 p-6 ml-4 transition-all duration-200 hover:shadow-md hover:border-slate-600;
   }
 
   /* Card Components */
   .card {
-    @apply bg-white rounded-lg shadow-sm border border-neutral-200 p-6 transition-all duration-200 hover:shadow-md;
+    @apply bg-slate-800 rounded-lg shadow-sm border border-slate-700 p-6 transition-all duration-200 hover:shadow-md;
   }
 
   .card-header {
-    @apply border-b border-neutral-100 pb-4 mb-4;
+    @apply border-b border-slate-600 pb-4 mb-4;
   }
 
   .card-title {
-    @apply text-xl font-semibold text-neutral-900 mb-2;
+    @apply text-xl font-semibold text-slate-100 mb-2;
   }
 
   .card-subtitle {
-    @apply text-sm text-neutral-600 mb-1;
+    @apply text-sm text-slate-300 mb-1;
   }
 
   /* Button Components */
@@ -76,24 +76,24 @@
   }
 
   .btn-primary {
-    @apply bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500;
+    @apply bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500;
   }
 
   .btn-secondary {
-    @apply bg-neutral-100 text-neutral-700 hover:bg-neutral-200 focus:ring-neutral-500;
+    @apply bg-green-600 text-white hover:bg-green-700 focus:ring-green-500;
   }
 
   .btn-ghost {
-    @apply bg-transparent text-neutral-700 hover:bg-neutral-100 focus:ring-neutral-500;
+    @apply bg-transparent text-slate-300 hover:bg-slate-700 focus:ring-slate-500;
   }
 
   /* Navigation Components */
   .nav-link {
-    @apply text-neutral-600 hover:text-neutral-900 px-3 py-2 rounded-md transition-colors duration-200;
+    @apply text-slate-300 hover:text-slate-100 px-3 py-2 rounded-md transition-colors duration-200;
   }
 
   .nav-link.active {
-    @apply text-primary-600 bg-primary-50;
+    @apply text-blue-400 bg-blue-900/50;
   }
 
   /* Form Components */

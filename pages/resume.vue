@@ -1,14 +1,12 @@
 <template>
-  <div
-    class="min-h-screen bg-gradient-to-br from-neutral-50 to-neutral-100 py-16"
-  >
+  <div class="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 py-16">
     <div class="max-w-4xl mx-auto px-4">
       <!-- Header -->
       <header class="text-center mb-16 animate-fade-in">
-        <h1 class="text-4xl md:text-5xl font-display text-neutral-900 mb-4">
+        <h1 class="text-4xl md:text-5xl font-display text-white mb-4">
           Resume
         </h1>
-        <p class="text-xl text-neutral-600 mb-8">
+        <p class="text-xl text-slate-300 mb-8">
           My professional journey and experience
         </p>
         <div class="flex justify-center space-x-4">
@@ -49,7 +47,7 @@
 
       <!-- Resume Content -->
       <div
-        class="bg-white rounded-lg shadow-sm border border-neutral-200 p-8 mb-8 animate-slide-up"
+        class="bg-slate-800 rounded-lg shadow-sm border border-slate-700 p-8 mb-8 animate-slide-up"
       >
         <!-- Personal Info -->
         <section class="mb-12">
@@ -57,15 +55,13 @@
             class="flex flex-col md:flex-row md:items-center md:justify-between mb-6"
           >
             <div>
-              <h2 class="text-3xl font-bold text-neutral-900 mb-2">
-                Your Name
-              </h2>
-              <p class="text-xl text-neutral-600">Full Stack Developer</p>
+              <h2 class="text-3xl font-bold text-white mb-2">Your Name</h2>
+              <p class="text-xl text-slate-300">Full Stack Developer</p>
             </div>
             <div class="mt-4 md:mt-0 text-sm space-y-1 md:text-right">
               <div class="flex items-center md:justify-end">
                 <svg
-                  class="w-4 h-4 mr-2 text-neutral-500"
+                  class="w-4 h-4 mr-2 text-slate-400"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -77,11 +73,11 @@
                     d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                   />
                 </svg>
-                your.email@example.com
+                <span class="text-slate-300">your.email@example.com</span>
               </div>
               <div class="flex items-center md:justify-end">
                 <svg
-                  class="w-4 h-4 mr-2 text-neutral-500"
+                  class="w-4 h-4 mr-2 text-slate-400"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -93,7 +89,7 @@
                     d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                   />
                 </svg>
-                (555) 123-4567
+                <span class="text-slate-300">(555) 123-4567</span>
               </div>
               <div class="flex items-center md:justify-end">
                 <svg
@@ -133,11 +129,10 @@
         <!-- Experience -->
         <section class="mb-12">
           <h3
-            class="text-2xl font-semibold text-neutral-900 mb-6 border-b border-neutral-200 pb-2"
+            class="text-2xl font-semibold text-slate-100 mb-6 border-b border-slate-600 pb-2"
           >
-            Professional Experience
+            Experience
           </h3>
-
           <div class="timeline-container">
             <div class="timeline-item">
               <div class="timeline-content">
@@ -145,18 +140,16 @@
                   class="flex flex-col md:flex-row md:items-start md:justify-between mb-3"
                 >
                   <div>
-                    <h4 class="text-lg font-semibold text-neutral-900">
+                    <h4 class="text-lg font-semibold text-slate-100">
                       Senior Full Stack Developer
                     </h4>
-                    <p class="text-primary-600 font-medium">
-                      Tech Company Inc.
-                    </p>
+                    <p class="text-blue-400 font-medium">Tech Company Inc.</p>
                   </div>
-                  <div class="text-sm text-neutral-600 mt-1 md:mt-0">
+                  <div class="text-sm text-slate-400 mt-1 md:mt-0">
                     Jan 2022 - Present
                   </div>
                 </div>
-                <ul class="list-disc list-inside space-y-1 text-neutral-700">
+                <ul class="list-disc list-inside space-y-1 text-slate-300">
                   <li>
                     Led development of microservices architecture using Node.js
                     and Docker
@@ -180,18 +173,18 @@
                   class="flex flex-col md:flex-row md:items-start md:justify-between mb-3"
                 >
                   <div>
-                    <h4 class="text-lg font-semibold text-neutral-900">
+                    <h4 class="text-lg font-semibold text-slate-100">
                       Full Stack Developer
                     </h4>
-                    <p class="text-primary-600 font-medium">
+                    <p class="text-green-400 font-medium">
                       Startup Solutions LLC
                     </p>
                   </div>
-                  <div class="text-sm text-neutral-600 mt-1 md:mt-0">
+                  <div class="text-sm text-slate-400 mt-1 md:mt-0">
                     Mar 2020 - Dec 2021
                   </div>
                 </div>
-                <ul class="list-disc list-inside space-y-1 text-neutral-700">
+                <ul class="list-disc list-inside space-y-1 text-slate-300">
                   <li>
                     Built responsive web applications using React and Vue.js
                   </li>
@@ -209,7 +202,7 @@
         <!-- Skills -->
         <section class="mb-12">
           <h3
-            class="text-2xl font-semibold text-neutral-900 mb-6 border-b border-neutral-200 pb-2"
+            class="text-2xl font-semibold text-slate-100 mb-6 border-b border-slate-600 pb-2"
           >
             Technical Skills
           </h3>
@@ -219,19 +212,19 @@
               <h4 class="card-title">Frontend</h4>
               <div class="flex flex-wrap gap-2">
                 <span
-                  class="px-3 py-1 bg-primary-100 text-primary-800 rounded-full text-sm font-medium"
+                  class="px-3 py-1 bg-blue-600 text-white rounded-full text-sm font-medium"
                   >Vue.js</span
                 >
                 <span
-                  class="px-3 py-1 bg-primary-100 text-primary-800 rounded-full text-sm font-medium"
+                  class="px-3 py-1 bg-green-600 text-white rounded-full text-sm font-medium"
                   >React</span
                 >
                 <span
-                  class="px-3 py-1 bg-primary-100 text-primary-800 rounded-full text-sm font-medium"
+                  class="px-3 py-1 bg-yellow-600 text-slate-900 rounded-full text-sm font-medium"
                   >TypeScript</span
                 >
                 <span
-                  class="px-3 py-1 bg-primary-100 text-primary-800 rounded-full text-sm font-medium"
+                  class="px-3 py-1 bg-blue-600 text-white rounded-full text-sm font-medium"
                   >Tailwind CSS</span
                 >
               </div>
@@ -286,7 +279,7 @@
         <!-- Education -->
         <section class="mb-12">
           <h3
-            class="text-2xl font-semibold text-neutral-900 mb-6 border-b border-neutral-200 pb-2"
+            class="text-2xl font-semibold text-slate-100 mb-6 border-b border-slate-600 pb-2"
           >
             Education
           </h3>
@@ -296,18 +289,16 @@
               class="flex flex-col md:flex-row md:items-start md:justify-between"
             >
               <div>
-                <h4 class="text-lg font-semibold text-neutral-900">
+                <h4 class="text-lg font-semibold text-slate-100">
                   Bachelor of Science in Computer Science
                 </h4>
-                <p class="text-primary-600 font-medium">University Name</p>
-                <p class="text-neutral-600 text-sm mt-1">
+                <p class="text-green-400 font-medium">University Name</p>
+                <p class="text-slate-300 text-sm mt-1">
                   Relevant coursework: Data Structures, Algorithms, Software
                   Engineering
                 </p>
               </div>
-              <div class="text-sm text-neutral-600 mt-2 md:mt-0">
-                2016 - 2020
-              </div>
+              <div class="text-sm text-slate-400 mt-2 md:mt-0">2016 - 2020</div>
             </div>
           </div>
         </section>
