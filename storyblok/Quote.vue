@@ -1,41 +1,27 @@
 <template>
   <div class="relative my-8 group component-quote">
-    <blockquote
-      class="relative bg-slate-800 rounded-2xl p-8 transform group-hover:scale-[1.01] transition-all duration-300 ease-out overflow-hidden shadow-xl shadow-blue-500/20 hover:shadow-blue-500/30 border border-slate-700"
+    <!-- Quote text -->
+    <p
+      class="text-xl md:text-2xl leading-relaxed text-slate-100 font-medium italic mb-6 font-serif custom-lineheight"
     >
-      <!-- Opening quote accent -->
-      <div
-        class="absolute -top-1 -left-1 w-6 h-6 bg-blue-500 rounded-full opacity-70 group-hover:opacity-100 transition-all duration-300 shadow-lg shadow-blue-500/50"
-      ></div>
+      {{ blok.quote }}
+    </p>
 
-      <!-- Closing quote accent -->
-      <div
-        class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full opacity-70 group-hover:opacity-100 transition-all duration-300 shadow-lg shadow-green-500/50"
-      ></div>
+    <!-- Author section -->
+    <cite
+      v-if="blok.author"
+      class="flex items-center justify-end text-slate-300 not-italic group-hover:text-slate-200 transition-colors duration-300"
+    >
+      <!-- Simple decorative line -->
+      <div class="mr-4 flex-1 max-w-16 h-0.5 bg-slate-600"></div>
 
-      <!-- Quote text -->
-      <p
-        class="relative z-10 text-xl md:text-2xl leading-relaxed text-slate-100 font-medium italic mb-6 pl-6 pr-4 font-serif custom-lineheight"
+      <!-- Author name -->
+      <span
+        class="font-semibold px-4 py-2 rounded-xl bg-blue-600 text-white group-hover:bg-blue-700 transition-all duration-300 shadow-lg shadow-blue-500/40 hover:shadow-blue-500/60"
       >
-        {{ blok.quote }}
-      </p>
-
-      <!-- Author section -->
-      <cite
-        v-if="blok.author"
-        class="relative z-10 flex items-center justify-end text-slate-300 not-italic group-hover:text-slate-200 transition-colors duration-300"
-      >
-        <!-- Simple decorative line -->
-        <div class="mr-4 flex-1 max-w-16 h-0.5 bg-slate-600"></div>
-
-        <!-- Author name -->
-        <span
-          class="font-semibold px-4 py-2 rounded-xl bg-blue-600 text-white group-hover:bg-blue-700 transition-all duration-300 shadow-lg shadow-blue-500/40 hover:shadow-blue-500/60"
-        >
-          — {{ blok.author }}
-        </span>
-      </cite>
-    </blockquote>
+        — {{ blok.author }}
+      </span>
+    </cite>
   </div>
 </template>
 
