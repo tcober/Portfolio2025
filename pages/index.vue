@@ -151,7 +151,14 @@
 </template>
 
 <script setup>
-import { nextTick, onBeforeUnmount, onMounted, shallowRef, watch, ref } from "vue";
+import {
+  nextTick,
+  onBeforeUnmount,
+  onMounted,
+  shallowRef,
+  watch,
+  ref,
+} from "vue";
 
 // SEO meta tags with useSeoMeta for better optimization
 useSeoMeta({
@@ -184,7 +191,7 @@ const {
     if (process.env.NODE_ENV !== "production") {
       console.log("Fetched posts:", response.data.stories?.length || 0);
     }
-    
+
     return response.data.stories || [];
   } catch (err) {
     if (process.env.NODE_ENV !== "production") {
