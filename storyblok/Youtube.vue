@@ -29,45 +29,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Video title and description -->
-    <div v-if="blok.title || blok.description" class="mt-4">
-      <h3 v-if="blok.title" class="text-lg font-semibold text-neutral-900 mb-2">
-        {{ blok.title }}
-      </h3>
-      <p
-        v-if="blok.description"
-        class="text-neutral-600 text-sm leading-relaxed"
-      >
-        {{ blok.description }}
-      </p>
-    </div>
-
-    <!-- Error state -->
-    <div
-      v-else
-      class="bg-red-50 border border-red-200 rounded-lg p-6 text-center"
-    >
-      <div class="text-red-400 mb-2">
-        <svg
-          class="w-12 h-12 mx-auto"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
-      </div>
-      <p class="text-red-600 font-medium mb-1">Invalid YouTube URL</p>
-      <p class="text-red-500 text-sm">
-        Please check the video URL and try again.
-      </p>
-    </div>
   </div>
 </template>
 

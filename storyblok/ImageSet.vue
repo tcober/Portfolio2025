@@ -24,7 +24,7 @@
         class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 p-4"
         @click="closeLightbox"
       >
-        <div class="relative max-w-4xl max-h-full">
+        <div class="relative max-w-4xl max-h-full" @click.stop>
           <img
             :src="currentImage?.filename"
             :alt="currentImage?.alt || currentImage?.name"
@@ -54,7 +54,7 @@
           <template v-if="images.length > 1">
             <button
               v-if="currentIndex > 0"
-              @click="navigateImage(-1)"
+              @click.stop="navigateImage(-1)"
               class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-75 transition-colors"
             >
               <svg
@@ -73,7 +73,7 @@
             </button>
             <button
               v-if="currentIndex < images.length - 1"
-              @click="navigateImage(1)"
+              @click.stop="navigateImage(1)"
               class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-75 transition-colors"
             >
               <svg

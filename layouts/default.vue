@@ -71,23 +71,35 @@
             <NuxtLink
               to="/"
               @click="handleNavigation"
-              class="group block text-4xl font-display text-white hover:text-transparent hover:bg-gradient-to-r hover:from-indigo-300 hover:to-purple-300 hover:bg-clip-text transition-all duration-300 transform hover:scale-110"
+              class="group block text-4xl font-display transition-all duration-300 transform hover:scale-110 relative"
             >
               <span
-                class="inline-block transition-transform duration-300 group-hover:translate-x-2"
-                >Home</span
+                class="text-white group-hover:opacity-0 inline-block transition-all duration-300 group-hover:translate-x-2"
               >
+                Home
+              </span>
+              <span
+                class="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-r from-indigo-300 to-purple-300 bg-clip-text text-transparent inline-block transition-all duration-300 group-hover:translate-x-2"
+              >
+                Home
+              </span>
             </NuxtLink>
 
             <NuxtLink
               to="/resume"
               @click="handleNavigation"
-              class="group block text-4xl font-display text-white hover:text-transparent hover:bg-gradient-to-r hover:from-purple-300 hover:to-pink-300 hover:bg-clip-text transition-all duration-300 transform hover:scale-110"
+              class="group block text-4xl font-display transition-all duration-300 transform hover:scale-110 relative"
             >
               <span
-                class="inline-block transition-transform duration-300 group-hover:translate-x-2"
-                >Resume</span
+                class="text-white group-hover:opacity-0 inline-block transition-all duration-300 group-hover:translate-x-2"
               >
+                Resume
+              </span>
+              <span
+                class="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent inline-block transition-all duration-300 group-hover:translate-x-2"
+              >
+                Resume
+              </span>
             </NuxtLink>
 
             <a
@@ -95,12 +107,18 @@
               target="_blank"
               rel="noopener"
               @click="menuOpen = false"
-              class="group block text-4xl font-display text-white hover:text-transparent hover:bg-gradient-to-r hover:from-teal-300 hover:to-cyan-300 hover:bg-clip-text transition-all duration-300 transform hover:scale-110"
+              class="group block text-4xl font-display transition-all duration-300 transform hover:scale-110 relative"
             >
               <span
-                class="inline-block transition-transform duration-300 group-hover:translate-x-2"
-                >GitHub</span
+                class="text-white group-hover:opacity-0 inline-block transition-all duration-300 group-hover:translate-x-2"
               >
+                GitHub
+              </span>
+              <span
+                class="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-r from-teal-300 to-cyan-300 bg-clip-text text-transparent inline-block transition-all duration-300 group-hover:translate-x-2"
+              >
+                GitHub
+              </span>
             </a>
           </div>
         </div>

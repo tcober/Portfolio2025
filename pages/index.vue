@@ -32,6 +32,22 @@
         <p class="mt-4 text-neutral-600">Loading posts...</p>
       </div>
 
+      <div v-else-if="feedStore.error" class="text-center py-16">
+        <div class="text-6xl mb-4">⚠️</div>
+        <h2 class="text-2xl font-semibold text-neutral-700 mb-2">
+          Something went wrong
+        </h2>
+        <p class="text-neutral-600">
+          {{ feedStore.error }}
+        </p>
+        <button
+          class="mt-6 inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-medium shadow hover:shadow-lg transition-transform hover:-translate-y-0.5"
+          @click="feedStore.fetchPosts({ force: true })"
+        >
+          Try again
+        </button>
+      </div>
+
       <div v-else-if="feedStore.posts.length === 0" class="text-center py-16">
         <div class="text-6xl mb-4">📝</div>
         <h2 class="text-2xl font-semibold text-neutral-700 mb-2">
@@ -136,7 +152,13 @@
 
 <script setup>
 import { useFeedStore } from "~/stores/feedStore";
-import { nextTick } from "vue";
+import {
+  nextTick,
+  onBeforeUnmount,
+  onMounted,
+  shallowRef,
+  watch,
+} from "vue";
 
 // Meta tags
 useHead({
@@ -157,29 +179,68 @@ useHead({
 });
 
 const feedStore = useFeedStore();
+try {
+  await useAsyncData("feed-posts", () => feedStore.fetchPosts());
+} catch (error) {
+  feedStore.error = error instanceof Error ? error.message : String(error);
+}
 
-onMounted(() => {
-  feedStore.fetchPosts();
+const observer = shallowRef(null);
 
-  // Intersection Observer for scroll animations
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
-  };
+const createObserver = () =>
+  new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+        }
+      });
+    },
+    {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px",
+    }
+  );
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("in-view");
-      }
-    });
-  }, observerOptions);
+const observeTimelineItems = () => {
+  if (!process.client || !observer.value) {
+    return;
+  }
 
-  // Observe all timeline items
   nextTick(() => {
     const timelineItems = document.querySelectorAll(".animate-on-scroll");
-    timelineItems.forEach((item) => observer.observe(item));
+    timelineItems.forEach((item) => observer.value?.observe(item));
   });
+};
+
+const ensureObserver = () => {
+  if (!process.client) {
+    return;
+  }
+
+  if (!observer.value) {
+    observer.value = createObserver();
+  }
+onMounted(() => {
+  ensureObserver();
+});
+    feedStore.fetchPosts();
+  }
+  ensureObserver();
+});
+
+watch(
+  () => feedStore.posts.length,
+  (count) => {
+    if (count > 0) {
+      ensureObserver();
+    }
+  }
+);
+
+onBeforeUnmount(() => {
+  observer.value?.disconnect();
+  observer.value = null;
 });
 </script>
 

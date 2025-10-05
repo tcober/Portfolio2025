@@ -1,0 +1,189 @@
+.work-container li {
+  list-style-type: circle;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply uppercase;
+}
+
+h1 {
+  @apply font-bold text-4xl tracking-wide;
+}
+
+h2 {
+  @apply text-base tracking-wider;
+}
+
+h3 {
+  @apply text-sm tracking-wider;
+}
+
+h4 {
+  @apply text-xs;
+}
+
+h5 {
+  font-size: 11px;
+  @apply font-light;
+}
+
+h6 {
+  font-size: 10px;
+  @apply font-normal;
+}
+
+blockquote {
+  font-size: 11px;
+  @apply font-normal italic my-3 mx-6;
+}
+
+/*
+ * Use Tailwind's text-gray-500 for consistent color styling.
+ */
+em {
+  @apply text-gray-500;
+}
+``` .left-column ul {
+  @apply mt-2.5;
+}
+
+ul.minimal li {
+  margin-bottom: 3px;
+  padding-left: 0;
+}
+
+ul.two-column {
+  -webkit-column-count: 2;
+  -webkit-column-gap: 28px;
+  column-count: 2;
+  column-gap: 28px;
+}
+ul.two-column li {
+  padding-left: 0;
+}
+
+@page {
+  size: A4;
+}
+
+.container {
+  padding-top: 20px;
+}
+border-top: 1px solid var(--color-primary, #5d0184);
+.keyline {
+  width: 45px;
+  margin: 8px 0 10px;
+  /* Use Tailwind's purple-800 or a custom property for the border color */
+  border-top: 1px solid var(--primary-accent, #5d0184);
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.profile-pic img {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  /* Use Tailwind's purple-800 or a custom property for the border color */
+  border: 2px solid var(--primary-accent, #5d0184);
+}
+
+.summary {
+  margin: 5px 0 5px;
+}
+
+/* Layouts */
+.item {
+  margin-bottom: 15px;
+}
+.item:last-child {
+  margin-bottom: 0;
+}
+
+@media print {
+  body {
+    margin: 0;
+  }
+  .page {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 36px 0 30px;
+    box-shadow: none;
+  }
+  .page .resume-header,
+  .page .resume-content {
+    padding: 0 22px 0 34px;
+  }
+  .work-container .item {
+    page-break-inside: avoid;
+  }
+
+  .fa-external-link {
+    display: none;
+  }
+}
+
+/* Components */
+.info-tag-container {
+  margin-bottom: 5px;
+  @apply justify-between items-center;
+}
+.info-tag-container .fa {
+  font-size: 14px;
+  width: 12px;
+  text-align: center;
+  vertical-align: middle;
+}
+.info-tag-container .fa.fa-map-marker {
+  font-size: 16px;
+}
+.info-tag-container .fa.fa-mobile {
+  font-size: 18px;
+}
+.info-tag-container .fa.fa-envelope-o {
+  font-size: 12px;
+}
+.info-tag-container .fa.fa-desktop {
+  font-size: 11px;
+}
+.info-tag-container .fa.fa-external-link {
+  width: auto;
+  font-size: inherit;
+  vertical-align: text-top;
+}
+.info-tag-container .info-text {
+  font-size: 9px;
+  display: inline;
+  vertical-align: middle;
+  width: 139px;
+}
+
+.references-container .fa {
+  font-size: 14px;
+}
+
+.education-container .location {
+  padding-bottom: 6px;
+  font-weight: 400;
+}
+
+.education-container .specialization {
+  text-transform: none;
+  font-style: italic;
+}
+
+@media print {
+  @page {
+    size: 9in 11.8in;
+    margin: 0px;
+  }
+}
