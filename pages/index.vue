@@ -152,13 +152,7 @@
 
 <script setup>
 import { useFeedStore } from "~/stores/feedStore";
-import {
-  nextTick,
-  onBeforeUnmount,
-  onMounted,
-  shallowRef,
-  watch,
-} from "vue";
+import { nextTick, onBeforeUnmount, onMounted, shallowRef, watch } from "vue";
 
 // Meta tags
 useHead({
@@ -221,11 +215,11 @@ const ensureObserver = () => {
   if (!observer.value) {
     observer.value = createObserver();
   }
+
+  observeTimelineItems();
+};
+
 onMounted(() => {
-  ensureObserver();
-});
-    feedStore.fetchPosts();
-  }
   ensureObserver();
 });
 
