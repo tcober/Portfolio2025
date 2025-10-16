@@ -224,6 +224,8 @@ const processedData = computed(() => {
 - Monitor rebuild times and performance
 - Maintain clean commit history for deployments
 - Make design decisions like you went to the greatest design school in the universe.
+- Periodically review and refactor code for maintainability
+- Periodically review and update this instructions file for improvements
 
 ## External Links
 

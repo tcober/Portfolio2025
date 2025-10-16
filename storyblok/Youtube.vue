@@ -2,25 +2,25 @@
   <div class="my-8">
     <div
       v-if="videoId"
-      class="relative w-full aspect-video bg-neutral-100 rounded-lg overflow-hidden shadow-md group"
+      class="relative w-full aspect-video bg-gradient-to-br from-slate-800/40 via-slate-700/40 to-slate-600/40 backdrop-blur-xl border border-slate-600/30 rounded-3xl overflow-hidden shadow-2xl shadow-blue-500/10 group hover:shadow-blue-500/20 transition-all duration-300"
     >
       <iframe
         :src="`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`"
         :title="blok.title || 'YouTube video'"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen
-        class="absolute inset-0 w-full h-full border-0 transition-transform duration-300 group-hover:scale-105"
+        class="absolute inset-0 w-full h-full border-0 rounded-3xl transition-transform duration-300 group-hover:scale-[1.02]"
       ></iframe>
 
-      <!-- Play button overlay (optional, for visual enhancement) -->
+      <!-- Enhanced play button overlay -->
       <div
-        class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300"
+        class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black/10 backdrop-blur-sm"
       >
         <div
-          class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-lg"
+          class="w-20 h-20 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center shadow-2xl shadow-red-500/40 border-4 border-white/20"
         >
           <svg
-            class="w-8 h-8 text-white ml-1"
+            class="w-10 h-10 text-white ml-1"
             fill="currentColor"
             viewBox="0 0 24 24"
           >

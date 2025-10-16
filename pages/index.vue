@@ -1,16 +1,34 @@
 <template>
   <div
-    class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-900 to-slate-800 relative"
+    class="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 relative overflow-hidden"
   >
+    <!-- Floating background elements -->
+    <div class="absolute inset-0 pointer-events-none">
+      <div
+        class="absolute top-20 left-20 w-72 h-72 bg-blue-400/5 rounded-full blur-3xl"
+      ></div>
+      <div
+        class="absolute bottom-20 right-20 w-96 h-96 bg-green-400/5 rounded-full blur-3xl"
+      ></div>
+      <div
+        class="absolute top-1/2 left-1/2 w-80 h-80 bg-yellow-400/5 rounded-full blur-3xl"
+      ></div>
+    </div>
+
     <!-- Timeline Section -->
-    <main class="relative z-10 max-w-5xl mx-auto px-4 py-16">
+    <main class="relative z-10 max-w-5xl mx-auto px-6 py-16">
       <!-- Feed Header -->
       <div class="text-center mb-16">
-        <h1
-          class="text-5xl md:text-6xl font-display bg-gradient-to-r from-blue-400 via-green-400 to-blue-500 bg-clip-text text-transparent"
-        >
-          FEED
-        </h1>
+        <div class="mb-8">
+          <h1
+            class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-green-400 to-yellow-400 bg-clip-text text-transparent mb-4 leading-tight"
+          >
+            FEED
+          </h1>
+          <div
+            class="w-20 h-1 bg-gradient-to-r from-blue-500 via-green-500 to-yellow-500 mx-auto rounded-full shadow-lg shadow-blue-500/30"
+          ></div>
+        </div>
       </div>
       <div v-if="loading" class="text-center py-16">
         <div
@@ -96,12 +114,12 @@
             >
               <div
                 :class="[
-                  'group rounded-2xl p-8 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden shadow-xl',
+                  'group rounded-3xl p-8 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden shadow-xl backdrop-blur-xl border',
                   index % 3 === 0
-                    ? 'bg-gradient-to-br from-slate-800 via-slate-800 to-blue-900/30 hover:from-slate-700 hover:to-blue-800/40 shadow-blue-500/20 hover:shadow-blue-500/30'
+                    ? 'bg-gradient-to-br from-slate-800/40 via-slate-700/40 to-slate-600/40 border-blue-400/20 shadow-blue-500/10 hover:border-blue-400/30 hover:shadow-blue-500/20'
                     : index % 3 === 1
-                    ? 'bg-gradient-to-br from-slate-800 via-slate-800 to-green-900/30 hover:from-slate-700 hover:to-green-800/40 shadow-green-500/20 hover:shadow-green-500/30'
-                    : 'bg-gradient-to-br from-slate-800 via-slate-800 to-yellow-900/30 hover:from-slate-700 hover:to-yellow-800/40 shadow-yellow-500/20 hover:shadow-yellow-500/30',
+                    ? 'bg-gradient-to-br from-slate-800/40 via-slate-700/40 to-slate-600/40 border-green-400/20 shadow-green-500/10 hover:border-green-400/30 hover:shadow-green-500/20'
+                    : 'bg-gradient-to-br from-slate-800/40 via-slate-700/40 to-slate-600/40 border-yellow-400/20 shadow-yellow-500/10 hover:border-yellow-400/30 hover:shadow-yellow-500/20',
                 ]"
               >
                 <!-- Card decoration -->

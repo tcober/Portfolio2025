@@ -4,7 +4,7 @@
       <div
         v-for="(image, index) in images"
         :key="index"
-        class="group overflow-hidden rounded-xl bg-slate-700 aspect-square relative cursor-pointer transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+        class="group overflow-hidden rounded-3xl bg-gradient-to-br from-slate-800/40 via-slate-700/40 to-slate-600/40 backdrop-blur-xl border border-slate-600/30 aspect-square relative cursor-pointer transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-blue-500/20 hover:border-blue-400/30"
         :class="{
           'hover:z-10': images.length > 1,
           'single-image': images.length === 1,
@@ -24,13 +24,13 @@
 
         <!-- Hover overlay with expand icon -->
         <div
-          class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center"
+          class="absolute inset-0 bg-gradient-to-br from-black/0 to-black/20 group-hover:from-black/20 group-hover:to-black/40 transition-all duration-300 flex items-center justify-center backdrop-blur-sm"
         >
           <div
-            class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white bg-opacity-90 rounded-full p-3 backdrop-blur-sm"
+            class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-blue-500/20 to-green-500/20 backdrop-blur-xl border border-white/20 rounded-2xl p-4 shadow-2xl shadow-blue-500/20"
           >
             <svg
-              class="w-5 h-5 text-slate-700"
+              class="w-6 h-6 text-white"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"

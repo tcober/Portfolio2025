@@ -1,6 +1,6 @@
 <template>
   <div
-    class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-900 to-slate-800"
+    class="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800"
   >
     <!-- Hamburger Menu Button -->
     <button
@@ -210,6 +210,17 @@ onMounted(() => {
   }
   100% {
     background-position: 200% 0;
+  }
+}
+
+/* Print styles - hide navigation elements */
+@media print {
+  button[aria-label="Toggle Menu"],
+  nav,
+  .fixed,
+  .absolute {
+    display: none !important;
+    visibility: hidden !important;
   }
 }
 </style>
