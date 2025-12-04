@@ -62,10 +62,3 @@ const videoId = computed(() => {
   return null;
 });
 </script>
-
-<style scoped>
-/* Enhance the video container on hover */
-.group:hover iframe {
-  transform: scale(1.02);
-}
-</style>

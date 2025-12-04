@@ -33,7 +33,9 @@
       </div>
 
       <div v-else-if="!posts || posts.length === 0" class="text-center py-16">
-        <div class="inline-block px-8 py-6 border-2 border-black rounded-lg">
+        <div
+          class="inline-block px-8 py-6 border-2 border-black rounded-lg bg-white"
+        >
           <div class="text-6xl mb-4">📝</div>
           <h2 class="text-2xl font-bold text-black mb-2">No posts yet</h2>
           <p class="text-black">Check back soon for updates!</p>
@@ -43,7 +45,7 @@
       <div v-else class="relative">
         <!-- Timeline line -->
         <div
-          class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-black"
+          class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-black z-0"
         ></div>
 
         <div class="space-y-12">
@@ -61,7 +63,7 @@
               :class="['relative', index % 2 === 0 ? 'md:mr-12' : 'md:ml-12']"
             >
               <div
-                class="group rounded-lg p-6 transition-all duration-300 border-2 border-black"
+                class="group rounded-lg p-6 transition-all duration-300 border-2 border-black bg-white"
               >
                 <!-- Content -->
                 <div>
@@ -187,7 +189,6 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
-/* Simple fade-in animation */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -206,20 +207,5 @@ onBeforeUnmount(() => {
 
 .animate-on-scroll.in-view {
   opacity: 1;
-}
-
-/* Responsive timeline adjustments */
-@media (max-width: 768px) {
-  .md\:pr-1\/2 {
-    padding-right: 0;
-  }
-
-  .md\:pl-1\/2 {
-    padding-left: 0;
-  }
-
-  .md\:text-right {
-    text-align: left;
-  }
 }
 </style>

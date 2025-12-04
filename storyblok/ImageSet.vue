@@ -62,19 +62,6 @@
         class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-98 p-4 backdrop-blur-sm"
         @click="closeLightbox"
       >
-        <!-- Loading indicator for lightbox -->
-        <div
-          v-if="lightboxLoading"
-          class="absolute inset-0 flex items-center justify-center"
-        >
-          <div class="bg-white bg-opacity-20 rounded-2xl p-6 backdrop-blur-md">
-            <div
-              class="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto mb-3"
-            ></div>
-            <p class="text-white text-sm font-medium">Loading image...</p>
-          </div>
-        </div>
-
         <div
           class="relative w-full h-full max-w-6xl flex items-center justify-center"
           @click.stop
@@ -82,16 +69,10 @@
           <img
             :src="currentImage?.filename"
             :alt="currentImage?.alt || currentImage?.name"
-            class="max-w-full max-h-full object-contain rounded-xl shadow-2xl touch-manipulation transition-opacity duration-300"
-            :class="{
-              'opacity-0': lightboxLoading,
-              'opacity-100': !lightboxLoading,
-            }"
+            class="max-w-full max-h-full object-contain rounded-xl shadow-2xl touch-manipulation"
             @click.stop
             @touchstart="handleTouchStart"
             @touchend="handleTouchEnd"
-            @load="lightboxLoading = false"
-            @loadstart="lightboxLoading = true"
           />
           <button
             @click="closeLightbox"
@@ -209,13 +190,12 @@ const images = computed(() => {
   return props.blok.imageSet || [];
 });
 
-// Grid layout based on number of images with tighter mobile spacing
+// Grid layout based on number of images
 const gridClasses = computed(() => {
   const count = images.value.length;
   if (count === 1) return "grid-cols-1 max-w-md sm:max-w-lg mx-auto gap-0";
   if (count === 2) return "grid-cols-2 sm:grid-cols-2 gap-2 sm:gap-3";
-  if (count === 3)
-    return "grid-cols-3 sm:grid-cols-3 md:grid-cols-3 gap-2 sm:gap-3";
+  if (count === 3) return "grid-cols-3 sm:grid-cols-3 gap-2 sm:gap-3";
   if (count === 4)
     return "grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3";
   return "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 sm:gap-3";
@@ -225,11 +205,6 @@ const gridClasses = computed(() => {
 const lightboxOpen = ref(false);
 const currentImage = ref(null);
 const currentIndex = ref(0);
-const lightboxLoading = ref(false);
-
-// Simplified - no loading states needed
-
-// Composable for scroll lock
 function useBodyScrollLock() {
   const lock = () => document.body.classList.add("scroll-lock");
   const unlock = () => document.body.classList.remove("scroll-lock");
@@ -255,7 +230,6 @@ const navigateImage = (direction) => {
   if (newIndex >= 0 && newIndex < images.value.length) {
     currentIndex.value = newIndex;
     currentImage.value = images.value[newIndex];
-    lightboxLoading.value = true;
   }
 };
 
@@ -263,7 +237,6 @@ const navigateToImage = (index) => {
   if (index >= 0 && index < images.value.length) {
     currentIndex.value = index;
     currentImage.value = images.value[index];
-    lightboxLoading.value = true;
   }
 };
 
@@ -325,12 +298,6 @@ onMounted(() => {
   }
 }
 
-/* Enhanced single image display */
-.single-image {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
 /* Mobile-first responsive images */
 .image-gallery img {
   min-height: 180px;
@@ -350,8 +317,7 @@ onMounted(() => {
 
 /* Smooth image loading animation */
 .image-gallery img {
-  transition: opacity 0.3s ease-in-out,
-    transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Enhanced hover effects */

@@ -44,10 +44,3 @@ const props = defineProps({
   },
 });
 </script>
-
-<style scoped>
-/* Custom line height for quote text */
-.custom-lineheight {
-  line-height: 1.4;
-}
-</style>

@@ -14,16 +14,4 @@ export default defineAppConfig({
     github: "https://github.com/thomascober",
     linkedin: "https://linkedin.com/in/thomascober",
   },
-
-  // UI configuration
-  ui: {
-    primary: "indigo",
-    gray: "neutral",
-  },
-
-  // Timeline configuration
-  timeline: {
-    postsPerPage: 20,
-    animationDelay: 200,
-  },
 });
