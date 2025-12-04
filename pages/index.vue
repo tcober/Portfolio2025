@@ -1,59 +1,30 @@
 <template>
-  <div
-    class="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 relative overflow-hidden"
-  >
-    <!-- Floating background elements -->
-    <div class="absolute inset-0 pointer-events-none">
-      <div
-        class="absolute top-20 left-20 w-72 h-72 bg-blue-400/5 rounded-full blur-3xl"
-      ></div>
-      <div
-        class="absolute bottom-20 right-20 w-96 h-96 bg-green-400/5 rounded-full blur-3xl"
-      ></div>
-      <div
-        class="absolute top-1/2 left-1/2 w-80 h-80 bg-yellow-400/5 rounded-full blur-3xl"
-      ></div>
-    </div>
-
+  <div class="min-h-screen bg-white">
     <!-- Timeline Section -->
-    <main class="relative z-10 max-w-5xl mx-auto px-6 py-16">
+    <main class="max-w-5xl mx-auto px-6 py-12">
       <!-- Feed Header -->
-      <div class="text-center mb-16">
-        <div class="mb-8">
-          <h1
-            class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-green-400 to-yellow-400 bg-clip-text text-transparent mb-4 leading-tight"
-          >
-            FEED
-          </h1>
-          <div
-            class="w-20 h-1 bg-gradient-to-r from-blue-500 via-green-500 to-yellow-500 mx-auto rounded-full shadow-lg shadow-blue-500/30"
-          ></div>
-        </div>
+      <div class="mb-12">
+        <h1 class="text-5xl font-bold text-black mb-2">Feed</h1>
+        <div class="w-12 h-1 bg-black rounded-full"></div>
       </div>
       <div v-if="loading" class="text-center py-16">
-        <div
-          class="inline-block bg-gradient-to-br from-blue-500 via-blue-600 to-green-600 p-6 rounded-2xl shadow-2xl shadow-blue-500/30"
-        >
+        <div class="inline-block p-6">
           <div
-            class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-white"
+            class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-gray-300 border-t-black"
           ></div>
-          <p class="mt-4 text-white font-medium">Loading posts...</p>
+          <p class="mt-4 text-black font-medium">Loading posts...</p>
         </div>
       </div>
 
       <div v-else-if="error" class="text-center py-16">
-        <div
-          class="inline-block bg-gradient-to-br from-red-500 via-red-600 to-red-700 px-8 py-6 rounded-2xl shadow-2xl shadow-red-500/30"
-        >
+        <div class="inline-block px-8 py-6 border-2 border-black rounded-lg">
           <div class="text-6xl mb-4">⚠️</div>
-          <h2 class="text-2xl font-semibold text-white mb-2">
+          <h2 class="text-2xl font-bold text-black mb-2">
             Something went wrong
           </h2>
-          <p class="text-red-100 mb-4">
-            {{ error }}
-          </p>
+          <p class="text-black mb-4">{{ error }}</p>
           <button
-            class="inline-flex items-center px-6 py-3 rounded-xl bg-gradient-to-r from-yellow-400 to-yellow-600 text-slate-900 font-medium hover:from-yellow-300 hover:to-yellow-500 transition-all duration-200 shadow-lg shadow-yellow-500/30 hover:shadow-yellow-400/40"
+            class="inline-flex items-center px-6 py-3 rounded bg-black text-white font-medium hover:bg-gray-800 transition-all duration-200 border-2 border-black"
             @click="refresh()"
           >
             Try again
@@ -62,19 +33,17 @@
       </div>
 
       <div v-else-if="!posts || posts.length === 0" class="text-center py-16">
-        <div
-          class="inline-block bg-gradient-to-br from-green-500 via-green-600 to-blue-600 px-8 py-6 rounded-2xl shadow-2xl shadow-green-500/30"
-        >
+        <div class="inline-block px-8 py-6 border-2 border-black rounded-lg">
           <div class="text-6xl mb-4">📝</div>
-          <h2 class="text-2xl font-semibold text-white mb-2">No posts yet</h2>
-          <p class="text-green-100">Check back soon for updates!</p>
+          <h2 class="text-2xl font-bold text-black mb-2">No posts yet</h2>
+          <p class="text-black">Check back soon for updates!</p>
         </div>
       </div>
 
       <div v-else class="relative">
         <!-- Timeline line -->
         <div
-          class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-blue-400 via-green-400 to-yellow-400 rounded-full shadow-lg shadow-blue-400/50"
+          class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-black"
         ></div>
 
         <div class="space-y-12">
@@ -83,74 +52,19 @@
             :key="post.id"
             :class="[
               'relative animate-on-scroll',
-              index % 2 === 0
-                ? 'md:pr-1/2 md:text-right'
-                : 'md:pl-1/2 md:ml-auto',
+              index % 2 === 0 ? 'md:pr-1/2' : 'md:pl-1/2 md:ml-auto',
             ]"
             :style="{ animationDelay: `${index * 200}ms` }"
           >
-            <!-- Timeline dot -->
-            <div
-              :class="[
-                'absolute top-8 w-6 h-6 rounded-xl border-2 border-slate-800 z-10',
-                index % 3 === 0
-                  ? 'bg-gradient-to-br from-blue-400 to-blue-600 shadow-lg shadow-blue-500/60'
-                  : index % 3 === 1
-                  ? 'bg-gradient-to-br from-green-400 to-green-600 shadow-lg shadow-green-500/60'
-                  : 'bg-gradient-to-br from-yellow-400 to-yellow-600 shadow-lg shadow-yellow-500/60',
-                index % 2 === 0
-                  ? 'md:right-1/2 md:transform md:translate-x-3'
-                  : 'md:left-1/2 md:transform md:-translate-x-3',
-                'left-4 md:left-auto md:right-auto',
-              ]"
-            ></div>
-
             <!-- Content card -->
             <div
-              :class="[
-                'relative ml-12 md:ml-0',
-                index % 2 === 0 ? 'md:mr-12' : 'md:ml-12',
-              ]"
+              :class="['relative', index % 2 === 0 ? 'md:mr-12' : 'md:ml-12']"
             >
               <div
-                :class="[
-                  'group rounded-3xl p-8 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden shadow-xl backdrop-blur-xl border',
-                  index % 3 === 0
-                    ? 'bg-gradient-to-br from-slate-800/40 via-slate-700/40 to-slate-600/40 border-blue-400/20 shadow-blue-500/10 hover:border-blue-400/30 hover:shadow-blue-500/20'
-                    : index % 3 === 1
-                    ? 'bg-gradient-to-br from-slate-800/40 via-slate-700/40 to-slate-600/40 border-green-400/20 shadow-green-500/10 hover:border-green-400/30 hover:shadow-green-500/20'
-                    : 'bg-gradient-to-br from-slate-800/40 via-slate-700/40 to-slate-600/40 border-yellow-400/20 shadow-yellow-500/10 hover:border-yellow-400/30 hover:shadow-yellow-500/20',
-                ]"
+                class="group rounded-lg p-6 transition-all duration-300 border-2 border-black"
               >
-                <!-- Card decoration -->
-                <div
-                  :class="[
-                    'absolute top-0 left-0 w-full h-2 rounded-t-2xl',
-                    index % 3 === 0
-                      ? 'bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600'
-                      : index % 3 === 1
-                      ? 'bg-gradient-to-r from-green-400 via-green-500 to-green-600'
-                      : 'bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600',
-                  ]"
-                ></div>
-
-                <!-- Post number -->
-                <div
-                  :class="[
-                    'absolute top-4 font-mono text-xs font-bold px-4 py-2 rounded-xl shadow-lg',
-                    index % 3 === 0
-                      ? 'bg-gradient-to-r from-blue-500 to-blue-700 text-white shadow-blue-500/50'
-                      : index % 3 === 1
-                      ? 'bg-gradient-to-r from-green-500 to-green-700 text-white shadow-green-500/50'
-                      : 'bg-gradient-to-r from-yellow-400 to-yellow-600 text-slate-900 shadow-yellow-500/50',
-                    index % 2 === 0 ? 'md:right-4 right-4' : 'md:left-4 left-4',
-                  ]"
-                >
-                  {{ String(index + 1).padStart(2, "0") }}
-                </div>
-
                 <!-- Content -->
-                <div class="pt-4">
+                <div>
                   <StoryblokComponent :blok="post.content" />
                 </div>
               </div>
@@ -273,20 +187,20 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
-/* Enhanced animations and effects */
+/* Simple fade-in animation */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(50px) scale(0.95);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
 }
 
 .animate-on-scroll {
-  animation: fadeInUp 0.8s ease-out forwards;
+  animation: fadeInUp 0.6s ease-out forwards;
   opacity: 0;
 }
 
@@ -307,23 +221,5 @@ onBeforeUnmount(() => {
   .md\:text-right {
     text-align: left;
   }
-}
-
-/* Custom gradient text animation */
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-h1 {
-  background-size: 200% 200%;
-  animation: gradient 6s ease infinite;
 }
 </style>
