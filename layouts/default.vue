@@ -1,42 +1,35 @@
 <template>
-  <div
-    class="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800"
-  >
+  <div class="min-h-screen bg-slate-900">
     <!-- Hamburger Menu Button -->
     <button
       @click="menuOpen = !menuOpen"
       :class="[
-        'fixed top-6 right-6 z-50 p-4 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border backdrop-blur-sm group',
+        'fixed top-6 right-6 z-50 p-4 rounded-lg shadow-lg transition-all duration-300 backdrop-blur-sm',
         menuOpen
-          ? 'bg-gradient-to-br from-blue-600 to-green-600 border-white/30 shadow-2xl scale-110'
-          : 'bg-gradient-to-br from-slate-800/90 to-slate-700/90 border-slate-700/50 hover:from-slate-700/90 hover:to-slate-600/90 hover:scale-105',
+          ? 'bg-blue-600 scale-110'
+          : 'bg-slate-800 hover:bg-slate-700 hover:scale-105',
       ]"
       aria-label="Toggle Menu"
     >
-      <!-- Hamburger Icon -->
-      <div class="w-6 h-6 flex flex-col justify-center items-center space-y-1">
+      <div
+        class="w-6 h-6 flex flex-col justify-center items-center space-y-1.5"
+      >
         <span
           :class="[
-            'block h-0.5 w-6 transition-all duration-300',
-            menuOpen
-              ? 'rotate-45 translate-y-1.5 bg-white'
-              : 'bg-gradient-to-r from-blue-600 to-green-600 group-hover:from-blue-500 group-hover:to-green-500',
+            'block h-0.5 w-6 bg-white transition-all duration-300',
+            menuOpen ? 'rotate-45 translate-y-2' : '',
           ]"
         ></span>
         <span
           :class="[
-            'block h-0.5 w-6 transition-all duration-300',
-            menuOpen
-              ? 'opacity-0 bg-white'
-              : 'bg-gradient-to-r from-blue-600 to-green-600 group-hover:from-blue-500 group-hover:to-green-500',
+            'block h-0.5 w-6 bg-white transition-all duration-300',
+            menuOpen ? 'opacity-0' : '',
           ]"
         ></span>
         <span
           :class="[
-            'block h-0.5 w-6 transition-all duration-300',
-            menuOpen
-              ? '-rotate-45 -translate-y-1.5 bg-white'
-              : 'bg-gradient-to-r from-blue-600 to-green-600 group-hover:from-blue-500 group-hover:to-green-500',
+            'block h-0.5 w-6 bg-white transition-all duration-300',
+            menuOpen ? '-rotate-45 -translate-y-2' : '',
           ]"
         ></span>
       </div>
@@ -46,49 +39,26 @@
     <Teleport to="body">
       <nav
         :class="[
-          'fixed inset-0 z-50 transform transition-all duration-500 ease-in-out -translate-x-full overflow-hidden',
-          'bg-gradient-to-br from-slate-900 via-blue-900 to-green-900',
-          menuOpen ? 'translate-x-0' : '',
+          'fixed inset-0 z-40 bg-slate-900 transition-transform duration-500 ease-in-out',
+          menuOpen ? 'translate-x-0' : '-translate-x-full',
         ]"
       >
-        <!-- Menu content -->
-        <div class="relative z-10 flex items-center justify-center h-full">
-          <div class="space-y-12 text-center">
-            <!-- Menu title -->
-
-            <!-- Navigation links -->
+        <div class="flex items-center justify-center h-full">
+          <div class="space-y-8 text-center">
             <NuxtLink
               to="/"
               @click="handleNavigation"
-              class="group block text-4xl font-display transition-all duration-300 transform hover:scale-110 relative"
+              class="block text-4xl text-white hover:text-blue-400 transition-colors duration-300"
             >
-              <span
-                class="text-white group-hover:opacity-0 inline-block transition-all duration-300 group-hover:translate-x-2"
-              >
-                Home
-              </span>
-              <span
-                class="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-r from-blue-300 to-green-300 bg-clip-text text-transparent inline-block transition-all duration-300 group-hover:translate-x-2"
-              >
-                Home
-              </span>
+              Home
             </NuxtLink>
 
             <NuxtLink
               to="/resume"
               @click="handleNavigation"
-              class="group block text-4xl font-display transition-all duration-300 transform hover:scale-110 relative"
+              class="block text-4xl text-white hover:text-blue-400 transition-colors duration-300"
             >
-              <span
-                class="text-white group-hover:opacity-0 inline-block transition-all duration-300 group-hover:translate-x-2"
-              >
-                Resume
-              </span>
-              <span
-                class="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-r from-green-300 to-yellow-300 bg-clip-text text-transparent inline-block transition-all duration-300 group-hover:translate-x-2"
-              >
-                Resume
-              </span>
+              Resume
             </NuxtLink>
 
             <a
@@ -96,18 +66,9 @@
               target="_blank"
               rel="noopener"
               @click="menuOpen = false"
-              class="group block text-4xl font-display transition-all duration-300 transform hover:scale-110 relative"
+              class="block text-4xl text-white hover:text-blue-400 transition-colors duration-300"
             >
-              <span
-                class="text-white group-hover:opacity-0 inline-block transition-all duration-300 group-hover:translate-x-2"
-              >
-                GitHub
-              </span>
-              <span
-                class="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-r from-yellow-300 to-blue-300 bg-clip-text text-transparent inline-block transition-all duration-300 group-hover:translate-x-2"
-              >
-                GitHub
-              </span>
+              GitHub
             </a>
           </div>
         </div>
@@ -120,13 +81,11 @@
     </main>
 
     <!-- Footer -->
-    <footer class="py-8 mt-20">
+    <footer class="py-8 mt-20 border-t border-slate-800 print:hidden">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-          <p class="text-sm text-slate-400">
-            © {{ new Date().getFullYear() }} Thomas Cober. All rights reserved.
-          </p>
-        </div>
+        <p class="text-center text-sm text-slate-400">
+          © {{ new Date().getFullYear() }} Thomas Cober. All rights reserved.
+        </p>
       </div>
     </footer>
   </div>
@@ -140,11 +99,8 @@ const router = useRouter();
 const handleNavigation = async (event) => {
   event.preventDefault();
   const href = event.currentTarget.getAttribute("to");
-
-  // Start closing the menu
   menuOpen.value = false;
 
-  // Wait for the transition to complete before navigating
   setTimeout(() => {
     router.push(href);
   }, 300);
@@ -176,51 +132,10 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* Gradient animation for menu title */
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.animate-gradient {
-  background-size: 200% 200%;
-  animation: gradient 4s ease infinite;
-}
-
-/* Animation delays for background elements */
-.animation-delay-2000 {
-  animation-delay: 2s;
-}
-
-.animation-delay-4000 {
-  animation-delay: 4s;
-}
-
-/* Enhanced hover effects for navigation links */
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
-
-/* Print styles - hide navigation elements */
 @media print {
   button[aria-label="Toggle Menu"],
-  nav,
-  .fixed,
-  .absolute {
+  nav {
     display: none !important;
-    visibility: hidden !important;
   }
 }
 </style>
