@@ -62,6 +62,8 @@ export default defineNuxtConfig({
       meta: [
         { name: "author", content: "Thomas Cober" },
         { name: "theme-color", content: "#6366f1" },
+        { name: "robots", content: "noai, noimageai" },
+        { name: "googlebot", content: "noai, noimageai" },
       ],
     },
   },
