@@ -2,73 +2,119 @@
 
 ## Project Overview
 
-This is a static website using **Nuxt** and **Storyblok** with 2 main pages: a timeline-style feed of posts and a resume page. The site includes links to GitHub and LinkedIn and is deployed to **Netlify** with Storyblok hooks triggering rebuilds when new content is published.
+This is a personal and professional static website using **Nuxt 3** and **Storyblok CMS**. The site has **3 distinct pages**: an index/home page (fun & casual), a feed page (timeline of posts), and a resume page (professional). The site is deployed to **Netlify** as a static site with Storyblok webhooks triggering automatic rebuilds on content changes.
 
 ## Tech Stack
 
-- **Frontend**: Nuxt 3, Vue 3, TypeScript
+- **Framework**: Nuxt 3 (Static Site Generation)
+- **UI Library**: Vue 3 with TypeScript support
 - **Styling**: Tailwind CSS with custom design system
+- **Typography Plugin**: @tailwindcss/typography
 - **CMS**: Storyblok (US region)
-- **State Management**: Pinia
-- **Hosting**: Netlify
-- **Build**: Static Site Generation (SSG)
+- **State Management**: Pinia (when needed for complex state)
+- **Fonts**: Google Fonts (Lilita One, PT Mono, Merriweather)
+- **Icons**: Font Awesome via vue-fontawesome
+- **Hosting**: Netlify (SSG deployment)
+- **Build Tool**: Nuxt's built-in Vite
 
-## Site Structure
+## Site Structure & Page Purposes
 
-- **Homepage**: Timeline-style feed of posts
-- **Resume Page**: Professional resume with downloadable PDF
-- **Navigation**: Links to GitHub and LinkedIn profiles
-- **CMS Integration**: Storyblok webhooks trigger Netlify rebuilds on content publish
+### Three Pages Architecture
+
+1. **Index/Home Page** (`/`) - Fun, casual, welcoming
+
+   - Personal introduction and greeting
+   - Friendly, approachable tone
+   - Gateway to other sections
+   - Creative freedom with design and personality
+
+2. **Feed Page** (`/feed`) - Timeline content stream
+
+   - Chronological display of posts from Storyblok
+   - Rich media content (images, videos, quotes)
+   - Personal and professional blend
+   - Storyblok-powered dynamic content
+
+3. **Resume Page** (`/resume`) - Professional credentials
+   - Formal, professional presentation
+   - Print-optimized layout
+   - PDF download capability
+   - Traditional resume structure with work experience, education, skills
 
 ## Architecture Principles
 
 ### Component Structure
 
-- Use **Storyblok components** for all content blocks
-- Keep components in `/storyblok/` directory
-- Follow naming convention: PascalCase matching Storyblok component names
-- Always accept `blok` prop with proper TypeScript typing
+- **Storyblok components** live in `/storyblok/` directory
+- **Reusable Vue components** live in `/components/` directory
+- Follow **PascalCase naming** matching Storyblok component names
+- All Storyblok components accept `blok` prop with proper TypeScript typing
+- Use semantic HTML throughout all components
 
-### State Management
+### Data Fetching Strategy
 
-- Use **Pinia stores** in `/stores/` directory (like existing `feedStore`)
-- Create specific stores for different data types (e.g., `feedStore`, `resumeStore`)
-- Implement async actions for Storyblok API calls
-- Use `useStoryblokApi()` composable for API requests
+- Use `useAsyncData` for server-side data fetching on pages
+- Use `useStoryblokApi()` composable for Storyblok API requests
+- Always use `version: "draft"` in development
+- Switch to `version: "published"` in production
+- Leverage Nuxt's automatic hydration for SSR/SSG
 
 ### Styling Guidelines
 
-- Use **scoped CSS** in all Vue components
-- Implement responsive design (mobile-first approach)
-- Use CSS Grid/Flexbox for timeline layout
-- Maintain consistent spacing (rem units preferred)
-- Apply subtle shadows and transitions for better UX
+- **Mobile-first responsive design** (use Tailwind breakpoints)
+- Use **scoped CSS** in Vue components when needed
+- Prefer Tailwind utility classes over custom CSS
+- Maintain consistent spacing using Tailwind's spacing scale
+- Use rem units when custom CSS is necessary
+- Apply subtle shadows and smooth transitions for polish
 
-### Content Management
+### State Management
 
-- Structure Storyblok content with folders:
-  - `posts/` - Timeline feed content
-  - `pages/` - Static pages (resume, about)
-- Use Storyblok's Multi-Assets field for image sets
-- Implement proper alt text and accessibility features
+- Use **Pinia stores** sparingly (only for complex shared state)
+- Store files go in `/stores/` directory
+- Most page-level data can use `useAsyncData` directly
+- Implement async actions for Storyblok API calls when using stores
+
+## Storyblok Configuration
+
+### API Settings
+
+- **Access Token**: `eLrZdcGSol1ru8U12JRKKwtt`
+- **Region**: `us`
+- **Draft Mode**: Use during development
+- **Published Mode**: Use in production builds
+
+### Content Structure
+
+- **Posts folder**: `posts/` - Contains all feed timeline entries
+- **Pages folder**: `pages/` - Contains static page content
+- Use `starts_with: "posts/"` to filter feed content
+- Sort posts by `created_at:desc` for chronological feed
+
+### Content Components Available
+
+- **ImageSet**: Multi-image galleries with controls
+- **Youtube**: Embedded YouTube videos
+- **Quote**: Styled quote blocks for highlights
+- Rich text content with proper typography
 
 ## Coding Standards
 
-### Vue Components
+### Vue Component Template
 
 ```vue
 <template>
-  <!-- Always use semantic HTML -->
+  <!-- Use semantic HTML -->
   <article class="component-name">
-    <!-- Content here -->
+    <!-- Component content -->
   </article>
 </template>
 
 <script setup>
-// Import types and composables at top
+// Imports at the top
 import { computed } from "vue";
 
-// Define props with proper typing
+// Props with TypeScript typing
 const props = defineProps({
   blok: {
     type: Object,
@@ -76,160 +122,237 @@ const props = defineProps({
   },
 });
 
-// Use computed properties for derived data
+// Computed properties for derived state
 const processedData = computed(() => {
   // Processing logic
 });
 </script>
 
 <style scoped>
-/* Component-specific styles */
+/* Component-specific styles only when Tailwind isn't sufficient */
 .component-name {
-  /* Styles here */
-}
-
-/* Responsive breakpoints */
-@media (max-width: 768px) {
-  /* Mobile styles */
+  /* Custom styles here */
 }
 </style>
 ```
 
-### Timeline Feed Structure
+### Page-Level Data Fetching Pattern
 
-- Use `<ul>` with `<li>` for semantic list structure
-- Each post renders via `<StoryblokComponent :blok="post.content" />`
-- Implement chronological ordering (newest first)
-- Add loading states and empty content handling
+```vue
+<script setup>
+// SEO meta tags
+useSeoMeta({
+  title: "Page Title",
+  description: "Page description",
+  ogTitle: "OG Title",
+  ogDescription: "OG Description",
+  ogType: "website",
+  twitterCard: "summary_large_image",
+  robots: "index, follow",
+});
 
-### Storyblok Integration
+// Async data fetching with proper SSR support
+const { data, pending, error } = await useAsyncData("unique-key", async () => {
+  const storyblokApi = useStoryblokApi();
+  const response = await storyblokApi.get("cdn/stories", {
+    starts_with: "posts/",
+    version: process.env.NODE_ENV === "production" ? "published" : "draft",
+    sort_by: "created_at:desc",
+  });
+  return response.data.stories || [];
+});
+</script>
+```
 
-- Access token: `eLrZdcGSol1ru8U12JRKKwtt`
-- Region: `us`
-- Always use `version: "draft"` during development
-- Switch to `version: "published"` for production
-- Use `starts_with` parameter for filtered content queries
+## Performance & SEO Best Practices
 
-### Performance Optimizations
+### Static Site Generation (SSG)
 
-- Use `loading="lazy"` for images
-- Implement proper image alt attributes
+- Prerender all routes using `routeRules` in `nuxt.config.ts`
+- Set `prerender: true` for index, feed, and resume pages
+- Enable asset compression with `nitro.compressPublicAssets`
+- Use Nuxt's built-in optimization features
+
+### Image Optimization
+
+- Use `loading="lazy"` for below-the-fold images
+- Implement proper `alt` attributes for accessibility
 - Use `object-fit: cover` for consistent image display
-- Minimize API calls with efficient data fetching
+- Optimize images before uploading to Storyblok
 
-## Content Types
+### SEO Configuration
 
-### Timeline Posts
+- Use `useSeoMeta()` on every page
+- Include proper meta descriptions and og tags
+- Set appropriate `robots` directives
+- Use semantic HTML structure (header, main, section, article)
 
-- Rich text content with embedded components
-- Image sets for galleries
-- YouTube video embeds
-- Quote blocks for highlights
-- Metadata: title, date, tags, featured image
+### Performance Tips
 
-### Resume Components
-
-- Experience sections with timeline styling
-- Skills lists
-- Education timeline
-- Contact information
-- Downloadable PDF version
+- Prefetch links on interaction using Nuxt's defaults
+- Download Google Fonts locally with `download: true`
+- Use `display: swap` for font loading
+- Minimize unnecessary API calls
 
 ## Deployment Configuration
 
-### Netlify Settings
+### Netlify Setup
 
-- Build command: `npm run generate`
-- Publish directory: `dist`
-- Environment variables: Storyblok access token
-- Deploy contexts: production uses published content
+- **Build Command**: `npm run generate`
+- **Publish Directory**: `dist`
+- **Environment Variables**:
+  - `STORYBLOK_ACCESS_TOKEN`: Your Storyblok token
+  - `NODE_ENV`: `production`
 
 ### Storyblok Webhooks
 
-- Configure webhook URL: `https://api.netlify.com/build_hooks/[BUILD_HOOK_ID]`
-- Trigger on: Story published, Story unpublished
-- Enable for production space only
-- Test webhook triggers after content updates
+1. Get build hook URL from Netlify: `https://api.netlify.com/build_hooks/[YOUR_BUILD_HOOK_ID]`
+2. Add webhook in Storyblok settings
+3. Trigger on: Story published, Story unpublished
+4. Test webhook after configuration
+
+### Static Site Considerations
+
+- All routes must be known at build time
+- Dynamic routes need to be defined in `routeRules`
+- Content changes require rebuild (handled by webhooks)
+- Preview changes locally before publishing to Storyblok
 
 ## Development Workflow
 
 ### Local Development
 
-1. Use `npm run dev` for hot reloading
-2. Connect to Storyblok draft content
-3. Test timeline layout with multiple posts
-4. Verify responsive design on mobile
+```bash
+npm run dev           # Start dev server with hot reload
+npm run build         # Test production build locally
+npm run generate      # Generate static site for deployment
+npm run preview       # Preview generated static site
+```
 
-### Content Creation
+### Content Update Flow
 
-1. Create content in Storyblok draft
-2. Preview changes locally
-3. Publish content to trigger Netlify rebuild
-4. Verify live site updates automatically
+1. Create/edit content in Storyblok (draft mode)
+2. Preview changes locally (fetches draft content)
+3. Publish content in Storyblok
+4. Webhook triggers Netlify rebuild automatically
+5. Verify changes on live site after deployment
 
-### Code Quality
+### Code Quality Standards
 
 - Use TypeScript for type safety
-- Implement proper error handling in stores
-- Write descriptive component names
-- Comment complex timeline logic
-- Test on multiple devices/browsers
+- Implement proper error handling with try/catch
+- Use descriptive component and variable names
+- Add loading states for async operations
+- Handle empty states gracefully (no data scenarios)
+- Test responsive design on mobile and desktop
 
 ## File Organization
 
 ```
-/
-├── components/           # Reusable Vue components
-├── pages/               # Nuxt pages (index.vue, resume.vue)
-├── stores/              # Pinia stores (feedStore.js, etc.)
-├── storyblok/           # Storyblok component library
-├── public/              # Static assets
-└── nuxt.config.ts       # Nuxt configuration with Storyblok setup
+/Users/thomascober/Desktop/Portfolio2025/
+├── .github/
+│   └── copilot-instructions.md
+├── assets/
+│   └── css/
+│       └── tailwind.css
+├── components/          # Reusable Vue components
+│   ├── FeedFeed.vue
+│   ├── LoadingSpinner.vue
+│   └── WellFuck.vue
+├── layouts/            # Nuxt layouts
+│   └── default.vue
+├── pages/              # Three main pages
+│   ├── index.vue      # Home (fun & casual)
+│   ├── feed.vue       # Timeline feed
+│   └── resume.vue     # Professional resume
+├── plugins/            # Nuxt plugins
+│   ├── fontawesome.client.js
+│   └── sitemap.client.js
+├── public/             # Static assets
+│   └── robots.txt
+├── stores/             # Pinia stores (when needed)
+├── storyblok/          # Storyblok components
+│   ├── ImageSet.vue
+│   ├── Quote.vue
+│   └── Youtube.vue
+├── app.config.ts       # App configuration
+├── nuxt.config.ts      # Nuxt configuration
+├── tailwind.config.ts  # Tailwind configuration
+├── tsconfig.json       # TypeScript configuration
+└── package.json        # Dependencies
 ```
 
-## Key Features Implementation
+## Page-Specific Guidelines
 
-### Timeline Feed (Homepage)
+### Index/Home Page (`/`)
 
-- Chronological post display
-- Responsive grid layout
-- Smooth scrolling
-- Post categories/tags
-- Social sharing buttons
+- **Tone**: Fun, casual, welcoming, personal
+- **Purpose**: First impression, introduce yourself
+- **Design Freedom**: Be creative, show personality
+- **Content**: Friendly greeting, who you are, what you do
+- **No Storyblok**: Can be hardcoded in template (static)
 
-### Resume Page
+### Feed Page (`/feed`)
 
-- Professional timeline layout
-- Skills visualization
-- Experience cards
-- Education section
-- Contact form
-- PDF download button
+- **Tone**: Blend of personal and professional
+- **Purpose**: Timeline of posts, updates, projects, thoughts
+- **Data Source**: Storyblok posts folder
+- **Components**: Use LoadingSpinner, WellFuck for states
+- **Layout**: Chronological list (newest first)
+- **Rich Media**: Support images, videos, quotes via Storyblok components
 
-### Navigation
+### Resume Page (`/resume`)
 
-- Header with GitHub/LinkedIn links
-- Mobile-responsive menu
-- Clean, minimal design
-- Consistent across pages
+- **Tone**: Professional, formal, credential-focused
+- **Purpose**: Traditional resume for employers/recruiters
+- **Features**: Print button, PDF download, structured sections
+- **Sections**: Experience, Education, Skills, Contact
+- **Print-Ready**: Use print-specific CSS classes
+- **No Storyblok**: Hardcoded content (static, infrequently changed)
 
-## Best Practices
+## Design Philosophy
 
-- Keep timeline posts as individual Storyblok stories
-- Use consistent post structure for uniform display
-- Implement proper loading states during content fetch
-- Handle empty feed gracefully
-- Optimize images for timeline display
-- Test webhook integration thoroughly
-- Monitor rebuild times and performance
-- Maintain clean commit history for deployments
-- Make design decisions like you went to the greatest design school in the universe.
-- Periodically review and refactor code for maintainability
-- Periodically review and update this instructions file for improvements
+- **Fun where appropriate** (index page - creative freedom)
+- **Professional where necessary** (resume - traditional credibility)
+- **Balanced everywhere else** (feed - authentic personality + quality)
+- Make design decisions like you went to the greatest design school in the universe
+- Prioritize clarity and usability over cleverness
+- Use white space intentionally
+- Maintain consistent typography hierarchy
+- Apply smooth transitions and subtle animations
 
-## External Links
+## Best Practices Checklist
 
-- **GitHub**: Professional code repositories
-- **LinkedIn**: Professional networking profile
-- Both should open in new tabs
-- Include appropriate icons/styling
+- ✅ Prerender all three pages for optimal performance
+- ✅ Use `useAsyncData` for data fetching (not onMounted)
+- ✅ Implement loading and error states on feed page
+- ✅ Add SEO meta tags to every page
+- ✅ Test responsive design on mobile devices
+- ✅ Optimize images before uploading to Storyblok
+- ✅ Use semantic HTML throughout
+- ✅ Test print layout for resume page
+- ✅ Verify Storyblok webhook triggers rebuilds
+- ✅ Test production build before deploying
+- ✅ Keep dependencies updated
+- ✅ Maintain clean Git commit history
+- ✅ Review and refactor code periodically
+- ✅ Update this instructions file as project evolves
+
+## External Links Configuration
+
+Links to external profiles should:
+
+- Open in new tabs (`target="_blank"`)
+- Include `rel="noopener noreferrer"` for security
+- Use appropriate icons (Font Awesome available)
+- Be accessible from navigation or footer
+- Include: GitHub, LinkedIn
+
+**Configured in `app.config.ts`:**
+
+```typescript
+social: {
+  github: "https://github.com/thomascober",
+  linkedin: "https://linkedin.com/in/thomascober",
+}
+```
