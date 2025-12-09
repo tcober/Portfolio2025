@@ -54,6 +54,14 @@
             </NuxtLink>
 
             <NuxtLink
+              to="/feed"
+              @click="handleNavigation"
+              class="block text-4xl text-white hover:text-blue-400"
+            >
+              Feed
+            </NuxtLink>
+
+            <NuxtLink
               to="/resume"
               @click="handleNavigation"
               class="block text-4xl text-white hover:text-blue-400"
