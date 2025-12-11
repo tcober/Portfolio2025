@@ -4,7 +4,7 @@
       <div
         v-for="(image, index) in images"
         :key="index"
-        class="group overflow-hidden rounded-3xl bg-gradient-to-br from-slate-800/40 via-slate-700/40 to-slate-600/40 backdrop-blur-xl border border-slate-600/30 aspect-square relative cursor-pointer transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-blue-500/20 hover:border-blue-400/30"
+        class="glass-card-hover group overflow-hidden aspect-square relative cursor-pointer transform hover:scale-[1.02]"
         :class="{
           'hover:z-10': images.length > 1,
           'single-image': images.length === 1,

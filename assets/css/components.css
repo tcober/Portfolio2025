@@ -1,44 +1,52 @@
-/* Card Components */
-.card {
-  @apply bg-slate-800 rounded-lg shadow-sm border border-slate-700 p-6 transition-all duration-200 hover:shadow-md;
-}
+/**
+ * Shared Component Patterns
+ * 
+ * Only include classes that are:
+ * 1. Used across multiple components
+ * 2. Too complex for inline Tailwind utilities
+ * 
+ * For one-off styling, use scoped CSS in Vue components.
+ * For simple patterns, use Tailwind utilities directly.
+ */
 
-.card-header {
-  @apply border-b border-slate-600 pb-4 mb-4;
-}
+@layer components {
+  /* Card - Reusable container with elevation */
+  .card {
+    @apply rounded-lg border-2 border-black bg-white p-6 transition-all;
+    transition-duration: var(--duration-normal);
+  }
 
-.card-title {
-  @apply text-xl font-semibold text-slate-100 mb-2;
-}
+  .card-elevated {
+    @apply card shadow-lg hover:shadow-xl;
+  }
 
-.card-subtitle {
-  @apply text-sm text-slate-300 mb-1;
-}
+  /* Content prose styling for rich text */
+  .prose-content {
+    @apply prose prose-slate max-w-none;
+    @apply prose-headings:font-display prose-headings:text-slate-900;
+    @apply prose-a:text-blue-600 prose-a:no-underline prose-a:font-medium;
+    @apply hover:prose-a:text-blue-800;
+  }
 
-/* Navigation Components */
-.nav-link {
-  @apply text-slate-300 hover:text-slate-100 px-3 py-2 rounded-md transition-colors duration-200;
-}
+  /* Glassmorphism card - frosted glass effect with gradient */
+  .glass-card {
+    @apply bg-gradient-to-br from-slate-800/40 via-slate-700/40 to-slate-600/40;
+    @apply backdrop-blur-xl border border-slate-600/30 rounded-3xl;
+    @apply shadow-2xl shadow-blue-500/10;
+    @apply transition-all;
+    transition-duration: var(--duration-slow);
+  }
 
-.nav-link.active {
-  @apply text-blue-400 bg-blue-900/50;
-}
+  .glass-card-hover {
+    @apply glass-card;
+    @apply hover:shadow-blue-500/20 hover:border-blue-400/30;
+  }
 
-/* Content Components */
-.prose-custom {
-  @apply prose prose-neutral max-w-none prose-headings:text-neutral-900 prose-a:text-blue-600 prose-a:no-underline prose-a:font-medium hover:prose-a:text-blue-800;
-}
-
-/* Responsive Grid */
-.grid-responsive {
-  @apply grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3;
-}
-
-/* Image Gallery */
-.image-gallery {
-  @apply grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4;
-}
-
-.image-gallery img {
-  @apply rounded-lg object-cover w-full h-48 transition-transform duration-200 hover:scale-105;
+  /* Lightbox/overlay control buttons */
+  .lightbox-btn {
+    @apply text-white bg-black/60 hover:bg-black/80;
+    @apply rounded-full transition-all backdrop-blur-sm;
+    @apply touch-manipulation hover:scale-110;
+    transition-duration: var(--duration-normal);
+  }
 }

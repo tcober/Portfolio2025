@@ -21,7 +21,7 @@
         <!-- Close button -->
         <button
           @click="close"
-          class="absolute top-4 right-4 text-white bg-black bg-opacity-60 hover:bg-opacity-80 rounded-full p-3 transition-all duration-200 touch-manipulation z-20 backdrop-blur-sm hover:scale-110"
+          class="lightbox-btn absolute top-4 right-4 p-3 z-20"
           aria-label="Close lightbox"
           type="button"
           tabindex="0"
@@ -46,7 +46,7 @@
           <button
             v-if="currentIndex > 0"
             @click.stop="navigate(-1)"
-            class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-60 hover:bg-opacity-80 rounded-full p-4 transition-all duration-200 touch-manipulation z-20 backdrop-blur-sm hover:scale-110"
+            class="lightbox-btn absolute left-4 top-1/2 transform -translate-y-1/2 p-4 z-20"
             aria-label="Previous image"
           >
             <svg
@@ -66,7 +66,7 @@
           <button
             v-if="currentIndex < images.length - 1"
             @click.stop="navigate(1)"
-            class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-60 hover:bg-opacity-80 rounded-full p-4 transition-all duration-200 touch-manipulation z-20 backdrop-blur-sm hover:scale-110"
+            class="lightbox-btn absolute right-4 top-1/2 transform -translate-y-1/2 p-4 z-20"
             aria-label="Next image"
           >
             <svg
@@ -235,13 +235,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* Lightbox backdrop blur effect */
-@supports (backdrop-filter: blur(10px)) {
-  .backdrop-blur-sm {
-    backdrop-filter: blur(4px);
-  }
-}
-
 /* Improve touch targets for mobile */
 @media (max-width: 640px) {
   button {

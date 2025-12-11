@@ -1,6 +1,6 @@
 <template>
   <div class="relative my-8 component-quote">
-    <div class="border-2 border-black rounded-lg p-6 bg-white">
+    <div class="card">
       <!-- Quote text -->
       <div class="relative">
         <p

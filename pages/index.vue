@@ -135,15 +135,4 @@ useSeoMeta({
   transform: scale(1.05) rotate(-1deg);
   text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
 }
-
-/* Add slight blur to create depth */
-.highlight-text::before {
-  content: attr(data-text);
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: -1;
-  filter: blur(10px);
-  opacity: 0.5;
-}
 </style>

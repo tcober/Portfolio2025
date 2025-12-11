@@ -132,12 +132,3 @@ onMounted(() => {
   });
 });
 </script>
-
-<style scoped>
-@media print {
-  button[aria-label="Toggle Menu"],
-  nav {
-    display: none !important;
-  }
-}
-</style>

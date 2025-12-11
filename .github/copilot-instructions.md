@@ -59,11 +59,80 @@ This is a personal and professional static website using **Nuxt 3** and **Storyb
 - Switch to `version: "published"` in production
 - Leverage Nuxt's automatic hydration for SSR/SSG
 
+### CSS Architecture & Styling Conventions
+
+The site uses a **token-based CSS system** with clear separation of concerns:
+
+#### Design Tokens (`assets/css/tokens.css`)
+
+All colors, typography, spacing, animations, and shadows are defined as CSS custom properties. **Always use tokens** for consistency:
+
+```css
+/* ✅ Good - use token */
+color: var(--color-primary);
+transition: all var(--duration-normal) var(--ease-default);
+
+/* ❌ Bad - hardcoded value */
+color: #2563eb;
+transition: all 200ms ease;
+```
+
+#### CSS File Organization
+
+| File             | Purpose                                           | When to Modify                         |
+| ---------------- | ------------------------------------------------- | -------------------------------------- |
+| `tokens.css`     | Design tokens (colors, spacing, typography, etc.) | Adding new brand colors, global values |
+| `tailwind.css`   | Base layer, custom utilities, scrollbar           | Rarely - only for global base styles   |
+| `components.css` | Shared component patterns (`.card`, `.prose-*`)   | Adding truly reusable patterns         |
+| `buttons.css`    | Button variants (`.btn`, `.btn-primary`)          | Adding new button styles               |
+| `animations.css` | Keyframes and scroll-triggered animations         | Adding new animation patterns          |
+| `print.css`      | Print media queries                               | Print-specific adjustments             |
+
+#### When to Use Each Approach
+
+1. **Tailwind Utilities (default choice)**
+
+   - Layout, spacing, colors, typography
+   - Responsive design (`sm:`, `md:`, `lg:`)
+   - Simple hover/focus states
+   - ~80% of styling should be utilities
+
+2. **Global CSS Classes (`assets/css/`)**
+
+   - Patterns used in 3+ components
+   - Complex multi-property combinations
+   - Animation keyframes
+   - Print styles
+
+3. **Scoped Component CSS (`<style scoped>`)**
+   - Complex animations unique to one component
+   - Pseudo-elements (::before, ::after)
+   - Styles that can't be expressed in Tailwind
+   - **Do NOT leave empty `<style scoped>` blocks**
+
+#### Animation System
+
+Use the global animation classes from `animations.css`:
+
+```vue
+<!-- Add class and use IntersectionObserver to add .in-view -->
+<div class="animate-on-scroll">Content fades in when visible</div>
+<div class="animate-slide-left">Slides in from left</div>
+<div class="animate-slide-right">Slides in from right</div>
+```
+
+#### Theme Strategy
+
+- **Body**: Dark background (`--color-bg-dark` / slate-900)
+- **Content cards**: Light backgrounds (white, `--color-bg-light`)
+- **Text**: Adapts to container (dark on light, light on dark)
+
 ### Styling Guidelines
 
 - **Mobile-first responsive design** (use Tailwind breakpoints)
-- Use **scoped CSS** in Vue components when needed
+- Use **scoped CSS** in Vue components only when necessary
 - Prefer Tailwind utility classes over custom CSS
+- Reference design tokens via `var(--token-name)` for custom CSS
 - Maintain consistent spacing using Tailwind's spacing scale
 - Use rem units when custom CSS is necessary
 - Apply subtle shadows and smooth transitions for polish

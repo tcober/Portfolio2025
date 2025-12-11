@@ -17,9 +17,7 @@
       >
         <!-- Content card -->
         <div :class="['relative', index % 2 === 0 ? 'md:mr-12' : 'md:ml-12']">
-          <div
-            class="group rounded-lg p-6 transition-all duration-300 border-2 border-black bg-white"
-          >
+          <div class="group card">
             <!-- Content -->
             <div>
               <StoryblokComponent :blok="post.content" />
@@ -100,24 +98,7 @@ onBeforeUnmount(() => {
 });
 </script>
 
-<style scoped>
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-on-scroll {
-  animation: fadeInUp 0.6s ease-out forwards;
-  opacity: 0;
-}
-
-.animate-on-scroll.in-view {
-  opacity: 1;
-}
-</style>
+<!-- 
+  Animations are handled by global assets/css/animations.css
+  No scoped styles needed - uses .animate-on-scroll and .in-view classes
+-->

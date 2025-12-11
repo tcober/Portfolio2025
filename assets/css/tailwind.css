@@ -1,14 +1,15 @@
+/* Design Tokens - must be imported first */
+@import "./tokens.css";
+
+/* Component CSS imports */
+@import "./components.css";
+@import "./buttons.css";
+@import "./animations.css";
+@import "./print.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Component imports */
-@import "./components.css";
-@import "./timeline.css";
-@import "./buttons.css";
-@import "./forms.css";
-@import "./animations.css";
-@import "./print.css";
 
 @layer base {
   html {
@@ -16,11 +17,18 @@
   }
 
   body {
-    @apply font-sans text-slate-100 bg-slate-900 selection:bg-blue-200 selection:text-blue-900;
+    @apply font-sans;
+    color: var(--color-text-dark);
+    background-color: var(--color-bg-dark);
+  }
+
+  ::selection {
+    background-color: var(--color-selection-bg);
+    color: var(--color-selection-text);
   }
 
   .font-display {
-    font-family: "Lilita One", ui-serif, Georgia, serif;
+    font-family: var(--font-display);
   }
 
   h1,
@@ -33,7 +41,7 @@
   }
 
   a {
-    @apply transition-colors duration-200;
+    transition: color var(--duration-normal) var(--ease-default);
   }
 
   img {
@@ -51,46 +59,58 @@
     text-wrap: pretty;
   }
 
+  /* Token-based transition utilities */
+  .transition-fast {
+    transition: all var(--duration-fast) var(--ease-default);
+  }
+
+  .transition-normal {
+    transition: all var(--duration-normal) var(--ease-default);
+  }
+
+  .transition-slow {
+    transition: all var(--duration-slow) var(--ease-default);
+  }
+
   .bg-gradient-primary {
-    @apply bg-gradient-to-r from-blue-500 to-blue-600;
+    background: linear-gradient(
+      to right,
+      var(--color-primary-light),
+      var(--color-primary)
+    );
   }
 
   .bg-gradient-secondary {
-    @apply bg-gradient-to-r from-neutral-400 to-neutral-500;
+    background: linear-gradient(
+      to right,
+      var(--color-secondary),
+      var(--color-secondary-hover)
+    );
   }
 
   .shadow-elevated {
-    box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1),
-      0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow-elevated);
   }
 
   .backdrop-blur-subtle {
     backdrop-filter: blur(8px);
   }
-
-  /* Dark mode utilities (for future use) */
-  .dark .dark\:bg-dark {
-    @apply bg-neutral-900;
-  }
-
-  .dark .dark\:text-dark {
-    @apply text-neutral-100;
-  }
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - matches dark theme */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-neutral-100;
+  background-color: var(--color-bg-dark-elevated);
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-neutral-300 rounded-full;
+  background-color: var(--color-bg-dark-surface);
+  border-radius: var(--radius-full);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-neutral-400;
+  background-color: var(--color-text-dark-subtle);
 }

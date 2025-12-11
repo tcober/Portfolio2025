@@ -2,7 +2,7 @@
   <div class="my-8">
     <div
       v-if="videoId"
-      class="relative w-full aspect-video bg-gradient-to-br from-slate-800/40 via-slate-700/40 to-slate-600/40 backdrop-blur-xl border border-slate-600/30 rounded-3xl overflow-hidden shadow-2xl shadow-blue-500/10 group hover:shadow-blue-500/20 transition-all duration-300"
+      class="glass-card-hover relative w-full aspect-video overflow-hidden group"
     >
       <iframe
         :src="`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`"

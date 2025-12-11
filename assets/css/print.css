@@ -1,6 +1,18 @@
+/**
+ * Print Styles
+ * 
+ * Utility classes for print media.
+ * Use .no-print to hide elements when printing.
+ * Use .print-only to show elements only when printing.
+ */
+
 @media print {
   .no-print {
     display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
   }
 
   .print-break-before {
@@ -10,4 +22,15 @@
   .print-break-after {
     page-break-after: always;
   }
+
+  /* Hide navigation elements when printing */
+  button[aria-label="Toggle Menu"],
+  nav {
+    display: none !important;
+  }
+}
+
+/* Hide print-only elements on screen */
+.print-only {
+  display: none;
 }
