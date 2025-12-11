@@ -1,0 +1,44 @@
+/* Card Components */
+.card {
+  @apply bg-slate-800 rounded-lg shadow-sm border border-slate-700 p-6 transition-all duration-200 hover:shadow-md;
+}
+
+.card-header {
+  @apply border-b border-slate-600 pb-4 mb-4;
+}
+
+.card-title {
+  @apply text-xl font-semibold text-slate-100 mb-2;
+}
+
+.card-subtitle {
+  @apply text-sm text-slate-300 mb-1;
+}
+
+/* Navigation Components */
+.nav-link {
+  @apply text-slate-300 hover:text-slate-100 px-3 py-2 rounded-md transition-colors duration-200;
+}
+
+.nav-link.active {
+  @apply text-blue-400 bg-blue-900/50;
+}
+
+/* Content Components */
+.prose-custom {
+  @apply prose prose-neutral max-w-none prose-headings:text-neutral-900 prose-a:text-blue-600 prose-a:no-underline prose-a:font-medium hover:prose-a:text-blue-800;
+}
+
+/* Responsive Grid */
+.grid-responsive {
+  @apply grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3;
+}
+
+/* Image Gallery */
+.image-gallery {
+  @apply grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4;
+}
+
+.image-gallery img {
+  @apply rounded-lg object-cover w-full h-48 transition-transform duration-200 hover:scale-105;
+}

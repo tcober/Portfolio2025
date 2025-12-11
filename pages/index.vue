@@ -1,9 +1,5 @@
 <template>
   <div class="min-h-screen relative overflow-hidden">
-    <!-- <ClientOnly>
-      <ParticleBackground />
-    </ClientOnly> -->
-
     <main
       class="relative z-10 max-w-5xl mx-auto px-6 py-12 min-h-screen flex items-center"
     >
