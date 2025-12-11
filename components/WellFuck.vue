@@ -23,8 +23,6 @@ defineProps({
   },
 });
 
-defineEmits(["retry"]);
-
 const refresh = () => {
   window.location.reload();
 };

@@ -22,7 +22,6 @@
 </template>
 
 <script setup>
-// Define props with validation
 /**
  * blok structure:
  * {
@@ -30,7 +29,7 @@
  *   author?: string (optional)
  * }
  */
-const props = defineProps({
+defineProps({
   blok: {
     type: Object,
     required: true,

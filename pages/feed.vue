@@ -33,7 +33,6 @@ const {
   data: posts,
   pending: loading,
   error,
-  refresh,
 } = await useAsyncData("feed-posts", async () => {
   try {
     const storyblokApi = useStoryblokApi();

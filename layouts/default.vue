@@ -101,7 +101,6 @@
 
 <script setup>
 const menuOpen = ref(false);
-const router = useRouter();
 
 // Close menu on navigation
 const handleNavigation = () => {
