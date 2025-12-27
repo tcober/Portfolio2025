@@ -22,16 +22,18 @@
       </header>
 
       <!-- Profile Section -->
-      <section class="w-full flex gap-6 mb-4">
+      <section class="w-full flex sm:flex-row gap-4 sm:gap-6 mb-4">
         <img
           src="https://a-us.storyblok.com/f/1002617/800x800/3cde4e7148/profile-pic.jpg"
           alt="Thomas Cober"
-          class="w-24 h-24 rounded border-2 border-black object-cover flex-shrink-0"
+          class="w-28 h-28 sm:w-24 sm:h-24 rounded border-2 border-black object-cover flex-shrink-0"
         />
         <div class="text-black flex-1">
-          <h2 class="text-4xl font-bold">Thomas Cober</h2>
-          <p class="text-xl font-semibold">Senior JavaScript Engineer</p>
-          <div class="flex gap-8 text-sm">
+          <h2 class="text-3xl sm:text-4xl font-bold">Thomas Cober</h2>
+          <p class="text-lg sm:text-xl font-semibold">
+            Senior JavaScript Engineer
+          </p>
+          <div class="flex flex-col sm:flex-row sm:gap-8 text-sm">
             <p>tcober5@gmail.com</p>
             <p>thomascober.com</p>
             <p>Minneapolis, MN</p>
@@ -40,9 +42,9 @@
       </section>
 
       <!-- Main Content -->
-      <main class="grid grid-cols-3 gap-12">
+      <main class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
         <!-- Left Column (2/3) -->
-        <div class="col-span-2 space-y-8">
+        <div class="md:col-span-2 space-y-8">
           <!-- Experience -->
           <section>
             <h3
@@ -106,7 +108,7 @@
         </div>
 
         <!-- Right Column (1/3) -->
-        <div class="col-span-1 space-y-6">
+        <div class="md:col-span-1 space-y-6">
           <!-- Core Skills -->
           <section class="border-2 border-black p-4">
             <h3

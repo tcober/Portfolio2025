@@ -9,14 +9,11 @@
       <article
         v-for="(post, index) in posts"
         :key="post.id"
-        :class="[
-          'relative animate-on-scroll',
-          index % 2 === 0 ? 'md:pr-1/2' : 'md:pl-1/2 md:ml-auto',
-        ]"
-        :style="{ animationDelay: `${index * 200}ms` }"
+        :class="getArticleClasses(index)"
+        :style="postLoadingAnimation(index)"
       >
         <!-- Content card -->
-        <div :class="['relative', index % 2 === 0 ? 'md:mr-12' : 'md:ml-12']">
+        <div :class="postOffset(index)">
           <div class="group card">
             <!-- Content -->
             <div>
@@ -30,8 +27,6 @@
 </template>
 
 <script setup>
-import { nextTick, onBeforeUnmount, onMounted, shallowRef, watch } from "vue";
-
 const props = defineProps({
   posts: {
     type: Array,
@@ -39,66 +34,21 @@ const props = defineProps({
   },
 });
 
-const observer = shallowRef(null);
+// Scroll animation observer for
+useScrollAnimation(".animate-on-scroll", () => props.posts?.length || 0);
 
-const createObserver = () =>
-  new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("in-view");
-        }
-      });
-    },
-    {
-      threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px",
-    }
-  );
+// Helper functions for styling
+const getArticleClasses = (index) => [
+  "relative animate-on-scroll",
+  index % 2 === 0 ? "md:pr-1/2" : "md:pl-1/2 md:ml-auto",
+];
 
-const observeTimelineItems = () => {
-  if (!process.client || !observer.value) {
-    return;
-  }
-
-  nextTick(() => {
-    const timelineItems = document.querySelectorAll(".animate-on-scroll");
-    timelineItems.forEach((item) => observer.value?.observe(item));
-  });
-};
-
-const ensureObserver = () => {
-  if (!process.client) {
-    return;
-  }
-
-  if (!observer.value) {
-    observer.value = createObserver();
-  }
-
-  observeTimelineItems();
-};
-
-onMounted(() => {
-  ensureObserver();
+const postLoadingAnimation = (index) => ({
+  animationDelay: `${index * 200}ms`,
 });
 
-watch(
-  () => props.posts?.length || 0,
-  (count) => {
-    if (count > 0) {
-      ensureObserver();
-    }
-  }
-);
-
-onBeforeUnmount(() => {
-  observer.value?.disconnect();
-  observer.value = null;
-});
+const postOffset = (index) => [
+  "relative",
+  index % 2 === 0 ? "md:mr-12" : "md:ml-12",
+];
 </script>
-
-<!-- 
-  Animations are handled by global assets/css/animations.css
-  No scoped styles needed - uses .animate-on-scroll and .in-view classes
--->
