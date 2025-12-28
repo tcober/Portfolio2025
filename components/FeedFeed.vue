@@ -34,9 +34,6 @@ const props = defineProps({
   },
 });
 
-// Scroll animation observer for
-useScrollAnimation(".animate-on-scroll", () => props.posts?.length || 0);
-
 // Helper functions for styling
 const getArticleClasses = (index) => [
   "relative animate-on-scroll",
@@ -51,4 +48,7 @@ const postOffset = (index) => [
   "relative",
   index % 2 === 0 ? "md:mr-12" : "md:ml-12",
 ];
+
+// Scroll animation observer for posts
+useScrollAnimation(".animate-on-scroll", () => props.posts?.length || 0);
 </script>

@@ -2,18 +2,16 @@
   <Teleport to="body">
     <div
       v-if="isOpen"
-      class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-98 p-4 backdrop-blur-sm"
-      @click="close"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900 bg-opacity-98 p-4 backdrop-blur-sm"
+      @click="handleBackdropClick"
     >
       <div
         class="relative w-full h-full max-w-6xl flex items-center justify-center"
-        @click.stop
       >
         <img
           :src="currentImage?.filename"
           :alt="currentImage?.alt || currentImage?.name"
           class="max-w-full max-h-full object-contain rounded-xl shadow-2xl touch-manipulation"
-          @click.stop
           @touchstart="handleTouchStart"
           @touchend="handleTouchEnd"
         />
@@ -45,74 +43,29 @@
         <template v-if="images.length > 1">
           <button
             v-if="currentIndex > 0"
-            @click.stop="navigate(-1)"
-            class="lightbox-btn absolute left-4 top-1/2 transform -translate-y-1/2 p-4 z-20"
+            @click="navigate(-1)"
+            class="lightbox-btn absolute left-4 top-1/2 transform -translate-y-1/2 p-4 z-20 text-2xl"
             aria-label="Previous image"
           >
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
+            &#10094;
           </button>
           <button
             v-if="currentIndex < images.length - 1"
-            @click.stop="navigate(1)"
-            class="lightbox-btn absolute right-4 top-1/2 transform -translate-y-1/2 p-4 z-20"
+            @click="navigate(1)"
+            class="lightbox-btn absolute right-4 top-1/2 transform -translate-y-1/2 p-4 z-20 text-2xl"
             aria-label="Next image"
           >
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
+            &#10095;
           </button>
         </template>
 
         <!-- Image counter with dots indicator -->
-        <div
+        <ImageCounter
           v-if="images.length > 1"
-          class="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20"
-        >
-          <div
-            class="bg-black bg-opacity-60 rounded-2xl px-4 py-2 backdrop-blur-sm"
-          >
-            <div class="text-white text-sm font-medium mb-2 text-center">
-              {{ currentIndex + 1 }} / {{ images.length }}
-            </div>
-            <!-- Dot indicators -->
-            <div class="flex space-x-1 justify-center">
-              <button
-                v-for="(_, dotIndex) in images"
-                :key="dotIndex"
-                @click.stop="navigateTo(dotIndex)"
-                class="w-2 h-2 rounded-full transition-all duration-200 touch-manipulation"
-                :class="{
-                  'bg-white': dotIndex === currentIndex,
-                  'bg-white bg-opacity-40 hover:bg-opacity-60':
-                    dotIndex !== currentIndex,
-                }"
-                :aria-label="`Go to image ${dotIndex + 1}`"
-              ></button>
-            </div>
-          </div>
-        </div>
+          :current-index="currentIndex"
+          :total="images.length"
+          @navigate="navigateTo"
+        />
       </div>
     </div>
   </Teleport>
@@ -121,6 +74,9 @@
 <script setup>
 import { ref, watch, onMounted, onUnmounted } from "vue";
 
+// ============================================
+// Props & Emits
+// ============================================
 const props = defineProps({
   images: {
     type: Array,
@@ -138,62 +94,57 @@ const props = defineProps({
 
 const emit = defineEmits(["close", "update:isOpen"]);
 
+// ============================================
+// State
+// ============================================
 const currentIndex = ref(props.initialIndex);
 const currentImage = ref(props.images[props.initialIndex] || null);
+const touchStartX = ref(0);
+const touchEndX = ref(0);
 
-// Body scroll lock
+// ============================================
+// Navigation
+// ============================================
+const navigateTo = (index) => {
+  if (index >= 0 && index < props.images.length) {
+    currentIndex.value = index;
+    currentImage.value = props.images[index] || null;
+  }
+};
+
+const navigate = (direction) => {
+  navigateTo(currentIndex.value + direction);
+};
+
+// ============================================
+// Open / Close
+// ============================================
 const lockScroll = () => document.body.classList.add("scroll-lock");
 const unlockScroll = () => document.body.classList.remove("scroll-lock");
-
-// Watch for open/close changes
-watch(
-  () => props.isOpen,
-  (isOpen) => {
-    if (isOpen) {
-      currentIndex.value = props.initialIndex;
-      currentImage.value = props.images[props.initialIndex] || null;
-      lockScroll();
-    } else {
-      unlockScroll();
-    }
-  }
-);
-
-// Watch for initialIndex changes while open
-watch(
-  () => props.initialIndex,
-  (newIndex) => {
-    if (props.isOpen && newIndex >= 0 && newIndex < props.images.length) {
-      currentIndex.value = newIndex;
-      currentImage.value = props.images[newIndex];
-    }
-  }
-);
 
 const close = () => {
   emit("close");
   emit("update:isOpen", false);
 };
 
-const navigate = (direction) => {
-  const newIndex = currentIndex.value + direction;
-  if (newIndex >= 0 && newIndex < props.images.length) {
-    currentIndex.value = newIndex;
-    currentImage.value = props.images[newIndex];
+const handleBackdropClick = (e) => {
+  if (e.target === e.currentTarget) {
+    close();
   }
 };
 
-const navigateTo = (index) => {
-  if (index >= 0 && index < props.images.length) {
-    currentIndex.value = index;
-    currentImage.value = props.images[index];
+const handleOpenChange = (isOpen) => {
+  if (isOpen) {
+    navigateTo(props.initialIndex);
+    lockScroll();
+  } else {
+    unlockScroll();
   }
 };
 
-// Touch gesture support for mobile
-const touchStartX = ref(0);
-const touchEndX = ref(0);
-
+// ============================================
+// Touch / Swipe Support
+// ============================================
 const handleTouchStart = (e) => {
   touchStartX.value = e.changedTouches[0].screenX;
 };
@@ -216,7 +167,23 @@ const handleSwipe = () => {
   }
 };
 
-// Keyboard navigation
+// ============================================
+// Watchers
+// ============================================
+watch(() => props.isOpen, handleOpenChange);
+
+watch(
+  () => props.initialIndex,
+  (newIndex) => {
+    if (props.isOpen) {
+      navigateTo(newIndex);
+    }
+  }
+);
+
+// ============================================
+// Keyboard Navigation
+// ============================================
 onMounted(() => {
   const handleKeydown = (e) => {
     if (!props.isOpen) return;

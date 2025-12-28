@@ -20,9 +20,9 @@
 // SEO meta tags with useSeoMeta for better optimization
 useSeoMeta({
   title: "Thomas Cober's Feed",
-  description: "A bunch a shit I'm up to on my own platform because I can.",
+  description: "A bunch of stuff I'm up to.",
   ogTitle: "Thomas Cober's Feed",
-  ogDescription: "A bunch a shit I'm up to on my own platform because I can.",
+  ogDescription: "A bunch of stuff I'm up to.",
   ogType: "website",
   twitterCard: "summary_large_image",
   robots: "index, follow",
