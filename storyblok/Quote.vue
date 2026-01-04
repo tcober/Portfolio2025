@@ -1,10 +1,10 @@
 <template>
   <div class="relative component-quote">
-    <div class="card">
+    <div>
       <!-- Quote text -->
       <div class="relative">
         <p
-          class="text-lg md:text-xl leading-relaxed text-black font-medium italic mb-4 font-serif"
+          class="text-2xl md:text-4xl leading-relaxed text-black font-medium italic mb-4 font-serif"
         >
           "{{ blok.quote }}"
         </p>

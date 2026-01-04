@@ -20,11 +20,13 @@
 // SEO meta tags with useSeoMeta for better optimization
 useSeoMeta({
   title: "Thomas Cober's Feed",
-  description: "A bunch of stuff I'm up to.",
+  description: "My life, projects, and random thoughts.",
   ogTitle: "Thomas Cober's Feed",
-  ogDescription: "A bunch of stuff I'm up to.",
+  ogDescription: "My life, projects, and random thoughts.",
   ogType: "website",
   twitterCard: "summary_large_image",
+  twitterImage:
+    "https://a-us.storyblok.com/f/1002617/800x800/3cde4e7148/profile-pic.jpg",
   robots: "index, follow",
 });
 

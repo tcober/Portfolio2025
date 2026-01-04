@@ -233,14 +233,6 @@ const education = [
     period: "09/2008 – 06/2009",
   },
 ];
-
-const handlePrint = () => {
-  window.print();
-};
-
-const handleDownload = () => {
-  window.print();
-};
 </script>
 
 <style scoped>

@@ -4,7 +4,7 @@
       <div
         v-for="image in images"
         :key="image.id"
-        class="glass-card-hover group overflow-hidden aspect-square relative cursor-pointer transform hover:scale-[1.02]"
+        class="group overflow-hidden aspect-square relative cursor-pointer transform hover:scale-[1.02]"
         :class="imageClasses"
       >
         <img
