@@ -1,23 +1,28 @@
-# Nuxt Minimal Starter
+# Thomas Cober Portfolio 2025
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A modern portfolio website built with Nuxt 3, featuring a dynamic feed powered by Storyblok CMS and a clean, responsive design.
+
+## Tech Stack
+
+- **Framework**: Nuxt 3
+- **Styling**: Tailwind CSS with custom design tokens
+- **CMS**: Storyblok
+- **Fonts**: Merriweather (headings), Inter (body)
+
+## Features
+
+- Dynamic content feed with Storyblok integration
+- Responsive image galleries with lightbox functionality
+- Scroll-triggered animations
+- Print-optimized resume page
+- Custom design system with reusable components
 
 ## Setup
 
-Make sure to install dependencies:
+Install dependencies:
 
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
 ## Development Server
@@ -25,17 +30,7 @@ bun install
 Start the development server on `http://localhost:3000`:
 
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
 ## Production
@@ -43,33 +38,36 @@ bun run dev
 Build the application for production:
 
 ```bash
-# npm
 npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
 ```
 
-Locally preview production build:
+Preview production build:
 
 ```bash
-# npm
 npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Project Structure
+
+```
+├── assets/css/          # Global styles and design tokens
+├── components/          # Vue components
+│   └── storyblok/      # Storyblok-specific components
+├── composables/         # Vue composables
+├── layouts/            # Layout components
+├── pages/              # Route pages
+└── public/             # Static assets
+```
+
+## Design System
+
+The project uses a custom design system with:
+- Design tokens for colors, spacing, and animations (see `assets/css/tokens.css`)
+- Reusable component styles (cards, buttons, animations)
+- Consistent typography system with Merriweather and Inter fonts
+
+## Learn More
+
+- [Nuxt documentation](https://nuxt.com/docs)
+- [Tailwind CSS documentation](https://tailwindcss.com/docs)
+- [Storyblok documentation](https://www.storyblok.com/docs)

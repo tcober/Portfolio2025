@@ -1,10 +1,10 @@
 /**
  * Shared Component Patterns
- * 
+ *
  * Only include classes that are:
  * 1. Used across multiple components
  * 2. Too complex for inline Tailwind utilities
- * 
+ *
  * For one-off styling, use scoped CSS in Vue components.
  * For simple patterns, use Tailwind utilities directly.
  */
@@ -16,30 +16,14 @@
     transition-duration: var(--duration-normal);
   }
 
-  .card-elevated {
-    @apply card shadow-lg hover:shadow-xl;
-  }
-
-  /* Content prose styling for rich text */
-  .prose-content {
-    @apply prose prose-slate max-w-none;
-    @apply prose-headings:font-display prose-headings:text-slate-900;
-    @apply prose-a:text-blue-600 prose-a:no-underline prose-a:font-medium;
-    @apply hover:prose-a:text-blue-800;
-  }
-
   /* Glassmorphism card - frosted glass effect with gradient */
-  .glass-card {
+  .glass-card-hover {
     @apply bg-gradient-to-br from-slate-800/40 via-slate-700/40 to-slate-600/40;
     @apply backdrop-blur-xl border border-slate-600/30 rounded-3xl;
     @apply shadow-2xl shadow-blue-500/10;
     @apply transition-all;
-    transition-duration: var(--duration-slow);
-  }
-
-  .glass-card-hover {
-    @apply glass-card;
     @apply hover:shadow-blue-500/20 hover:border-blue-400/30;
+    transition-duration: var(--duration-slow);
   }
 
   /* Lightbox/overlay control buttons */

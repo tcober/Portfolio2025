@@ -1,10 +1,28 @@
 /**
  * Button Components
- * 
+ *
  * Reusable button patterns. Use these classes when you need
  * consistent button styling across the site.
- * 
- * Usage: <button class="btn btn-primary">Click me</button>
+ *
+ * `.btn` provides only the base button layout (spacing, alignment, focus).
+ * Variant classes like `.btn-primary`, `.btn-secondary`, and `.btn-ghost`
+ * have been removed. To create variants, compose Tailwind utilities with
+ * the `.btn` class, for example:
+ *
+ *   Primary:
+ *     <button class="btn bg-blue-600 text-white hover:bg-blue-700">
+ *       Save changes
+ *     </button>
+ *
+ *   Secondary:
+ *     <button class="btn border border-gray-300 text-gray-700 bg-white hover:bg-gray-50">
+ *       Cancel
+ *     </button>
+ *
+ *   Ghost:
+ *     <button class="btn text-gray-700 hover:bg-gray-100">
+ *       Learn more
+ *     </button>
  */
 
 @layer components {
@@ -12,27 +30,5 @@
     @apply inline-flex items-center justify-center px-4 py-2 rounded-md font-medium;
     @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
     transition: all var(--duration-normal) var(--ease-default);
-  }
-
-  .btn-primary {
-    background-color: var(--color-primary);
-    @apply text-white focus:ring-blue-500;
-  }
-
-  .btn-primary:hover {
-    background-color: var(--color-primary-hover);
-  }
-
-  .btn-secondary {
-    background-color: var(--color-secondary);
-    @apply text-white focus:ring-green-500;
-  }
-
-  .btn-secondary:hover {
-    background-color: var(--color-secondary-hover);
-  }
-
-  .btn-ghost {
-    @apply bg-transparent text-slate-600 hover:bg-slate-100 focus:ring-slate-500;
   }
 }

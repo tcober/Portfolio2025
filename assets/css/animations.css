@@ -1,9 +1,9 @@
 /**
  * Animation System
- * 
+ *
  * Centralized animation definitions. Use these classes for consistent
  * scroll-triggered and transition animations across the site.
- * 
+ *
  * Usage:
  * 1. Add .animate-on-scroll to elements
  * 2. Use IntersectionObserver to add .in-view class when visible
@@ -22,37 +22,6 @@
   }
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
 /* Scroll-triggered Animation Classes */
 @layer utilities {
   .animate-on-scroll {
@@ -62,38 +31,6 @@
   }
 
   .animate-on-scroll.in-view {
-    animation-play-state: running;
-  }
-
-  /* Fade only variant */
-  .animate-fade-in {
-    opacity: 0;
-    animation: fadeIn var(--duration-animation) var(--ease-out) forwards;
-    animation-play-state: paused;
-  }
-
-  .animate-fade-in.in-view {
-    animation-play-state: running;
-  }
-
-  /* Slide variants */
-  .animate-slide-left {
-    opacity: 0;
-    animation: slideInLeft var(--duration-animation) var(--ease-out) forwards;
-    animation-play-state: paused;
-  }
-
-  .animate-slide-left.in-view {
-    animation-play-state: running;
-  }
-
-  .animate-slide-right {
-    opacity: 0;
-    animation: slideInRight var(--duration-animation) var(--ease-out) forwards;
-    animation-play-state: paused;
-  }
-
-  .animate-slide-right.in-view {
     animation-play-state: running;
   }
 }
