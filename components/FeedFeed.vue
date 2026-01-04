@@ -12,13 +12,9 @@
         :class="getArticleClasses(index)"
         :style="postLoadingAnimation(index)"
       >
-        <!-- Content card -->
         <div :class="postOffset(index)">
           <div class="group card">
-            <!-- Content -->
-            <div>
-              <StoryblokComponent :blok="post.content" />
-            </div>
+            <StoryblokComponent :blok="post.content" />
           </div>
         </div>
       </article>

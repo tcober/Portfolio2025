@@ -34,24 +34,14 @@ const {
   pending: loading,
   error,
 } = await useAsyncData("feed-posts", async () => {
-  try {
-    const storyblokApi = useStoryblokApi();
-    const response = await storyblokApi.get("cdn/stories", {
-      starts_with: "posts/",
-      version: process.env.NODE_ENV === "production" ? "published" : "draft",
-      sort_by: "created_at:desc",
-    });
+  const storyblokApi = useStoryblokApi();
 
-    if (process.env.NODE_ENV !== "production") {
-      console.log("Fetched posts:", response.data.stories?.length || 0);
-    }
+  const response = await storyblokApi.get("cdn/stories", {
+    starts_with: "posts/",
+    version: process.env.NODE_ENV === "production" ? "published" : "draft",
+    sort_by: "created_at:desc",
+  });
 
-    return response.data.stories || [];
-  } catch (err) {
-    if (process.env.NODE_ENV !== "production") {
-      console.error("Error fetching posts:", err);
-    }
-    throw err;
-  }
+  return response.data.stories || [];
 });
 </script>

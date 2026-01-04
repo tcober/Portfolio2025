@@ -1,5 +1,5 @@
 <template>
-  <div class="relative my-8 component-quote">
+  <div class="relative component-quote">
     <div class="card">
       <!-- Quote text -->
       <div class="relative">
