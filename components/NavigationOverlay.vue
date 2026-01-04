@@ -2,7 +2,7 @@
   <Teleport to="body">
     <nav
       :class="[
-        'fixed inset-0 z-40 bg-slate-900 transition-transform duration-500 ease-in-out',
+        'fixed inset-0 z-40 bg-slate-950 transition-transform duration-500 ease-in-out',
         menuOverlayClasses,
       ]"
     >

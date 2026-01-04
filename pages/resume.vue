@@ -1,26 +1,6 @@
 <template>
   <div class="min-h-screen bg-white py-12">
     <div class="max-w-5xl mx-auto px-6">
-      <!-- Header -->
-      <header
-        class="mb-8 p-4 print:hidden bg-black text-white inline-block rounded-xl"
-      >
-        <h1 class="text-5xl font-bold mb-2">Resume</h1>
-        <div class="flex gap-4">
-          <button
-            class="px-6 py-2 bg-black font-semibold rounded hover:bg-gray-800 border-2 border-white"
-          >
-            Download PDF
-          </button>
-          <button
-            @click="handlePrint"
-            class="px-6 py-2 bg-black font-semibold rounded hover:bg-gray-800 border-2 border-white"
-          >
-            Print
-          </button>
-        </div>
-      </header>
-
       <!-- Profile Section -->
       <section class="w-full flex sm:flex-row gap-4 sm:gap-6 mb-4">
         <img
@@ -42,9 +22,11 @@
       </section>
 
       <!-- Main Content -->
-      <main class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+      <main
+        class="grid grid-cols-1 md:grid-cols-3 print:grid-cols-3 gap-8 md:gap-12"
+      >
         <!-- Left Column (2/3) -->
-        <div class="md:col-span-2 space-y-8">
+        <div class="md:col-span-2 print:col-span-2 space-y-8">
           <!-- Experience -->
           <section>
             <h3
@@ -108,7 +90,7 @@
         </div>
 
         <!-- Right Column (1/3) -->
-        <div class="md:col-span-1 space-y-6">
+        <div class="md:col-span-1 print:col-span-1 space-y-6">
           <!-- Core Skills -->
           <section class="border-2 border-black p-4">
             <h3
@@ -253,6 +235,10 @@ const education = [
 ];
 
 const handlePrint = () => {
+  window.print();
+};
+
+const handleDownload = () => {
   window.print();
 };
 </script>
