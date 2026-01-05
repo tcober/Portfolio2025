@@ -167,7 +167,7 @@
 
 <script setup>
 useSeoMeta({
-  title: "Resume - Thomas Cober",
+  title: "Thomas Cober's Resume",
   description:
     "Senior JavaScript Engineer with expertise in Vue, Node.js, and full-stack development.",
   ogTitle: "Resume - Thomas Cober",
