@@ -13,8 +13,10 @@
         :style="postLoadingAnimation(index)"
       >
         <div :class="postOffset(index)">
-          <div class="flex justify-center">
-            <div class="text-sm text-gray-500 bg-white px-4 relative z-10">
+          <div>
+            <div
+              class="text-sm text-white bg-black inline-block px-4 relative z-10"
+            >
               {{ formatDate(post.published_at) }}
             </div>
           </div>
