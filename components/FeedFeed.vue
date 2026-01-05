@@ -24,7 +24,7 @@
         </div>
 
         <div :class="postOffset(index)">
-          <div class="card cursor-pointer" @click="trackPostClick(post)">
+          <div class="card">
             <StoryblokComponent :blok="post.content" />
           </div>
         </div>
@@ -36,7 +36,6 @@
 <script setup>
 import { formatDate } from "~/utils/dateFormatter";
 import { ref, onMounted } from "vue";
-import { event } from "vue-gtag-next";
 
 const props = defineProps({
   posts: {
@@ -70,17 +69,4 @@ onMounted(() => {
 
 // Scroll animation observer for posts
 useScrollAnimation(".animate-on-scroll", () => props.posts?.length || 0);
-
-// Track post clicks with Google Analytics
-const trackPostClick = (post) => {
-  if (import.meta.client) {
-    event("post_click", {
-      post_title: post.name,
-      post_slug: post.slug,
-      post_id: post.id,
-      event_category: "feed",
-      event_label: post.name,
-    });
-  }
-};
 </script>
