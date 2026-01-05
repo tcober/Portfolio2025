@@ -5,19 +5,20 @@ declare global {
   }
 }
 
-const gtagId = "G-ZJ8DPDM2QV";
-
 export default defineNuxtPlugin(() => {
-  // Create gtag function & define gtag deps (window.dataLayer array)
+  // Initialize dataLayer and gtag function before the script loads
   window.dataLayer = window.dataLayer || [];
+
   function gtag(...args: any[]) {
     window.dataLayer.push(args);
   }
-  gtag("js", new Date());
 
-  // Config with gtagId & send initial page view
-  gtag("config", gtagId, { send_page_view: true });
+  window.gtag = gtag;
 
-  // Inject gtag function
-  return { provide: { gtag } };
+  // Return the provide object so gtag is available in components
+  return {
+    provide: {
+      gtag
+    }
+  };
 });
