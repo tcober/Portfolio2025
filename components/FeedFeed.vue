@@ -24,7 +24,7 @@
         </div>
 
         <div :class="postOffset(index)">
-          <div class="card">
+          <div class="card cursor-pointer" @click="trackPostClick(post)">
             <StoryblokComponent :blok="post.content" />
           </div>
         </div>
@@ -66,4 +66,17 @@ const formattedDates = computed(() => {
 
 // Scroll animation observer for posts
 useScrollAnimation(".animate-on-scroll", () => props.posts?.length || 0);
+
+// Track post clicks with Google Analytics
+const trackPostClick = (post) => {
+  if (typeof gtag !== "undefined") {
+    gtag("event", "post_click", {
+      post_title: post.name,
+      post_slug: post.slug,
+      post_id: post.id,
+      event_category: "feed",
+      event_label: post.name,
+    });
+  }
+};
 </script>
