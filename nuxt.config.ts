@@ -3,7 +3,6 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
 
-
   // Route rules for hybrid rendering and performance optimization
   routeRules: {
     "/": { prerender: true },
@@ -34,7 +33,11 @@ export default defineNuxtConfig({
       },
     ],
     "@nuxtjs/tailwindcss",
+    "nuxt-gtag",
   ],
+  gtag: {
+    id: "G-ZJ8DPDM2QV",
+  },
   tailwindcss: {
     cssPath: "~/assets/css/tailwind.css",
     config: {
@@ -57,18 +60,7 @@ export default defineNuxtConfig({
         { name: "robots", content: "noai, noimageai" },
         { name: "googlebot", content: "noai, noimageai" },
       ],
-      script: [
-        {
-          defer: true,
-          src: "https://www.googletagmanager.com/gtag/js?id=G-ZJ8DPDM2QV",
-          async: true,
-        },
-      ],
       link: [
-        {
-          rel: "preconnect",
-          href: "https://www.googletagmanager.com",
-        },
         {
           rel: "preconnect",
           href: "https://a-us.storyblok.com",
@@ -82,10 +74,6 @@ export default defineNuxtConfig({
           rel: "preconnect",
           href: "https://fonts.gstatic.com",
           crossorigin: "anonymous",
-        },
-        {
-          rel: "dns-prefetch",
-          href: "https://www.google-analytics.com",
         },
         {
           rel: "dns-prefetch",
