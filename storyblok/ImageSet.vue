@@ -93,7 +93,7 @@ const closeLightbox = () => {
 
 /* Mobile-first responsive images */
 .image-gallery img {
-  min-height: 180px;
+  min-height: 100px;
 }
 
 @media (min-width: 640px) {
