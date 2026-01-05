@@ -57,10 +57,10 @@ const imageClasses = computed(() => {
 const gridClasses = computed(() => {
   const count = images.value.length;
   if (count === 1) return "grid-cols-1 max-w-md sm:max-w-lg mx-auto gap-0";
-  if (count === 2) return "grid-cols-2 gap-2 sm:gap-3";
-  if (count === 3) return "grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3";
-  if (count === 4) return "grid-cols-2 gap-2 sm:gap-3";
-  if (count === 5) return "grid-cols-2 gap-2 sm:gap-3";
+  if (count === 2) return "grid-cols-2 sm:grid-cols-2 gap-2 sm:gap-3";
+  if (count === 3) return "grid-cols-3 sm:grid-cols-3 gap-2 sm:gap-3";
+  if (count === 4)
+    return "grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3";
   return "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 sm:gap-3";
 });
 
@@ -82,7 +82,6 @@ const closeLightbox = () => {
 /* Custom grid for better image display */
 .image-gallery {
   display: grid;
-  padding: 0 0.5rem;
 }
 
 @media (min-width: 640px) {
@@ -91,11 +90,7 @@ const closeLightbox = () => {
   }
 }
 
-/* Mobile-first responsive images */
-.image-gallery img {
-  min-height: 100px;
-}
-
+/* Mobile-first responsive images - let aspect-square control the sizing */
 @media (min-width: 640px) {
   .image-gallery img {
     min-height: 220px;
@@ -118,12 +113,5 @@ const closeLightbox = () => {
   transform: translateY(-2px) scale(1.02);
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-/* Improve touch targets for mobile */
-@media (max-width: 640px) {
-  .image-gallery .group {
-    min-height: 150px;
-  }
 }
 </style>

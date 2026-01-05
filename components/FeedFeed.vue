@@ -13,7 +13,7 @@
         :style="postLoadingAnimation(index)"
       >
         <div :class="postOffset(index)">
-          <div class="group card">
+          <div class="card">
             <StoryblokComponent :blok="post.content" />
           </div>
         </div>
