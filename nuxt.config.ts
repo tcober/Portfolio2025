@@ -3,12 +3,6 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
 
-  // Runtime config for environment variables
-  runtimeConfig: {
-    public: {
-      storyblokAccessToken: process.env.STORYBLOK_ACCESS_TOKEN,
-    },
-  },
 
   // Route rules for hybrid rendering and performance optimization
   routeRules: {
@@ -32,6 +26,10 @@ export default defineNuxtConfig({
         apiOptions: {
           region: "us",
         },
+        // Only use the bridge in development, not in production builds
+        bridge: process.env.NODE_ENV !== "production",
+        // Use version parameter to control which content version to fetch
+        useApiClient: true,
       },
     ],
     "@nuxtjs/tailwindcss",
