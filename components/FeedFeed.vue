@@ -16,7 +16,9 @@
         <div
           class="absolute left-1/2 transform -translate-x-1/2 -translate-y-8 z-20"
         >
-          <div class="text-sm text-white bg-black px-2 py-1 whitespace-nowrap">
+          <div
+            class="text-sm text-slate-950 bg-white px-2 py-1 whitespace-nowrap"
+          >
             {{ formatDate(post.published_at) }}
           </div>
         </div>
