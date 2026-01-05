@@ -12,7 +12,8 @@
           :alt="image.alt"
           :title="image.title"
           class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 touch-manipulation relative z-10"
-          loading="lazy"
+          :loading="images.indexOf(image) === 0 ? 'eager' : 'lazy'"
+          :fetchpriority="images.indexOf(image) === 0 ? 'high' : 'auto'"
           decoding="async"
           @click="openLightbox(images.indexOf(image))"
         />

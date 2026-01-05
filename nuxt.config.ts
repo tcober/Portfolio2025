@@ -63,8 +63,26 @@ export default defineNuxtConfig({
           href: "https://www.googletagmanager.com",
         },
         {
+          rel: "preconnect",
+          href: "https://a-us.storyblok.com",
+          crossorigin: "anonymous",
+        },
+        {
+          rel: "preconnect",
+          href: "https://fonts.googleapis.com",
+        },
+        {
+          rel: "preconnect",
+          href: "https://fonts.gstatic.com",
+          crossorigin: "anonymous",
+        },
+        {
           rel: "dns-prefetch",
           href: "https://www.google-analytics.com",
+        },
+        {
+          rel: "dns-prefetch",
+          href: "https://www.youtube.com",
         },
       ],
       script: [

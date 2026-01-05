@@ -1,13 +1,16 @@
 <template>
   <div
     v-if="videoId"
+    ref="videoContainer"
     class="glass-card-hover relative w-full aspect-video overflow-hidden group"
   >
     <iframe
+      v-if="isLoaded"
       :src="`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`"
       :title="blok.title || 'YouTube video'"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen
+      loading="lazy"
       class="absolute inset-0 w-full h-full border-0 rounded-3xl transition-transform duration-300 group-hover:scale-[1.02]"
     ></iframe>
 
@@ -31,7 +34,7 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed, ref, onMounted, onBeforeUnmount } from "vue";
 
 const props = defineProps({
   blok: {
@@ -39,6 +42,10 @@ const props = defineProps({
     required: true,
   },
 });
+
+const videoContainer = ref(null);
+const isLoaded = ref(false);
+let observer = null;
 
 // Extract video ID from various YouTube URL formats
 const videoId = computed(() => {
@@ -58,5 +65,32 @@ const videoId = computed(() => {
   if (embedMatch) return embedMatch[1];
 
   return null;
+});
+
+// Lazy load iframe when it becomes visible
+onMounted(() => {
+  if (!import.meta.client || !videoContainer.value) return;
+
+  observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !isLoaded.value) {
+          isLoaded.value = true;
+          observer.disconnect();
+        }
+      });
+    },
+    {
+      rootMargin: "50px", // Start loading 50px before it's visible
+    }
+  );
+
+  observer.observe(videoContainer.value);
+});
+
+onBeforeUnmount(() => {
+  if (observer) {
+    observer.disconnect();
+  }
 });
 </script>
