@@ -13,6 +13,11 @@
         :style="postLoadingAnimation(index)"
       >
         <div :class="postOffset(index)">
+          <div class="flex justify-center">
+            <div class="text-sm text-gray-500 bg-white px-4 relative z-10">
+              {{ formatDate(post.published_at) }}
+            </div>
+          </div>
           <div class="card">
             <StoryblokComponent :blok="post.content" />
           </div>
@@ -23,6 +28,8 @@
 </template>
 
 <script setup>
+import { formatDate } from "~/utils/dateFormatter";
+
 const props = defineProps({
   posts: {
     type: Array,
