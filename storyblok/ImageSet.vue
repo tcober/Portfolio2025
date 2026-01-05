@@ -8,16 +8,9 @@
         :class="imageClasses"
       >
         <NuxtImg
-          :src="image.filename"
+          :src="optimizeStoryblokImage(image.filename, 800, 800)"
           :alt="image.alt"
           :title="image.title"
-          provider="storyblok"
-          sizes="xs:100vw sm:50vw md:33vw lg:25vw"
-          :width="800"
-          :height="800"
-          fit="cover"
-          quality="80"
-          format="webp"
           class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 touch-manipulation relative z-10"
           loading="lazy"
           decoding="async"
@@ -45,6 +38,13 @@ const props = defineProps({
     required: true,
   },
 });
+
+// Optimize Storyblok images using their image service
+const optimizeStoryblokImage = (url, width, height) => {
+  if (!url) return "";
+  // Add Storyblok image service parameters
+  return `${url}/m/${width}x${height}/filters:quality(80):format(webp)`;
+};
 
 // Handle the Multi-Assets field structure
 const images = computed(() => {

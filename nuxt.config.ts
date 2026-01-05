@@ -33,24 +33,7 @@ export default defineNuxtConfig({
       },
     ],
     "@nuxtjs/tailwindcss",
-    [
-      "@nuxt/image",
-      {
-        storyblok: {
-          baseURL: "https://a-us.storyblok.com",
-        },
-        screens: {
-          xs: 320,
-          sm: 640,
-          md: 768,
-          lg: 1024,
-          xl: 1280,
-          xxl: 1536,
-        },
-        quality: 80,
-        format: ["webp"],
-      },
-    ],
+    "@nuxt/image",
   ],
   tailwindcss: {
     cssPath: "~/assets/css/tailwind.css",
