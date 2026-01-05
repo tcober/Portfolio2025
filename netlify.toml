@@ -1,9 +1,0 @@
-[build]
-  command = "npm run generate"
-  publish = "dist"
-
-[build.environment]
-  NODE_ENV = "production"
-  # Exclude dist and .output folders from secrets scanning since prerendered HTML contains API tokens
-  # This is safe for static site generation where tokens are only used at build time
-  SECRETS_SCAN_OMIT_PATHS = "dist/**,.output/**"
