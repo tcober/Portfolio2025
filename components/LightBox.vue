@@ -8,9 +8,15 @@
       <div
         class="relative w-full h-full max-w-6xl flex items-center justify-center"
       >
-        <img
+        <NuxtImg
           :src="currentImage?.filename"
           :alt="currentImage?.alt || currentImage?.name"
+          provider="storyblok"
+          :width="2400"
+          :height="2400"
+          fit="contain"
+          quality="85"
+          format="webp"
           class="max-w-full max-h-full object-contain rounded-xl shadow-2xl touch-manipulation"
           @touchstart="handleTouchStart"
           @touchend="handleTouchEnd"

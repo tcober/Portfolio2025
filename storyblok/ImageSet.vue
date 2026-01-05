@@ -7,14 +7,20 @@
         class="group overflow-hidden aspect-square relative cursor-pointer transform hover:scale-[1.02]"
         :class="imageClasses"
       >
-        <img
+        <NuxtImg
           :src="image.filename"
           :alt="image.alt"
           :title="image.title"
+          provider="storyblok"
+          sizes="xs:100vw sm:50vw md:33vw lg:25vw"
+          :width="800"
+          :height="800"
+          fit="cover"
+          quality="80"
+          format="webp"
           class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 touch-manipulation relative z-10"
           loading="lazy"
           decoding="async"
-          fetchpriority="high"
           @click="openLightbox(images.indexOf(image))"
         />
       </div>
