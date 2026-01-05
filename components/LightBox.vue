@@ -2,7 +2,7 @@
   <Teleport to="body">
     <div
       v-if="isOpen"
-      class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900 bg-opacity-98 p-4 backdrop-blur-sm"
+      class="fixed inset-0 z-[60] flex items-center justify-center bg-slate-900 bg-opacity-98 p-4 backdrop-blur-sm"
       @click="handleBackdropClick"
     >
       <div
