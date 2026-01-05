@@ -57,10 +57,10 @@ const imageClasses = computed(() => {
 const gridClasses = computed(() => {
   const count = images.value.length;
   if (count === 1) return "grid-cols-1 max-w-md sm:max-w-lg mx-auto gap-0";
-  if (count === 2) return "grid-cols-2 sm:grid-cols-2 gap-2 sm:gap-3";
-  if (count === 3) return "grid-cols-3 sm:grid-cols-3 gap-2 sm:gap-3";
-  if (count === 4)
-    return "grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3";
+  if (count === 2) return "grid-cols-2 gap-2 sm:gap-3";
+  if (count === 3) return "grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3";
+  if (count === 4) return "grid-cols-2 gap-2 sm:gap-3";
+  if (count === 5) return "grid-cols-2 gap-2 sm:gap-3";
   return "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 sm:gap-3";
 });
 
