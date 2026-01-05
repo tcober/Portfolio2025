@@ -35,7 +35,8 @@
 
 <script setup>
 import { formatDate } from "~/utils/dateFormatter";
-import { computed } from "vue";
+import { ref, onMounted } from "vue";
+import { event } from "vue-gtag-next";
 
 const props = defineProps({
   posts: {
@@ -60,8 +61,11 @@ const postOffset = (index) => [
 ];
 
 // Memoize formatted dates to avoid recalculating on every render
-const formattedDates = computed(() => {
-  return props.posts.map((post) => formatDate(post.published_at));
+// Use ref to handle SSR hydration properly
+const formattedDates = ref([]);
+
+onMounted(() => {
+  formattedDates.value = props.posts.map((post) => formatDate(post.published_at));
 });
 
 // Scroll animation observer for posts
@@ -69,8 +73,8 @@ useScrollAnimation(".animate-on-scroll", () => props.posts?.length || 0);
 
 // Track post clicks with Google Analytics
 const trackPostClick = (post) => {
-  if (import.meta.client && window.gtag) {
-    window.gtag("event", "post_click", {
+  if (import.meta.client) {
+    event("post_click", {
       post_title: post.name,
       post_slug: post.slug,
       post_id: post.id,
