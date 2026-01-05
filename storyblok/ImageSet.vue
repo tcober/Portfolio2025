@@ -11,6 +11,8 @@
           :src="optimizeStoryblokImage(image.filename, 800, 800)"
           :alt="image.alt"
           :title="image.title"
+          width="800"
+          height="800"
           class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 touch-manipulation relative z-10"
           :loading="images.indexOf(image) === 0 ? 'eager' : 'lazy'"
           :fetchpriority="images.indexOf(image) === 0 ? 'high' : 'auto'"

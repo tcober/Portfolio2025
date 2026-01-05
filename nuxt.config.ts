@@ -116,4 +116,9 @@ export default defineNuxtConfig({
       },
     },
   },
+
+  // Optimize CSS delivery
+  features: {
+    inlineStyles: true,
+  },
 });
