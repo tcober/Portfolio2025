@@ -174,6 +174,8 @@ useSeoMeta({
   ogDescription:
     "Senior JavaScript Engineer with expertise in Vue, Node.js, and full-stack development.",
   ogType: "website",
+  twitterImage:
+    "https://a-us.storyblok.com/f/1002617/800x800/3cde4e7148/profile-pic.jpg",
   twitterCard: "summary_large_image",
 });
 

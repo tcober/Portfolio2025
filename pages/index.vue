@@ -64,6 +64,8 @@ useSeoMeta({
     "Hello there! I'm Tom Cober, a software developer dude out in the world. Thanks for stopping by.",
   ogType: "website",
   twitterCard: "summary_large_image",
+  twitterImage:
+    "https://a-us.storyblok.com/f/1002617/800x800/3cde4e7148/profile-pic.jpg",
   robots: "index, follow",
 });
 </script>
