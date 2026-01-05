@@ -2,7 +2,7 @@
   <div class="min-h-screen bg-white">
     <main class="max-w-5xl mx-auto px-6 py-12">
       <!-- Feed Header -->
-      <div class="mb-12">
+      <div class="mb-16">
         <h1 class="text-5xl font-bold text-black mb-2">Feed</h1>
         <div class="w-12 h-1 bg-black rounded-full"></div>
       </div>
@@ -39,7 +39,9 @@ const {
   const storyblokApi = useStoryblokApi();
 
   if (!storyblokApi) {
-    throw new Error("Storyblok API not initialized. Check your STORYBLOK_ACCESS_TOKEN environment variable.");
+    throw new Error(
+      "Storyblok API not initialized. Check your STORYBLOK_ACCESS_TOKEN environment variable."
+    );
   }
 
   const response = await storyblokApi.get("cdn/stories", {

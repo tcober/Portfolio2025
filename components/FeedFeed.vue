@@ -5,21 +5,23 @@
       class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-black z-0"
     ></div>
 
-    <div class="space-y-12">
+    <div class="space-y-24">
       <article
         v-for="(post, index) in posts"
         :key="post.id"
         :class="getArticleClasses(index)"
         :style="postLoadingAnimation(index)"
       >
-        <div :class="postOffset(index)">
-          <div>
-            <div
-              class="text-sm text-white bg-black inline-block px-4 relative z-10"
-            >
-              {{ formatDate(post.published_at) }}
-            </div>
+        <!-- Date centered on timeline -->
+        <div
+          class="absolute left-1/2 transform -translate-x-1/2 -translate-y-8 z-20"
+        >
+          <div class="text-sm text-white bg-black px-2 py-1 whitespace-nowrap">
+            {{ formatDate(post.published_at) }}
           </div>
+        </div>
+
+        <div :class="postOffset(index)">
           <div class="card">
             <StoryblokComponent :blok="post.content" />
           </div>
