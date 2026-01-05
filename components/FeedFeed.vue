@@ -36,6 +36,7 @@
 <script setup>
 import { formatDate } from "~/utils/dateFormatter";
 import { computed } from "vue";
+import { useGtag } from "vue-gtag-next";
 
 const props = defineProps({
   posts: {
@@ -68,15 +69,14 @@ const formattedDates = computed(() => {
 useScrollAnimation(".animate-on-scroll", () => props.posts?.length || 0);
 
 // Track post clicks with Google Analytics
+const { event } = useGtag();
 const trackPostClick = (post) => {
-  if (typeof gtag !== "undefined") {
-    gtag("event", "post_click", {
-      post_title: post.name,
-      post_slug: post.slug,
-      post_id: post.id,
-      event_category: "feed",
-      event_label: post.name,
-    });
-  }
+  event("post_click", {
+    post_title: post.name,
+    post_slug: post.slug,
+    post_id: post.id,
+    event_category: "feed",
+    event_label: post.name,
+  });
 };
 </script>

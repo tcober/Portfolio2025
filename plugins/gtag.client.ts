@@ -1,12 +1,10 @@
-export default defineNuxtPlugin(() => {
-  if (typeof window !== "undefined") {
-    window.dataLayer = window.dataLayer || [];
-    function gtag(...args: any[]) {
-      window.dataLayer.push(args);
-    }
-    window.gtag = gtag;
+import VueGtag from "vue-gtag-next";
 
-    gtag("js", new Date());
-    gtag("config", "G-ZJ8DPDM2QV");
-  }
+export default defineNuxtPlugin((nuxtApp) => {
+  nuxtApp.vueApp.use(VueGtag, {
+    property: {
+      id: "G-ZJ8DPDM2QV",
+    },
+    useDebugger: process.env.NODE_ENV === "development",
+  });
 });

@@ -85,13 +85,6 @@ export default defineNuxtConfig({
           href: "https://www.youtube.com",
         },
       ],
-      script: [
-        {
-          src: "https://www.googletagmanager.com/gtag/js?id=G-ZJ8DPDM2QV",
-          async: true,
-          tagPosition: "bodyClose",
-        },
-      ],
     },
   },
 
