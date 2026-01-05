@@ -38,6 +38,10 @@ const {
 } = await useAsyncData("feed-posts", async () => {
   const storyblokApi = useStoryblokApi();
 
+  if (!storyblokApi) {
+    throw new Error("Storyblok API not initialized. Check your STORYBLOK_ACCESS_TOKEN environment variable.");
+  }
+
   const response = await storyblokApi.get("cdn/stories", {
     starts_with: "posts/",
     version: process.env.NODE_ENV === "production" ? "published" : "draft",

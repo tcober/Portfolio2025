@@ -3,6 +3,13 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
 
+  // Runtime config for environment variables
+  runtimeConfig: {
+    public: {
+      storyblokAccessToken: process.env.STORYBLOK_ACCESS_TOKEN,
+    },
+  },
+
   // Route rules for hybrid rendering and performance optimization
   routeRules: {
     "/": { prerender: true },
@@ -63,6 +70,13 @@ export default defineNuxtConfig({
         { name: "theme-color", content: "#6366f1" },
         { name: "robots", content: "noai, noimageai" },
         { name: "googlebot", content: "noai, noimageai" },
+      ],
+      script: [
+        {
+          defer: true,
+          src: "https://www.googletagmanager.com/gtag/js?id=G-ZJ8DPDM2QV",
+          async: true,
+        },
       ],
     },
   },
