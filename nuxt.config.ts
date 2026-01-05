@@ -8,6 +8,7 @@ export default defineNuxtConfig({
   routeRules: {
     "/": { prerender: true },
     "/resume": { prerender: true },
+    "/feed": { prerender: true },
   },
 
   // Performance optimizations
@@ -56,11 +57,21 @@ export default defineNuxtConfig({
         { name: "robots", content: "noai, noimageai" },
         { name: "googlebot", content: "noai, noimageai" },
       ],
+      link: [
+        {
+          rel: "preconnect",
+          href: "https://www.googletagmanager.com",
+        },
+        {
+          rel: "dns-prefetch",
+          href: "https://www.google-analytics.com",
+        },
+      ],
       script: [
         {
-          defer: true,
           src: "https://www.googletagmanager.com/gtag/js?id=G-ZJ8DPDM2QV",
           async: true,
+          tagPosition: "bodyClose",
         },
       ],
     },
@@ -72,5 +83,19 @@ export default defineNuxtConfig({
   // Enable compression and optimization
   nitro: {
     compressPublicAssets: true,
+  },
+
+  // Build optimizations
+  vite: {
+    build: {
+      cssCodeSplit: true,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            storyblok: ["@storyblok/vue"],
+          },
+        },
+      },
+    },
   },
 });

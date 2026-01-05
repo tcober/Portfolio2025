@@ -19,7 +19,7 @@
           <div
             class="text-sm text-slate-950 bg-white px-2 py-1 whitespace-nowrap"
           >
-            {{ formatDate(post.published_at) }}
+            {{ formattedDates[index] }}
           </div>
         </div>
 
@@ -35,6 +35,7 @@
 
 <script setup>
 import { formatDate } from "~/utils/dateFormatter";
+import { computed } from "vue";
 
 const props = defineProps({
   posts: {
@@ -57,6 +58,11 @@ const postOffset = (index) => [
   "relative",
   index % 2 === 0 ? "md:mr-12" : "md:ml-12",
 ];
+
+// Memoize formatted dates to avoid recalculating on every render
+const formattedDates = computed(() => {
+  return props.posts.map((post) => formatDate(post.published_at));
+});
 
 // Scroll animation observer for posts
 useScrollAnimation(".animate-on-scroll", () => props.posts?.length || 0);
