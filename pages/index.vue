@@ -19,7 +19,7 @@
             </p>
 
             <p
-              class="text-white/90 text-2xl md:text-3xl leading-relaxed max-w-3xl animate-float-delay-2"
+              class="text-white/90 text-xl md:text-3xl leading-relaxed max-w-3xl animate-float-delay-2"
             >
               a <span class="highlight-text">software developer</span> dude out
               in the world. Right now I work for a bank making surprisingly cool
@@ -27,7 +27,7 @@
             </p>
 
             <p
-              class="text-white/90 text-2xl md:text-3xl leading-relaxed max-w-3xl animate-float-delay-3"
+              class="text-white/90 text-xl md:text-3xl leading-relaxed max-w-3xl animate-float-delay-3"
             >
               I know a lot about
               <span class="highlight-text">Javascript</span> but I am spending
@@ -36,7 +36,7 @@
             </p>
 
             <p
-              class="text-white/90 text-2xl md:text-3xl leading-relaxed max-w-3xl animate-float-delay-4"
+              class="text-white/90 text-xl md:text-3xl leading-relaxed max-w-3xl animate-float-delay-4"
             >
               I have a wonderful partner and we are currently based in
               <span class="highlight-text">Minneapolis</span>.
