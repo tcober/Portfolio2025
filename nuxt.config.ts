@@ -33,25 +33,12 @@ export default defineNuxtConfig({
       },
     ],
     "@nuxtjs/tailwindcss",
-    "@nuxtjs/google-fonts",
   ],
   tailwindcss: {
     cssPath: "~/assets/css/tailwind.css",
     config: {
       content: ["content/**/*.md", "storyblok/**/*.vue"],
     },
-  },
-  googleFonts: {
-    families: {
-      "Lilita One": [400],
-      "PT Mono": [400],
-      Merriweather: [300, 400, 700, 900],
-    },
-    display: "swap",
-    preconnect: true,
-    prefetch: true,
-    download: true,
-    base64: false,
   },
 
   // App configuration for SEO and meta defaults
