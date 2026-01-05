@@ -1,5 +1,3 @@
-import VueGtag, { trackRouter } from "vue-gtag-next";
-
 declare global {
   interface Window {
     dataLayer: any[];
@@ -7,13 +5,19 @@ declare global {
   }
 }
 
-export default defineNuxtPlugin((nuxtApp) => {
-  nuxtApp.vueApp.use(VueGtag, {
-    property: {
-      id: "G-ZJ8DPDM2QV",
-    },
-  });
+const gtagId = "G-ZJ8DPDM2QV";
 
-  // Track router page views
-  trackRouter(nuxtApp.$router as any);
+export default defineNuxtPlugin(() => {
+  // Create gtag function & define gtag deps (window.dataLayer array)
+  window.dataLayer = window.dataLayer || [];
+  function gtag(...args: any[]) {
+    window.dataLayer.push(args);
+  }
+  gtag("js", new Date());
+
+  // Config with gtagId & send initial page view
+  gtag("config", gtagId, { send_page_view: true });
+
+  // Inject gtag function
+  return { provide: { gtag } };
 });
