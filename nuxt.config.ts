@@ -33,7 +33,6 @@ export default defineNuxtConfig({
       },
     ],
     "@nuxtjs/tailwindcss",
-    "@nuxt/image",
   ],
   tailwindcss: {
     cssPath: "~/assets/css/tailwind.css",

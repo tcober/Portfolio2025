@@ -7,7 +7,7 @@
         class="group overflow-hidden aspect-square relative cursor-pointer transform hover:scale-[1.02]"
         :class="imageClasses"
       >
-        <NuxtImg
+        <img
           :src="optimizeStoryblokImage(image.filename, 800, 800)"
           :alt="image.alt"
           :title="image.title"

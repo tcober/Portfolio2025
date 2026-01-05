@@ -8,7 +8,7 @@
       <div
         class="relative w-full h-full max-w-6xl flex items-center justify-center"
       >
-        <NuxtImg
+        <img
           :src="optimizeStoryblokImage(currentImage?.filename, 2400, 2400)"
           :alt="currentImage?.alt || currentImage?.name"
           class="max-w-full max-h-full object-contain rounded-xl shadow-2xl touch-manipulation"
