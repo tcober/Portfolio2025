@@ -2,7 +2,7 @@
   <div
     v-if="videoId"
     ref="videoContainer"
-    class="glass-card-hover relative w-full aspect-video overflow-hidden group"
+    class="relative w-full aspect-video overflow-hidden group"
   >
     <iframe
       v-if="isLoaded"
@@ -13,23 +13,6 @@
       loading="lazy"
       class="absolute inset-0 w-full h-full border-0 rounded-3xl transition-transform duration-300 group-hover:scale-[1.02]"
     ></iframe>
-
-    <!-- Enhanced play button overlay -->
-    <div
-      class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black/10 backdrop-blur-sm"
-    >
-      <div
-        class="w-20 h-20 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center shadow-2xl shadow-red-500/40 border-4 border-white/20"
-      >
-        <svg
-          class="w-10 h-10 text-white ml-1"
-          fill="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path d="M8 5v14l11-7z" />
-        </svg>
-      </div>
-    </div>
   </div>
 </template>
 
