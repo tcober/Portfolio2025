@@ -62,6 +62,15 @@ export default defineNuxtConfig({
       ],
       link: [
         {
+          rel: "icon",
+          type: "image/png",
+          href: "/favicon.png",
+        },
+        {
+          rel: "apple-touch-icon",
+          href: "/favicon.png",
+        },
+        {
           rel: "preconnect",
           href: "https://a-us.storyblok.com",
           crossorigin: "anonymous",
