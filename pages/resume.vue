@@ -1,15 +1,15 @@
 <template>
-  <div class="min-h-screen bg-white py-12">
+  <div class="min-h-screen bg-white pb-12 pt-24 print:pb-0 print:pt-12">
     <div class="max-w-5xl mx-auto px-6">
       <!-- Profile Section -->
       <section class="w-full flex sm:flex-row gap-4 sm:gap-6 mb-4">
         <img
           src="https://a-us.storyblok.com/f/1002617/800x800/3cde4e7148/profile-pic.jpg"
           alt="Thomas Cober"
-          class="w-28 h-28 sm:w-24 sm:h-24 rounded border-2 border-black object-cover flex-shrink-0"
+          class="w-32 h-32 sm:w-24 sm:h-24 rounded border-2 border-black object-cover flex-shrink-0"
         />
         <div class="text-black flex-1">
-          <h2 class="text-3xl sm:text-4xl font-bold">Thomas Cober</h2>
+          <h2 class="text-2xl sm:text-4xl font-bold">Thomas Cober</h2>
           <p class="text-lg sm:text-xl font-semibold">
             Senior JavaScript Engineer
           </p>
@@ -45,7 +45,9 @@
                       {{ exp.title }}
                     </p>
                   </div>
-                  <span class="text-sm print:text-xs text-gray-700 italic">
+                  <span
+                    class="text-sm print:text-xs text-gray-700 italic text-nowrap"
+                  >
                     {{ exp.period }}
                   </span>
                 </div>

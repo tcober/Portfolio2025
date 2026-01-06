@@ -4,16 +4,17 @@
       <div
         v-for="image in images"
         :key="image.id"
-        class="group overflow-hidden aspect-square relative cursor-pointer transform hover:scale-[1.02]"
+        class="group overflow-hidden relative cursor-pointer"
         :class="imageClasses"
       >
         <img
-          :src="optimizeStoryblokImage(image.filename, 800, 800)"
+          :src="optimizeStoryblokImage(image.filename, images.length === 1 ? 1200 : 800, images.length === 1 ? 0 : 800)"
           :alt="image.alt"
           :title="image.title"
-          width="800"
-          height="800"
-          class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 touch-manipulation relative z-10"
+          :width="images.length === 1 ? 1200 : 800"
+          :height="images.length === 1 ? 'auto' : 800"
+          class="w-full transition-all duration-500 touch-manipulation relative z-10"
+          :class="imageDisplayClasses"
           :loading="images.indexOf(image) === 0 ? 'eager' : 'lazy'"
           :fetchpriority="images.indexOf(image) === 0 ? 'high' : 'auto'"
           decoding="async"
@@ -56,16 +57,26 @@ const images = computed(() => {
 
 // Image item classes based on count
 const imageClasses = computed(() => {
+  const count = images.value.length;
   return {
-    "hover:z-10": images.value.length > 1,
-    "single-image": images.value.length === 1,
+    "hover:z-10 transform hover:scale-[1.02] aspect-square": count > 1,
+    "single-image": count === 1,
+  };
+});
+
+// Image display classes
+const imageDisplayClasses = computed(() => {
+  const count = images.value.length;
+  return {
+    "h-full object-cover group-hover:scale-110": count > 1,
+    "h-auto object-contain rounded-lg": count === 1,
   };
 });
 
 // Grid layout based on number of images
 const gridClasses = computed(() => {
   const count = images.value.length;
-  if (count === 1) return "grid-cols-1 max-w-md sm:max-w-lg mx-auto gap-0";
+  if (count === 1) return "grid-cols-1 max-w-3xl mx-auto gap-0";
   if (count === 2) return "grid-cols-2 sm:grid-cols-2 gap-2 sm:gap-3";
   if (count === 3) return "grid-cols-3 sm:grid-cols-3 gap-2 sm:gap-3";
   if (count === 4)

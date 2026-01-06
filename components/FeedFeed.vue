@@ -14,7 +14,7 @@
       >
         <!-- Date centered on timeline -->
         <div
-          class="absolute left-1/2 transform -translate-x-1/2 -translate-y-8 z-20"
+          class="absolute left-1/2 transform -translate-x-1/2 -translate-y-9 z-20"
         >
           <div
             class="text-sm text-slate-950 bg-white px-2 py-1 whitespace-nowrap"
@@ -24,7 +24,7 @@
         </div>
 
         <div :class="postOffset(index)">
-          <div class="card">
+          <div :class="getCardClass(post.content)">
             <StoryblokComponent :blok="post.content" />
           </div>
         </div>
@@ -59,12 +59,29 @@ const postOffset = (index) => [
   index % 2 === 0 ? "md:mr-12" : "md:ml-12",
 ];
 
+// Conditionally apply card class based on content type
+const getCardClass = (content) => {
+  if (!content) return "card";
+
+  const componentType = content.component;
+  const imageSetLength = content.imageSet?.length;
+
+  // No card border for Youtube or single-image ImageSet
+  if (componentType === "youtube") return "";
+  if (componentType === "imageSet" && imageSetLength === 1) return "";
+
+  // Card border for Quote and multi-image ImageSet
+  return "card";
+};
+
 // Memoize formatted dates to avoid recalculating on every render
 // Use ref to handle SSR hydration properly
 const formattedDates = ref([]);
 
 onMounted(() => {
-  formattedDates.value = props.posts.map((post) => formatDate(post.published_at));
+  formattedDates.value = props.posts.map((post) =>
+    formatDate(post.published_at)
+  );
 });
 
 // Scroll animation observer for posts
