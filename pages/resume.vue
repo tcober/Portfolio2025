@@ -76,11 +76,17 @@
             </h3>
             <div class="space-y-4">
               <article v-for="edu in education" :key="edu.school">
-                <div class="flex justify-between items-start mb-1">
-                  <h4 class="text-lg print:text-base font-bold text-black">
+                <div
+                  class="flex justify-between items-start mb-1 items-baseline"
+                >
+                  <h4
+                    class="text-lg print:text-base font-bold text-black leading-tight"
+                  >
                     {{ edu.school }}
                   </h4>
-                  <span class="text-sm print:text-xs text-gray-700 italic">
+                  <span
+                    class="text-sm print:text-xs text-gray-700 italic text-nowrap"
+                  >
                     {{ edu.period }}
                   </span>
                 </div>
@@ -149,8 +155,8 @@
               class="space-y-2 text-sm print:text-xs text-gray-800 list-disc pl-5"
             >
               <li>
-                Built a mock service system that let QE test even when backend
-                services were down.
+                Helped build a mock service system that let QE test even when
+                backend services were down.
               </li>
               <li>
                 Performed regular accessibility checks to help ship
