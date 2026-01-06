@@ -10,13 +10,12 @@
         />
         <div class="text-black flex-1">
           <h2 class="text-2xl sm:text-4xl font-bold">Thomas Cober</h2>
-          <p class="text-lg sm:text-xl font-semibold">
+          <p class="text-base sm:text-xl font-semibold leading-tight mb-1">
             Senior JavaScript Engineer
           </p>
-          <div class="flex flex-col sm:flex-row sm:gap-8 text-sm">
+          <div class="flex flex-col sm:flex-row sm:gap-8 text-sm leading-tight">
             <p>tcober5@gmail.com</p>
             <p>thomascober.com</p>
-            <p>Minneapolis, MN</p>
           </div>
         </div>
       </section>
@@ -38,7 +37,9 @@
               <article v-for="exp in experiences" :key="exp.company">
                 <div class="flex justify-between items-start mb-2 print:mb-1">
                   <div>
-                    <h4 class="text-lg print:text-base font-bold text-black">
+                    <h4
+                      class="text-lg print:text-base font-bold text-black leading-tight mb-1"
+                    >
                       {{ exp.company }}
                     </h4>
                     <p class="font-semibold text-black print:text-sm">
