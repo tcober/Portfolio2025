@@ -66,8 +66,9 @@ const getCardClass = (content) => {
   const componentType = content.component;
   const imageSetLength = content.imageSet?.length;
 
-  // No card border for Youtube or single-image ImageSet
+  // No card border for Youtube, Reddit, or single-image ImageSet
   if (componentType === "youtube") return "";
+  if (componentType === "reddit") return "";
   if (componentType === "imageSet" && imageSetLength === 1) return "";
 
   // Card border for Quote and multi-image ImageSet
