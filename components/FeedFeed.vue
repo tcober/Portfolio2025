@@ -1,5 +1,5 @@
 <template>
-  <div class="relative mb-32">
+  <div class="relative mb-20">
     <!-- Timeline line -->
     <div
       class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-black z-0"
