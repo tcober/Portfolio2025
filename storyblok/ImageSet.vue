@@ -2,23 +2,26 @@
   <div>
     <div class="image-gallery" :class="gridClasses">
       <div
-        v-for="image in images"
+        v-for="(image, index) in images"
         :key="image.id"
         class="group overflow-hidden relative cursor-pointer"
         :class="imageClasses"
       >
-        <img
-          :src="optimizeStoryblokImage(image.filename, images.length === 1 ? 1200 : 800, images.length === 1 ? 0 : 800)"
+        <NuxtImg
+          provider="storyblok"
+          :src="image.filename"
           :alt="image.alt"
           :title="image.title"
           :width="images.length === 1 ? 1200 : 800"
-          :height="images.length === 1 ? 'auto' : 800"
+          :height="images.length === 1 ? 0 : 800"
+          :modifiers="{ quality: 70 }"
+          format="webp"
+          sizes="sm:100vw md:50vw lg:800px"
+          :preload="isLcpCandidate && index === 0"
+          :loading="isLcpCandidate && index === 0 ? 'eager' : 'lazy'"
           class="w-full transition-all duration-500 touch-manipulation relative z-10"
           :class="imageDisplayClasses"
-          :loading="isLcpCandidate || images.indexOf(image) === 0 ? 'eager' : 'lazy'"
-          :fetchpriority="isLcpCandidate && images.indexOf(image) === 0 ? 'high' : 'auto'"
-          decoding="async"
-          @click="openLightbox(images.indexOf(image))"
+          @click="openLightbox(index)"
         />
       </div>
     </div>
@@ -46,13 +49,6 @@ const props = defineProps({
     default: false,
   },
 });
-
-// Optimize Storyblok images using their image service
-const optimizeStoryblokImage = (url, width, height) => {
-  if (!url) return "";
-  // Add Storyblok image service parameters (quality 70 for better LCP)
-  return `${url}/m/${width}x${height}/filters:quality(70):format(webp)`;
-};
 
 // Handle the Multi-Assets field structure
 const images = computed(() => {

@@ -8,9 +8,14 @@
       <div
         class="relative w-full h-full max-w-6xl flex items-center justify-center"
       >
-        <img
-          :src="optimizeStoryblokImage(currentImage?.filename, 2400, 2400)"
+        <NuxtImg
+          provider="storyblok"
+          :src="currentImage?.filename"
           :alt="currentImage?.alt || currentImage?.name"
+          :width="2400"
+          :height="2400"
+          :modifiers="{ quality: 85 }"
+          format="webp"
           class="max-w-full max-h-full object-contain rounded-xl shadow-2xl touch-manipulation"
           @touchstart="handleTouchStart"
           @touchend="handleTouchEnd"
@@ -91,13 +96,6 @@ const props = defineProps({
     default: 0,
   },
 });
-
-// Optimize Storyblok images using their image service
-const optimizeStoryblokImage = (url, width, height) => {
-  if (!url) return "";
-  // Add Storyblok image service parameters
-  return `${url}/m/${width}x${height}/filters:quality(85):format(webp)`;
-};
 
 const emit = defineEmits(["close", "update:isOpen"]);
 

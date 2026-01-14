@@ -17,27 +17,6 @@
 </template>
 
 <script setup>
-// Helper to get optimized Storyblok image URL
-const getOptimizedImageUrl = (url, width, height) => {
-  if (!url) return "";
-  return `${url}/m/${width}x${height}/filters:quality(70):format(webp)`;
-};
-
-// Helper to find the LCP image URL from posts
-const findLcpImageUrl = (posts) => {
-  if (!posts?.length) return null;
-  for (const post of posts) {
-    if (post.content?.component === "imageSet" && post.content?.imageSet?.length) {
-      const firstImage = post.content.imageSet[0];
-      const isSingleImage = post.content.imageSet.length === 1;
-      const width = isSingleImage ? 1200 : 800;
-      const height = isSingleImage ? 0 : 800;
-      return getOptimizedImageUrl(firstImage.filename, width, height);
-    }
-  }
-  return null;
-};
-
 // SEO meta tags with useSeoMeta for better optimization
 useSeoMeta({
   title: "Thomas Cober's Feed",
@@ -52,8 +31,9 @@ useSeoMeta({
 });
 
 // Use useAsyncData directly for proper SSR/client hydration
+// NuxtImg handles LCP preloading automatically via the preload prop in ImageSet.vue
 const {
-  data: feedData,
+  data: posts,
   pending: loading,
   error,
 } = await useAsyncData("feed-posts", async () => {
@@ -71,29 +51,6 @@ const {
     sort_by: "created_at:desc",
   });
 
-  const stories = response.data.stories || [];
-  const lcpUrl = findLcpImageUrl(stories);
-
-  return { posts: stories, lcpImageUrl: lcpUrl };
-});
-
-// Extract posts for template
-const posts = computed(() => feedData.value?.posts || []);
-
-// Add preload link for LCP image - use computed to ensure reactivity during SSR
-const lcpPreloadLinks = computed(() => {
-  if (!feedData.value?.lcpImageUrl) return [];
-  return [
-    {
-      rel: "preload",
-      as: "image",
-      href: feedData.value.lcpImageUrl,
-      fetchpriority: "high",
-    },
-  ];
-});
-
-useHead({
-  link: lcpPreloadLinks,
+  return response.data.stories || [];
 });
 </script>

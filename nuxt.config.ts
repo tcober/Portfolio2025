@@ -19,6 +19,7 @@ export default defineNuxtConfig({
     },
   },
   modules: [
+    "@nuxt/image",
     [
       "@storyblok/nuxt",
       {
@@ -36,6 +37,13 @@ export default defineNuxtConfig({
     "nuxt-gtag",
     "@nuxtjs/sitemap",
   ],
+
+  // NuxtImage configuration with Storyblok provider
+  image: {
+    storyblok: {
+      baseURL: "https://a-us.storyblok.com",
+    },
+  },
   sitemap: {
     siteUrl: "https://thomascober.com",
   },

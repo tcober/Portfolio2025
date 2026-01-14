@@ -3,9 +3,14 @@
     <div class="max-w-5xl mx-auto px-6">
       <!-- Profile Section -->
       <section class="w-full flex sm:flex-row gap-4 sm:gap-6 mb-4">
-        <img
+        <NuxtImg
+          provider="storyblok"
           src="https://a-us.storyblok.com/f/1002617/800x800/3cde4e7148/profile-pic.jpg"
           alt="Thomas Cober"
+          width="128"
+          height="128"
+          :modifiers="{ quality: 80 }"
+          format="webp"
           class="w-32 h-32 sm:w-24 sm:h-24 rounded border-2 border-black object-cover flex-shrink-0"
         />
         <div class="text-black flex-1">
