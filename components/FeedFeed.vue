@@ -2,33 +2,43 @@
   <div class="relative mb-20">
     <!-- Timeline line -->
     <div
-      class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-black z-0"
+      class="absolute left-1/2 transform -translate-x-1/2 h-full w-[1px] bg-gray-400 z-0"
     ></div>
 
-    <div class="space-y-24">
-      <article
-        v-for="(post, index) in posts"
-        :key="post.id"
-        :class="getArticleClasses(index)"
-        :style="postLoadingAnimation(index)"
+    <div>
+      <div
+        v-for="(group, groupIndex) in groupedPosts"
+        :key="groupIndex"
+        :class="groupIndex > 0 ? 'mt-16' : ''"
       >
-        <!-- Date centered on timeline -->
+        <!-- Date header for the group -->
         <div
-          class="absolute left-1/2 transform -translate-x-1/2 -translate-y-9 z-20"
+          class="relative flex justify-center z-20 mb-6"
+          :style="{ animationDelay: `${group.startIndex * 200}ms` }"
         >
           <div
             class="text-sm text-slate-950 bg-white px-2 py-1 whitespace-nowrap"
           >
-            {{ formattedDates[index] }}
+            {{ group.date }}
           </div>
         </div>
 
-        <div :class="postOffset(index)">
-          <div :class="getCardClass(post.content)">
-            <StoryblokComponent :blok="post.content" />
-          </div>
+        <!-- Posts in this date group -->
+        <div class="space-y-8">
+          <article
+            v-for="(post, postIndex) in group.posts"
+            :key="post.id"
+            :class="getArticleClasses(group.startIndex + postIndex)"
+            :style="postLoadingAnimation(group.startIndex + postIndex)"
+          >
+            <div :class="postOffset(group.startIndex + postIndex)">
+              <div :class="getCardClass(post.content)">
+                <StoryblokComponent :blok="post.content" />
+              </div>
+            </div>
+          </article>
         </div>
-      </article>
+      </div>
     </div>
   </div>
 </template>
@@ -75,14 +85,42 @@ const getCardClass = (content) => {
   return "card";
 };
 
-// Memoize formatted dates to avoid recalculating on every render
-// Use ref to handle SSR hydration properly
-const formattedDates = ref([]);
+// Group posts by date
+const groupedPosts = ref([]);
 
 onMounted(() => {
-  formattedDates.value = props.posts.map((post) =>
-    formatDate(post.published_at)
-  );
+  const groups = [];
+  let currentDate = null;
+  let currentGroup = null;
+  let globalIndex = 0;
+
+  props.posts.forEach((post) => {
+    const postDate = formatDate(post.published_at);
+
+    if (postDate !== currentDate) {
+      // Start a new group
+      if (currentGroup) {
+        groups.push(currentGroup);
+      }
+      currentDate = postDate;
+      currentGroup = {
+        date: postDate,
+        posts: [post],
+        startIndex: globalIndex,
+      };
+    } else {
+      // Add to existing group
+      currentGroup.posts.push(post);
+    }
+    globalIndex++;
+  });
+
+  // Push the last group
+  if (currentGroup) {
+    groups.push(currentGroup);
+  }
+
+  groupedPosts.value = groups;
 });
 
 // Scroll animation observer for posts
