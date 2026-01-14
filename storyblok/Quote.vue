@@ -4,7 +4,7 @@
       <!-- Quote text -->
       <div class="relative">
         <p
-          class="text-2xl md:text-4xl leading-relaxed text-black font-medium italic mb-4 font-serif"
+          class="text-2xl leading-tight md:text-4xl leading-relaxed text-black font-medium italic mb-4 font-serif whitespace-pre-line"
         >
           "{{ blok.quote }}"
         </p>
