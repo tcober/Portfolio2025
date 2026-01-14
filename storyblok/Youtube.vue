@@ -6,7 +6,7 @@
   >
     <iframe
       v-if="isLoaded"
-      :src="`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`"
+      :src="`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1`"
       :title="blok.title || 'YouTube video'"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen
