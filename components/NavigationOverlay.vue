@@ -65,24 +65,17 @@ const menuOverlayClasses = computed(() =>
 );
 
 // Navigation link classes - active items get glow, inactive get blue hover
-const homeLinkClasses = computed(() => {
-  const isActive = route.path === "/";
-  return isActive
-    ? "block text-4xl text-white font-bold highlight-text-static"
-    : "block text-4xl text-white font-bold hover:text-blue-400";
-});
+const getLinkClasses = (path, isBold = false) => {
+  const isActive = route.path === path;
+  const baseClasses = "block text-4xl text-white";
+  const boldClass = isBold ? " font-bold" : "";
 
-const feedLinkClasses = computed(() => {
-  const isActive = route.path === "/feed";
   return isActive
-    ? "block text-4xl text-white highlight-text-static"
-    : "block text-4xl text-white hover:text-blue-400";
-});
+    ? `${baseClasses}${boldClass} highlight-text-static`
+    : `${baseClasses}${boldClass} hover:text-blue-400`;
+};
 
-const resumeLinkClasses = computed(() => {
-  const isActive = route.path === "/resume";
-  return isActive
-    ? "block text-4xl text-white highlight-text-static"
-    : "block text-4xl text-white hover:text-blue-400";
-});
+const homeLinkClasses = computed(() => getLinkClasses("/", true));
+const feedLinkClasses = computed(() => getLinkClasses("/feed"));
+const resumeLinkClasses = computed(() => getLinkClasses("/resume"));
 </script>

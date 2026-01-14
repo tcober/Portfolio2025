@@ -49,4 +49,4 @@ User-Agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://portfolio2025.netlify.app/sitemap.xml
+Sitemap: https://thomascober.com/sitemap.xml

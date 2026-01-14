@@ -8,13 +8,13 @@
     <div>
       <div
         v-for="(group, groupIndex) in groupedPosts"
-        :key="groupIndex"
-        :class="groupIndex > 0 ? 'mt-16' : ''"
+        :key="group.date"
+        :class="getGroupClasses(groupIndex)"
       >
         <!-- Date header for the group -->
         <div
           class="relative flex justify-center z-20 mb-6"
-          :style="{ animationDelay: `${group.startIndex * 200}ms` }"
+          :style="postLoadingAnimation(group.startIndex)"
         >
           <div
             class="text-sm text-blue-900 bg-white px-2 py-1 whitespace-nowrap font-bold"
@@ -54,14 +54,18 @@ const props = defineProps({
   },
 });
 
+const ANIMATION_DELAY_MS = 200;
+
 // Helper functions for styling
+const getGroupClasses = (index) => (index > 0 ? "mt-16" : "");
+
 const getArticleClasses = (index) => [
   "relative animate-on-scroll",
   index % 2 === 0 ? "md:pr-1/2" : "md:pl-1/2 md:ml-auto",
 ];
 
 const postLoadingAnimation = (index) => ({
-  animationDelay: `${index * 200}ms`,
+  animationDelay: `${index * ANIMATION_DELAY_MS}ms`,
 });
 
 const postOffset = (index) => [
@@ -70,19 +74,15 @@ const postOffset = (index) => [
 ];
 
 // Conditionally apply card class based on content type
+const NO_CARD_COMPONENTS = ["youtube", "reddit"];
+
 const getCardClass = (content) => {
   if (!content) return "card";
 
-  const componentType = content.component;
-  const imageSetLength = content.imageSet?.length;
+  const { component, imageSet } = content;
+  const isSingleImage = component === "imageSet" && imageSet?.length === 1;
 
-  // No card border for Youtube, Reddit, or single-image ImageSet
-  if (componentType === "youtube") return "";
-  if (componentType === "reddit") return "";
-  if (componentType === "imageSet" && imageSetLength === 1) return "";
-
-  // Card border for Quote and multi-image ImageSet
-  return "card";
+  return NO_CARD_COMPONENTS.includes(component) || isSingleImage ? "" : "card";
 };
 
 // Group posts by date

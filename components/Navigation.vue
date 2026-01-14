@@ -24,17 +24,17 @@ watch(
 );
 
 // Close menu with escape key
+const handleKeydown = (event) => {
+  if (event.key === "Escape") {
+    menuOpen.value = false;
+  }
+};
+
 onMounted(() => {
-  const handleKeydown = (event) => {
-    if (event.key === "Escape") {
-      menuOpen.value = false;
-    }
-  };
-
   document.addEventListener("keydown", handleKeydown);
+});
 
-  onUnmounted(() => {
-    document.removeEventListener("keydown", handleKeydown);
-  });
+onUnmounted(() => {
+  document.removeEventListener("keydown", handleKeydown);
 });
 </script>
