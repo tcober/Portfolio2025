@@ -33,4 +33,22 @@
     @apply touch-manipulation hover:scale-110;
     transition-duration: var(--duration-normal);
   }
+
+  /* Highlight text - glowing emphasis effect */
+  .highlight-text {
+    @apply relative inline-block font-bold text-white;
+    text-shadow:
+      0 0 8px rgba(255, 255, 255, 0.6),
+      0 0 16px rgba(255, 255, 255, 0.4),
+      0 0 30px rgba(255, 255, 255, 0.25);
+    transition: all var(--duration-normal) var(--ease-default);
+  }
+
+  .highlight-text:hover {
+    transform: scale(1.05) rotate(-1deg);
+    text-shadow:
+      0 0 12px rgba(255, 255, 255, 0.8),
+      0 0 24px rgba(255, 255, 255, 0.6),
+      0 0 45px rgba(255, 255, 255, 0.4);
+  }
 }

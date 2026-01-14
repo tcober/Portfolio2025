@@ -7,11 +7,14 @@
       ]"
     >
       <div class="flex items-center justify-center h-full">
-        <div class="space-y-8 text-center">
+        <div class="space-y-8 text-center font-bold">
           <NuxtLink
             to="/"
             @click="$emit('navigate')"
-            class="block text-4xl text-white hover:text-blue-400"
+            :class="[
+              'block text-4xl text-white hover:text-blue-400 font-bold',
+              { 'highlight-text': route.path === '/' },
+            ]"
           >
             Home
           </NuxtLink>
@@ -19,15 +22,21 @@
           <NuxtLink
             to="/feed"
             @click="$emit('navigate')"
-            class="block text-4xl text-white hover:text-blue-400"
+            :class="[
+              'block text-4xl text-white hover:text-blue-400',
+              { 'highlight-text': route.path === '/feed' },
+            ]"
           >
-            Feed
+            Timeline
           </NuxtLink>
 
           <NuxtLink
             to="/resume"
             @click="$emit('navigate')"
-            class="block text-4xl text-white hover:text-blue-400"
+            :class="[
+              'block text-4xl text-white hover:text-blue-400',
+              { 'highlight-text': route.path === '/resume' },
+            ]"
           >
             Resume
           </NuxtLink>
@@ -48,6 +57,8 @@
 </template>
 
 <script setup>
+const route = useRoute();
+
 const props = defineProps({
   isOpen: {
     type: Boolean,
