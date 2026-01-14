@@ -11,10 +11,7 @@
           <NuxtLink
             to="/"
             @click="$emit('navigate')"
-            :class="[
-              'block text-4xl text-white hover:text-blue-400 font-bold',
-              { 'highlight-text': route.path === '/' },
-            ]"
+            :class="homeLinkClasses"
           >
             Home
           </NuxtLink>
@@ -22,10 +19,7 @@
           <NuxtLink
             to="/feed"
             @click="$emit('navigate')"
-            :class="[
-              'block text-4xl text-white hover:text-blue-400',
-              { 'highlight-text': route.path === '/feed' },
-            ]"
+            :class="feedLinkClasses"
           >
             Timeline
           </NuxtLink>
@@ -33,10 +27,7 @@
           <NuxtLink
             to="/resume"
             @click="$emit('navigate')"
-            :class="[
-              'block text-4xl text-white hover:text-blue-400',
-              { 'highlight-text': route.path === '/resume' },
-            ]"
+            :class="resumeLinkClasses"
           >
             Resume
           </NuxtLink>
@@ -72,4 +63,26 @@ defineEmits(["navigate"]);
 const menuOverlayClasses = computed(() =>
   props.isOpen ? "translate-x-0" : "-translate-x-full"
 );
+
+// Navigation link classes - active items get glow, inactive get blue hover
+const homeLinkClasses = computed(() => {
+  const isActive = route.path === "/";
+  return isActive
+    ? "block text-4xl text-white font-bold highlight-text-static"
+    : "block text-4xl text-white font-bold hover:text-blue-400";
+});
+
+const feedLinkClasses = computed(() => {
+  const isActive = route.path === "/feed";
+  return isActive
+    ? "block text-4xl text-white highlight-text-static"
+    : "block text-4xl text-white hover:text-blue-400";
+});
+
+const resumeLinkClasses = computed(() => {
+  const isActive = route.path === "/resume";
+  return isActive
+    ? "block text-4xl text-white highlight-text-static"
+    : "block text-4xl text-white hover:text-blue-400";
+});
 </script>

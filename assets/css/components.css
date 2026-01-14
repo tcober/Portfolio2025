@@ -35,7 +35,8 @@
   }
 
   /* Highlight text - glowing emphasis effect */
-  .highlight-text {
+  .highlight-text,
+  .highlight-text-static {
     @apply relative inline-block font-bold text-white;
     text-shadow:
       0 0 8px rgba(255, 255, 255, 0.6),
