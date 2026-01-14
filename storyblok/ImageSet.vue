@@ -17,8 +17,8 @@
           :modifiers="{ quality: 70 }"
           format="webp"
           sizes="sm:100vw md:50vw lg:800px"
-          :preload="isLcpCandidate && index === 0"
-          :loading="isLcpCandidate && index === 0 ? 'eager' : 'lazy'"
+          preload
+          loading="lazy"
           class="w-full transition-all duration-500 touch-manipulation relative z-10"
           :class="imageDisplayClasses"
           @click="openLightbox(index)"
