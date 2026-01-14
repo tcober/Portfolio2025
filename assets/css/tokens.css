@@ -58,10 +58,12 @@
      ============================================ */
 
   /* Font Families */
-  --font-display: "Lilita One", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Merriweather", ui-serif, Georgia, serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "PT Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-display: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   /* Font Sizes (using clamp for fluid typography) */
   --text-xs: 0.75rem; /* 12px */

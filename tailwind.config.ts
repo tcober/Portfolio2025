@@ -6,10 +6,31 @@ export default <Partial<Config>>{
   theme: {
     extend: {
       fontFamily: {
-        serif: ["Merriweather", "ui-serif", "Georgia", "serif"],
-        sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
-        mono: ["PT Mono", "ui-monospace", "SFMono-Regular", "monospace"],
-        display: ["Lilita One", "ui-sans-serif", "system-ui", "sans-serif"],
+        serif: ["ui-serif", "Georgia", "Cambria", "Times New Roman", "serif"],
+        sans: [
+          "ui-sans-serif",
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "Roboto",
+          "sans-serif",
+        ],
+        mono: [
+          "ui-monospace",
+          "SFMono-Regular",
+          "Menlo",
+          "Monaco",
+          "Consolas",
+          "monospace",
+        ],
+        display: [
+          "ui-sans-serif",
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "sans-serif",
+        ],
       },
       typography: {
         DEFAULT: {

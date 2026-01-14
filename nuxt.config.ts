@@ -67,7 +67,10 @@ export default defineNuxtConfig({
         lang: "en",
       },
       meta: [
-        { name: "google-site-verification", content: "9Agzu25KvRoSoVnG79Lq6hpJUAQMJrlkA5Xn80Fgop4" },
+        {
+          name: "google-site-verification",
+          content: "9Agzu25KvRoSoVnG79Lq6hpJUAQMJrlkA5Xn80Fgop4",
+        },
         { name: "author", content: "Thomas Cober" },
         { name: "theme-color", content: "#6366f1" },
         { name: "robots", content: "noai, noimageai" },
@@ -86,15 +89,6 @@ export default defineNuxtConfig({
         {
           rel: "preconnect",
           href: "https://a-us.storyblok.com",
-          crossorigin: "anonymous",
-        },
-        {
-          rel: "preconnect",
-          href: "https://fonts.googleapis.com",
-        },
-        {
-          rel: "preconnect",
-          href: "https://fonts.gstatic.com",
           crossorigin: "anonymous",
         },
         {

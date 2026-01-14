@@ -7,7 +7,7 @@ A modern portfolio website built with Nuxt 3, featuring a dynamic feed powered b
 - **Framework**: Nuxt 3
 - **Styling**: Tailwind CSS with custom design tokens
 - **CMS**: Storyblok
-- **Fonts**: Merriweather (headings), Inter (body)
+- **Fonts**: System font stack (native UI fonts)
 
 ## Features
 
@@ -67,36 +67,36 @@ Create the following Block components in Storyblok under **Block Library**:
 
 A component for displaying image galleries with lightbox support.
 
-| Field Name | Type | Description |
-|------------|------|-------------|
+| Field Name | Type         | Description                               |
+| ---------- | ------------ | ----------------------------------------- |
 | `imageSet` | Multi-Assets | Collection of images to display in a grid |
 
 #### 2. Quote
 
 A component for displaying styled quotations.
 
-| Field Name | Type | Description |
-|------------|------|-------------|
-| `quote` | Text (required) | The quote text |
-| `author` | Text | Attribution (optional) |
+| Field Name | Type            | Description            |
+| ---------- | --------------- | ---------------------- |
+| `quote`    | Text (required) | The quote text         |
+| `author`   | Text            | Attribution (optional) |
 
 #### 3. Youtube
 
 A component for embedding YouTube videos with lazy loading.
 
-| Field Name | Type | Description |
-|------------|------|-------------|
-| `url` | Text | YouTube video URL (supports various formats) |
-| `title` | Text | Accessible title for the video |
+| Field Name | Type | Description                                  |
+| ---------- | ---- | -------------------------------------------- |
+| `url`      | Text | YouTube video URL (supports various formats) |
+| `title`    | Text | Accessible title for the video               |
 
 #### 4. Reddit
 
 A component for embedding Reddit videos (supports Reddit-hosted and Streamable).
 
-| Field Name | Type | Description |
-|------------|------|-------------|
-| `url` | Text | Reddit post URL |
-| `title` | Text | Accessible title for the video |
+| Field Name | Type | Description                    |
+| ---------- | ---- | ------------------------------ |
+| `url`      | Text | Reddit post URL                |
+| `title`    | Text | Accessible title for the video |
 
 ### Content Structure
 
@@ -156,9 +156,10 @@ npm run generate
 ## Design System
 
 The project uses a custom design system with:
+
 - Design tokens for colors, spacing, and animations (see `assets/css/tokens.css`)
 - Reusable component styles (cards, buttons, animations)
-- Consistent typography system with Merriweather and Inter fonts
+- System font stack for fast, native typography
 
 ## Learn More
 
