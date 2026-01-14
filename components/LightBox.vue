@@ -8,7 +8,24 @@
       <div
         class="relative w-full h-full max-w-6xl flex items-center justify-center"
       >
+        <!-- Thumbnail (shown immediately from cache) -->
         <NuxtImg
+          v-show="!highResLoaded"
+          provider="storyblok"
+          :src="currentImage?.filename"
+          :alt="currentImage?.alt || currentImage?.name"
+          :width="800"
+          :height="800"
+          :modifiers="{ quality: 70 }"
+          format="webp"
+          class="max-w-full max-h-full object-contain rounded-xl shadow-2xl touch-manipulation"
+          @touchstart="handleTouchStart"
+          @touchend="handleTouchEnd"
+        />
+
+        <!-- High-res image (loads in background, swaps in when ready) -->
+        <NuxtImg
+          v-show="highResLoaded"
           provider="storyblok"
           :src="currentImage?.filename"
           :alt="currentImage?.alt || currentImage?.name"
@@ -17,6 +34,7 @@
           :modifiers="{ quality: 85 }"
           format="webp"
           class="max-w-full max-h-full object-contain rounded-xl shadow-2xl touch-manipulation"
+          @load="onHighResLoad"
           @touchstart="handleTouchStart"
           @touchend="handleTouchEnd"
         />
@@ -106,12 +124,18 @@ const currentIndex = ref(props.initialIndex);
 const currentImage = ref(props.images[props.initialIndex] || null);
 const touchStartX = ref(0);
 const touchEndX = ref(0);
+const highResLoaded = ref(false);
+
+const onHighResLoad = () => {
+  highResLoaded.value = true;
+};
 
 // ============================================
 // Navigation
 // ============================================
 const navigateTo = (index) => {
   if (index >= 0 && index < props.images.length) {
+    highResLoaded.value = false; // Reset for new image
     currentIndex.value = index;
     currentImage.value = props.images[index] || null;
   }
