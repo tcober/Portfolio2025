@@ -17,7 +17,7 @@
           :style="{ animationDelay: `${group.startIndex * 200}ms` }"
         >
           <div
-            class="text-sm text-slate-950 bg-white px-2 py-1 whitespace-nowrap"
+            class="text-sm text-blue-900 bg-white px-2 py-1 whitespace-nowrap font-bold"
           >
             {{ group.date }}
           </div>
