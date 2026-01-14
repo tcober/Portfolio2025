@@ -2,16 +2,50 @@
   <div
     v-if="videoId"
     ref="videoContainer"
-    class="relative w-full aspect-video overflow-hidden group"
+    class="relative w-full aspect-video overflow-hidden group rounded-3xl"
   >
+    <!-- Facade: Show thumbnail until user clicks to play -->
+    <button
+      v-if="!isPlaying"
+      type="button"
+      class="absolute inset-0 w-full h-full cursor-pointer bg-black focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
+      :aria-label="`Play ${blok.title || 'YouTube video'}`"
+      @click="playVideo"
+    >
+      <!-- YouTube thumbnail -->
+      <img
+        v-if="isVisible"
+        :src="`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`"
+        :alt="blok.title || 'YouTube video thumbnail'"
+        class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+        loading="lazy"
+      />
+      <!-- Play button overlay -->
+      <div
+        class="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors group-hover:bg-black/30"
+      >
+        <div
+          class="w-16 h-16 md:w-20 md:h-20 bg-red-600 rounded-full flex items-center justify-center shadow-lg transition-transform group-hover:scale-110"
+        >
+          <svg
+            class="w-8 h-8 md:w-10 md:h-10 text-white ml-1"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path d="M8 5v14l11-7z" />
+          </svg>
+        </div>
+      </div>
+    </button>
+
+    <!-- Actual iframe only loads after user clicks -->
     <iframe
-      v-if="isLoaded"
-      :src="`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1`"
+      v-if="isPlaying"
+      :src="`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&autoplay=1`"
       :title="blok.title || 'YouTube video'"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen
-      loading="lazy"
-      class="absolute inset-0 w-full h-full border-0 rounded-3xl transition-transform duration-300 group-hover:scale-[1.02]"
+      class="absolute inset-0 w-full h-full border-0"
     ></iframe>
   </div>
 </template>
@@ -27,7 +61,8 @@ const props = defineProps({
 });
 
 const videoContainer = ref(null);
-const isLoaded = ref(false);
+const isVisible = ref(false);
+const isPlaying = ref(false);
 let observer = null;
 
 // Extract video ID from various YouTube URL formats
@@ -50,21 +85,25 @@ const videoId = computed(() => {
   return null;
 });
 
-// Lazy load iframe when it becomes visible
+const playVideo = () => {
+  isPlaying.value = true;
+};
+
+// Lazy load thumbnail when it becomes visible
 onMounted(() => {
   if (!import.meta.client || !videoContainer.value) return;
 
   observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting && !isLoaded.value) {
-          isLoaded.value = true;
+        if (entry.isIntersecting && !isVisible.value) {
+          isVisible.value = true;
           observer.disconnect();
         }
       });
     },
     {
-      rootMargin: "50px", // Start loading 50px before it's visible
+      rootMargin: "50px",
     }
   );
 
