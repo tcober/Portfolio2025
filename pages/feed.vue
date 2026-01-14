@@ -80,17 +80,20 @@ const {
 // Extract posts for template
 const posts = computed(() => feedData.value?.posts || []);
 
-// Add preload link for LCP image during SSR
-if (feedData.value?.lcpImageUrl) {
-  useHead({
-    link: [
-      {
-        rel: "preload",
-        as: "image",
-        href: feedData.value.lcpImageUrl,
-        fetchpriority: "high",
-      },
-    ],
-  });
-}
+// Add preload link for LCP image - use computed to ensure reactivity during SSR
+const lcpPreloadLinks = computed(() => {
+  if (!feedData.value?.lcpImageUrl) return [];
+  return [
+    {
+      rel: "preload",
+      as: "image",
+      href: feedData.value.lcpImageUrl,
+      fetchpriority: "high",
+    },
+  ];
+});
+
+useHead({
+  link: lcpPreloadLinks,
+});
 </script>
