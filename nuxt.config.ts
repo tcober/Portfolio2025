@@ -34,7 +34,11 @@ export default defineNuxtConfig({
     ],
     "@nuxtjs/tailwindcss",
     "nuxt-gtag",
+    "@nuxtjs/sitemap",
   ],
+  sitemap: {
+    siteUrl: "https://thomascober.com",
+  },
   gtag: {
     id: "G-ZJ8DPDM2QV",
   },
