@@ -28,7 +28,7 @@
           class="w-16 h-16 md:w-20 md:h-20 bg-red-600 rounded-full flex items-center justify-center shadow-lg transition-transform group-hover:scale-110"
         >
           <svg
-            class="w-8 h-8 md:w-10 md:h-10 text-white ml-1"
+            class="w-8 h-8 md:w-10 md:h-10 text-white translate-x-[2%]"
             fill="currentColor"
             viewBox="0 0 24 24"
           >
