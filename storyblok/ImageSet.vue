@@ -15,8 +15,8 @@
           :height="images.length === 1 ? 'auto' : 800"
           class="w-full transition-all duration-500 touch-manipulation relative z-10"
           :class="imageDisplayClasses"
-          :loading="images.indexOf(image) === 0 ? 'eager' : 'lazy'"
-          :fetchpriority="images.indexOf(image) === 0 ? 'high' : 'auto'"
+          :loading="isLcpCandidate || images.indexOf(image) === 0 ? 'eager' : 'lazy'"
+          :fetchpriority="isLcpCandidate && images.indexOf(image) === 0 ? 'high' : 'auto'"
           decoding="async"
           @click="openLightbox(images.indexOf(image))"
         />
@@ -41,13 +41,17 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+  isLcpCandidate: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 // Optimize Storyblok images using their image service
 const optimizeStoryblokImage = (url, width, height) => {
   if (!url) return "";
-  // Add Storyblok image service parameters
-  return `${url}/m/${width}x${height}/filters:quality(80):format(webp)`;
+  // Add Storyblok image service parameters (quality 70 for better LCP)
+  return `${url}/m/${width}x${height}/filters:quality(70):format(webp)`;
 };
 
 // Handle the Multi-Assets field structure
