@@ -9,6 +9,7 @@
       >
         <NuxtImg
           provider="storyblok"
+          placeholder
           :src="image.filename"
           :alt="image.alt"
           :title="image.title"
@@ -17,8 +18,8 @@
           :modifiers="{ quality: 70 }"
           format="webp"
           sizes="sm:100vw md:50vw lg:800px"
-          preload
-          loading="lazy"
+          :preload="isLcpCandidate && index === 0"
+          :loading="isLcpCandidate && index === 0 ? 'eager' : 'lazy'"
           class="w-full transition-all duration-500 touch-manipulation relative z-10"
           :class="imageDisplayClasses"
           @click="openLightbox(index)"
