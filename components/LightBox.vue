@@ -8,36 +8,38 @@
       <div
         class="relative w-full h-full max-w-6xl flex items-center justify-center"
       >
-        <!-- Thumbnail (shown immediately from cache) -->
-        <NuxtImg
-          v-show="!highResLoaded"
-          provider="storyblok"
-          :src="currentImage?.filename"
-          :alt="currentImage?.alt || currentImage?.name"
-          :width="800"
-          :height="800"
-          :modifiers="{ quality: 70 }"
-          format="webp"
-          class="max-w-full max-h-full object-contain rounded-xl shadow-2xl touch-manipulation"
+        <!-- Image container - stacks both images so size stays consistent -->
+        <div
+          class="relative max-w-full max-h-full"
           @touchstart="handleTouchStart"
           @touchend="handleTouchEnd"
-        />
+        >
+          <!-- Low-res image (cached from grid, determines initial container size) -->
+          <NuxtImg
+            provider="storyblok"
+            :src="currentImage?.filename"
+            :alt="currentImage?.alt || currentImage?.name"
+            :width="800"
+            :height="0"
+            :modifiers="{ quality: 70 }"
+            format="webp"
+            class="max-w-full max-h-[calc(100vh-2rem)] object-contain rounded-xl shadow-2xl"
+          />
 
-        <!-- High-res image (loads in background, swaps in when ready) -->
-        <NuxtImg
-          v-show="highResLoaded"
-          provider="storyblok"
-          :src="currentImage?.filename"
-          :alt="currentImage?.alt || currentImage?.name"
-          :width="2400"
-          :height="2400"
-          :modifiers="{ quality: 85 }"
-          format="webp"
-          class="max-w-full max-h-full object-contain rounded-xl shadow-2xl touch-manipulation"
-          @load="onHighResLoad"
-          @touchstart="handleTouchStart"
-          @touchend="handleTouchEnd"
-        />
+          <!-- High-res overlay (loads in background, covers low-res when ready) -->
+          <NuxtImg
+            v-show="highResLoaded"
+            provider="storyblok"
+            :src="currentImage?.filename"
+            :alt="currentImage?.alt || currentImage?.name"
+            :width="2400"
+            :height="0"
+            :modifiers="{ quality: 85 }"
+            format="webp"
+            class="absolute inset-0 w-full h-full object-contain rounded-xl"
+            @load="onHighResLoad"
+          />
+        </div>
 
         <!-- Close button -->
         <button
