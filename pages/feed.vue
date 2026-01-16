@@ -1,17 +1,11 @@
 <template>
   <div class="min-h-screen bg-white">
     <main class="max-w-5xl mx-auto px-6 py-6">
-      <!-- Feed Header -->
-      <div class="mb-16">
-        <h1 class="text-5xl font-bold text-black mb-2">Timeline</h1>
-        <div class="w-12 h-1 bg-black rounded-full"></div>
-      </div>
-
       <LoadingSpinner v-if="loading" />
 
       <WellFuck v-else-if="error" :error="error" />
 
-      <FeedFeed v-else :posts="posts" />
+      <FeedFeed v-else class="mt-16" :posts="posts" />
     </main>
   </div>
 </template>
