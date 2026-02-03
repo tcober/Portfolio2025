@@ -49,19 +49,6 @@ export default defineNuxtConfig({
   },
   gtag: {
     id: "G-ZJ8DPDM2QV",
-    initCommands: [
-      [
-        "consent",
-        "default",
-        {
-          ad_user_data: "denied",
-          ad_personalization: "denied",
-          ad_storage: "denied",
-          analytics_storage: "denied",
-          wait_for_update: 500,
-        },
-      ],
-    ],
     loadingStrategy: "defer",
   },
   tailwindcss: {
