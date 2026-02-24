@@ -47,10 +47,7 @@ const props = defineProps({
   },
 });
 
-const { data: ogData, status } = await useAsyncData(
-  `og-preview-${props.blok.url}`,
-  () => $fetch("/api/og", { query: { url: props.blok.url } }),
-);
+const { data: ogData, status } = await useOgData(props.blok.url);
 
 const pending = computed(() => status.value === "pending");
 
