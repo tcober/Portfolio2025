@@ -37,7 +37,7 @@ const {
 
   if (!storyblokApi) {
     throw new Error(
-      "Storyblok API not initialized. Check your STORYBLOK_ACCESS_TOKEN environment variable."
+      "Storyblok API not initialized. Check your STORYBLOK_ACCESS_TOKEN environment variable.",
     );
   }
 
