@@ -45,7 +45,7 @@
 
 <script setup>
 import { formatDate } from "~/utils/dateFormatter";
-import { ref, onMounted } from "vue";
+import { computed } from "vue";
 
 const props = defineProps({
   posts: {
@@ -85,10 +85,8 @@ const getCardClass = (content) => {
   return NO_CARD_COMPONENTS.includes(component) || isSingleImage ? "" : "card";
 };
 
-// Group posts by date
-const groupedPosts = ref([]);
-
-onMounted(() => {
+// Group posts by date - computed so it runs during SSR for prerendering
+const groupedPosts = computed(() => {
   const groups = [];
   let currentDate = null;
   let currentGroup = null;
@@ -120,7 +118,7 @@ onMounted(() => {
     groups.push(currentGroup);
   }
 
-  groupedPosts.value = groups;
+  return groups;
 });
 
 // Scroll animation observer for posts
