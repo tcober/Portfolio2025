@@ -52,9 +52,13 @@ const { data: ogData, pending } = useFetch("/api/og", {
 });
 
 const imageError = ref(false);
-const onImageError = () => { imageError.value = true; };
+const onImageError = () => {
+  imageError.value = true;
+};
 
-const showImage = computed(() => !pending.value && !!ogData.value?.image && !imageError.value);
+const showImage = computed(
+  () => !pending.value && !!ogData.value?.image && !imageError.value,
+);
 
 const displaySiteName = computed(() => {
   if (ogData.value?.siteName) return ogData.value.siteName;
@@ -67,5 +71,7 @@ const displaySiteName = computed(() => {
 
 const displayTitle = computed(() => ogData.value?.title ?? props.blok.url);
 
-const siteInitial = computed(() => displaySiteName.value.charAt(0).toUpperCase());
+const siteInitial = computed(() =>
+  displaySiteName.value.charAt(0).toUpperCase(),
+);
 </script>
