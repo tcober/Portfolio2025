@@ -7,7 +7,7 @@
   >
     <img
       v-if="showImage"
-      :src="ogData.image"
+      :src="imageUrl"
       :alt="displayTitle"
       class="w-32 object-cover flex-shrink-0"
       @error="onImageError"
@@ -56,8 +56,11 @@ const onImageError = () => {
   imageError.value = true;
 };
 
+// Safely extract image URL
+const imageUrl = computed(() => ogData.value?.image ?? null);
+
 const showImage = computed(
-  () => !pending.value && !!ogData.value?.image && !imageError.value,
+  () => !pending.value && !!imageUrl.value && !imageError.value,
 );
 
 const displaySiteName = computed(() => {
