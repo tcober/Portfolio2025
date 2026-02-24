@@ -6,14 +6,13 @@
     class="flex h-32 rounded-2xl border border-gray-500 overflow-hidden hover:border-blue-600 transition-colors no-underline not-prose bg-white"
   >
     <img
-      v-if="showImage"
+      v-if="imageUrl"
       :src="imageUrl"
       :alt="displayTitle"
       class="w-32 object-cover flex-shrink-0"
-      @error="onImageError"
     />
     <div
-      v-else
+      v-if="!imageUrl"
       class="w-32 flex-shrink-0 bg-blue-700 flex items-center justify-center text-2xl font-bold text-white"
     >
       {{ siteInitial }}
@@ -31,7 +30,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
+import { computed } from "vue";
 
 /**
  * blok structure:
@@ -47,21 +46,10 @@ const props = defineProps({
   },
 });
 
-const { data: ogData, status } = await useOgData(props.blok.url);
+const { data: ogData } = await useOgData(props.blok.url);
 
-const pending = computed(() => status.value === "pending");
-
-const imageError = ref(false);
-const onImageError = () => {
-  imageError.value = true;
-};
-
-// Safely extract image URL
+// Safely extract image URL (already validated on server)
 const imageUrl = computed(() => ogData.value?.image ?? null);
-
-const showImage = computed(
-  () => !pending.value && !!imageUrl.value && !imageError.value,
-);
 
 const displaySiteName = computed(() => {
   if (ogData.value?.siteName) return ogData.value.siteName;

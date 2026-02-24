@@ -78,6 +78,21 @@ export const useOgData = async (url: string) => {
             : `${protocol}//${host}/${image}`;
         }
 
+        // Validate image URL exists (avoid broken images)
+        if (image) {
+          try {
+            const response = await $fetch.raw(image, {
+              method: "HEAD",
+              timeout: 3000,
+            });
+            if (!response.ok) {
+              image = null;
+            }
+          } catch {
+            image = null;
+          }
+        }
+
         return {
           title:
             getMeta("og:title") ??
