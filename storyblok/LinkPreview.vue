@@ -14,7 +14,7 @@
     />
     <div
       v-else
-      class="w-32 flex-shrink-0 bg-gray-100 flex items-center justify-center text-2xl font-bold text-gray-400"
+      class="w-32 flex-shrink-0 bg-blue-700 flex items-center justify-center text-2xl font-bold text-white"
     >
       {{ siteInitial }}
     </div>
