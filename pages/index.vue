@@ -1,10 +1,10 @@
 <template>
   <div class="min-h-screen relative overflow-hidden">
     <main
-      class="relative z-10 max-w-5xl mx-auto px-6 py-12 min-h-screen flex items-center"
+      class="relative z-10 max-w-5xl mx-auto px-6 py-6 min-h-screen flex items-center"
     >
       <div class="w-full">
-        <div class="space-y-8">
+        <div class="space-y-6">
           <h1
             class="greeting-text text-7xl md:text-8xl font-bold text-white mb-4 animate-float"
           >
@@ -112,13 +112,15 @@ useSeoMeta({
 
 /* Greeting text with subtle effects */
 .greeting-text {
-  text-shadow: 0 0 30px rgba(255, 255, 255, 0.3),
+  text-shadow:
+    0 0 30px rgba(255, 255, 255, 0.3),
     0 0 60px rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
 }
 
 .greeting-text:hover {
-  text-shadow: 0 0 40px rgba(255, 255, 255, 0.5),
+  text-shadow:
+    0 0 40px rgba(255, 255, 255, 0.5),
     0 0 80px rgba(255, 255, 255, 0.3);
   transform: scale(1.02);
 }
