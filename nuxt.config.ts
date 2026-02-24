@@ -106,6 +106,7 @@ export default defineNuxtConfig({
   // Enable compression and optimization
   nitro: {
     compressPublicAssets: true,
+    preset: 'netlify',
   },
 
   // Build optimizations
