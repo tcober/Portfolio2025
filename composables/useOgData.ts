@@ -76,9 +76,11 @@ export const useOgData = async (url: string) => {
       }
     },
     {
-      // Cache the result - important for static generation
+      // Only fetch on server (during generate), use cached payload on client
       server: true,
       lazy: false,
+      // Prevent client-side re-fetching by returning cached data
+      getCachedData: (key, nuxtApp) => nuxtApp.payload.data[key],
     },
   );
 };
