@@ -74,7 +74,7 @@ const postOffset = (index) => [
 ];
 
 // Conditionally apply card class based on content type
-const NO_CARD_COMPONENTS = ["youtube", "reddit"];
+const NO_CARD_COMPONENTS = ["youtube", "reddit", "link_preview"];
 
 const getCardClass = (content) => {
   if (!content) return "card";
