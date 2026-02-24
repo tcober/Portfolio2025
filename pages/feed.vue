@@ -11,6 +11,8 @@
 </template>
 
 <script setup>
+import { fetchOgData } from "~/composables/useOgData";
+
 // SEO meta tags with useSeoMeta for better optimization
 useSeoMeta({
   title: "Thomas Cober's Feed",
@@ -45,6 +47,19 @@ const {
     sort_by: "created_at:desc",
   });
 
-  return response.data.stories || [];
+  const stories = response.data.stories || [];
+
+  // On server only: prefetch OG data for link-preview components
+  if (import.meta.server) {
+    await Promise.all(
+      stories.map(async (story) => {
+        if (story.content?.component === "link-preview" && story.content?.url) {
+          story.content._ogData = await fetchOgData(story.content.url);
+        }
+      }),
+    );
+  }
+
+  return stories;
 });
 </script>

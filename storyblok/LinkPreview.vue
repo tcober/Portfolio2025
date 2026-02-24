@@ -30,12 +30,13 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed, ref } from "vue";
 
 /**
  * blok structure:
  * {
  *   url: string (required)
+ *   _ogData?: object (optional, prefetched during posts load)
  * }
  */
 const props = defineProps({
@@ -46,7 +47,11 @@ const props = defineProps({
   },
 });
 
-const { data: ogData } = await useOgData(props.blok.url);
+// Use embedded OG data if available (prefetched in feed.vue)
+// This is the primary path for feed page - data comes from posts payload
+const ogData = props.blok._ogData
+  ? ref(props.blok._ogData)
+  : (await useOgData(props.blok.url)).data;
 
 // Safely extract image URL (already validated on server)
 const imageUrl = computed(() => ogData.value?.image ?? null);
