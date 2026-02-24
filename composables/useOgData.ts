@@ -1,10 +1,31 @@
 /**
  * Composable to fetch OpenGraph data from a URL.
- * Runs at build time during static generation.
+ * Runs at build time during static generation only.
  */
 export const useOgData = async (url: string) => {
+  const nuxtApp = useNuxtApp();
+  const key = `og-preview-${url}`;
+
+  // On client, always use cached data from payload (never fetch)
+  if (import.meta.client) {
+    const cachedData = nuxtApp.payload.data[key] ?? {
+      title: null,
+      description: null,
+      image: null,
+      siteName: null,
+    };
+    return {
+      data: ref(cachedData),
+      status: ref("success" as const),
+      error: ref(null),
+      refresh: () => Promise.resolve(),
+      clear: () => {},
+    };
+  }
+
+  // Server-side: fetch the OG data
   return useAsyncData(
-    `og-preview-${url}`,
+    key,
     async () => {
       try {
         const html = await $fetch<string>(url, {
@@ -76,11 +97,8 @@ export const useOgData = async (url: string) => {
       }
     },
     {
-      // Only fetch on server (during generate), use cached payload on client
       server: true,
       lazy: false,
-      // Prevent client-side re-fetching by returning cached data
-      getCachedData: (key, nuxtApp) => nuxtApp.payload.data[key],
     },
   );
 };
