@@ -26,8 +26,6 @@ useSeoMeta({
   robots: "index, follow",
 });
 
-// Use useAsyncData directly for proper SSR/client hydration
-// NuxtImg handles LCP preloading automatically via the preload prop in ImageSet.vue
 const {
   data: posts,
   pending: loading,
