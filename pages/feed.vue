@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-white">
+  <div class="min-h-screen diamond-bg">
     <main class="max-w-5xl mx-auto px-6 py-6">
       <LoadingSpinner v-if="loading" />
 
@@ -60,3 +60,12 @@ const {
   return stories;
 });
 </script>
+
+<style scoped>
+.diamond-bg {
+  background-color: #ffffff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Crect x='10' y='0' width='7' height='7' transform='rotate(45 10 3.5)' fill='%23e5e5e5'/%3E%3C/svg%3E");
+  background-size: 20px 20px;
+  background-attachment: fixed;
+}
+</style>
