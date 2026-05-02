@@ -11,14 +11,14 @@
           height="128"
           :modifiers="{ quality: 80 }"
           format="webp"
-          class="w-32 h-32 sm:w-24 sm:h-24 rounded border-2 border-black object-cover flex-shrink-0"
+          class="w-32 h-32 sm:w-24 sm:h-24 rounded-full border-2 border-black object-cover flex-shrink-0"
         />
-        <div class="text-black flex-1">
+        <div class="text-black flex-1 mt-1">
           <h2 class="text-2xl sm:text-4xl font-bold">Thomas Cober</h2>
-          <p class="text-base sm:text-xl font-semibold leading-tight mb-1">
+          <p class="text-base sm:text-xl font-semibold">
             Senior JavaScript Engineer
           </p>
-          <div class="flex flex-col sm:flex-row sm:gap-8 text-sm leading-tight">
+          <div class="flex flex-col sm:flex-row sm:gap-8 text-sm">
             <p>tcober5@gmail.com</p>
             <p>thomascober.com</p>
           </div>
@@ -30,11 +30,11 @@
         class="grid grid-cols-1 md:grid-cols-3 print:grid-cols-3 gap-8 md:gap-12"
       >
         <!-- Left Column (2/3) -->
-        <div class="md:col-span-2 print:col-span-2 space-y-8">
+        <div class="md:col-span-2 print:col-span-2 space-y-4">
           <!-- Experience -->
           <section>
             <h3
-              class="text-2xl print:text-lg font-bold text-black mb-6 pb-2 border-b-2 border-black"
+              class="text-2xl print:text-lg font-bold text-black mb-2 pb-2 border-b-2 border-black"
             >
               Experience
             </h3>
@@ -75,7 +75,7 @@
           <!-- Education -->
           <section>
             <h3
-              class="text-2xl print:text-xl font-bold text-black mb-6 pb-2 border-b-2 border-black"
+              class="text-2xl print:text-lg font-bold text-black mb-2 pb-2 border-b-2 border-black"
             >
               Education
             </h3>
@@ -106,72 +106,58 @@
         <!-- Right Column (1/3) -->
         <div class="md:col-span-1 print:col-span-1 space-y-6">
           <!-- Core Skills -->
-          <section class="border-2 border-black p-4">
+          <section>
             <h3
-              class="text-lg print:text-base font-bold text-black mb-4 pb-2 border-b border-black"
+              class="text-2xl font-bold text-white bg-black mb-4 px-2 py-1 [print-color-adjust:exact] mt-[2.4rem] print:mt-0"
             >
               Core Skills
             </h3>
-            <div class="space-y-3 text-sm print:text-xs">
+            <div class="space-y-4 text-base print:text-base">
               <div>
-                <p class="font-semibold text-black">Front-end:</p>
-                <p class="text-gray-800">
-                  Vue 3, Nuxt, Angular, React, TypeScript, JavaScript, HTML5,
-                  Tailwind, CSS
-                </p>
+                <p class="font-semibold text-black text-xl mb-2">Front-end</p>
+                <ul class="text-gray-800 list-none p-0 m-0 space-y-1">
+                  <li>Vue 3 / Nuxt</li>
+                  <li>Angular</li>
+                  <li>Javascript / TypeScript</li>
+                  <li>HTML / Markdown</li>
+                  <li>Tailwind / CSS</li>
+                </ul>
               </div>
               <div>
-                <p class="font-semibold text-black">Back-end:</p>
-                <p class="text-gray-800">
-                  Node.js, Loopback, Express, REST APIs, serverless functions
-                </p>
+                <p class="font-semibold text-black text-xl mb-2">Back-end</p>
+                <ul class="text-gray-800 list-none p-0 m-0 space-y-1">
+                  <li>Node.js</li>
+                  <li>Loopback</li>
+                  <li>Express</li>
+                </ul>
               </div>
               <div>
-                <p class="font-semibold text-black">Tooling:</p>
-                <p class="text-gray-800">
-                  Jest, Vitest, Storybook, Webpack/Vite, GitHub Actions
-                </p>
+                <p class="font-semibold text-black text-xl mb-2">Tooling</p>
+                <ul class="text-gray-800 list-none p-0 m-0 space-y-1">
+                  <li>Jest / Vitest</li>
+                  <li>Storybook</li>
+                  <li>Vite / Webpack</li>
+                  <li>GitHub Actions</li>
+                </ul>
               </div>
               <div>
-                <p class="font-semibold text-black">AI Tools:</p>
-                <p class="text-gray-800">
-                  GitHub Copilot/Claude Code agents and subagents, AI-assisted
-                  development workflows
-                </p>
+                <p class="font-semibold text-black text-xl mb-2">AI / LLM</p>
+                <ul class="text-gray-800 list-none p-0 m-0 space-y-1">
+                  <li>GitHub Copilot / Claude Code</li>
+                  <li>Agents / Subagents</li>
+                  <li>Workflows</li>
+                </ul>
               </div>
               <div>
-                <p class="font-semibold text-black">Practices:</p>
-                <p class="text-gray-800">
-                  Accessibility, design systems, performance tuning, UX
-                  collaboration
-                </p>
+                <p class="font-semibold text-black text-xl mb-2">Practices</p>
+                <ul class="text-gray-800 list-none p-0 m-0 space-y-1">
+                  <li>Accessibility</li>
+                  <li>Design systems</li>
+                  <li>Performance tuning</li>
+                  <li>UX collaboration</li>
+                </ul>
               </div>
             </div>
-          </section>
-
-          <!-- Key Achievements -->
-          <section class="border-2 border-black p-4">
-            <h3
-              class="text-lg print:text-base font-bold text-black mb-4 pb-2 border-b border-black"
-            >
-              Key Achievements
-            </h3>
-            <ul
-              class="space-y-2 text-sm print:text-xs text-gray-800 list-disc pl-5"
-            >
-              <li>
-                Helped build a mock service system that let QE test even when
-                backend services were down.
-              </li>
-              <li>
-                Performed regular accessibility checks to help ship
-                WCAG‑friendly interfaces.
-              </li>
-              <li>
-                Taught 100+ developers how to use GitHub Copilot and AI tools
-                effectively.
-              </li>
-            </ul>
           </section>
         </div>
       </main>
