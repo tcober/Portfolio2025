@@ -82,6 +82,10 @@ const videoId = computed(() => {
   const embedMatch = url.match(/\/embed\/([a-zA-Z0-9_-]+)/);
   if (embedMatch) return embedMatch[1];
 
+  // Handle Shorts links: https://youtube.com/shorts/VIDEO_ID
+  const shortsMatch = url.match(/\/shorts\/([a-zA-Z0-9_-]+)/);
+  if (shortsMatch) return shortsMatch[1];
+
   return null;
 });
 

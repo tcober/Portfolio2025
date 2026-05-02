@@ -116,8 +116,8 @@
               <div>
                 <p class="font-semibold text-black">Front-end:</p>
                 <p class="text-gray-800">
-                  Vue 3, Nuxt, Angular, React, TypeScript, JavaScript (ES6+),
-                  HTML5, Tailwind
+                  Vue 3, Nuxt, Angular, React, TypeScript, JavaScript, HTML5,
+                  Tailwind, CSS
                 </p>
               </div>
               <div>
@@ -135,15 +135,15 @@
               <div>
                 <p class="font-semibold text-black">AI Tools:</p>
                 <p class="text-gray-800">
-                  GitHub Copilot, AI-assisted development workflows, Custom
-                  instruction writing/generation
+                  GitHub Copilot/Claude Code agents and subagents, AI-assisted
+                  development workflows
                 </p>
               </div>
               <div>
                 <p class="font-semibold text-black">Practices:</p>
                 <p class="text-gray-800">
-                  Accessibility (WCAG 2.1), design systems, performance tuning,
-                  automated testing, UX collaboration
+                  Accessibility, design systems, performance tuning, UX
+                  collaboration
                 </p>
               </div>
             </div>
@@ -199,10 +199,12 @@ const experiences = [
     title: "Senior Software Engineer, Wealth Management Digital",
     period: "02/2020 – Present",
     points: [
-      "Helped roll out our Vue component library and design system across multiple squads for more consistent UI.",
-      "Taught developers practical GitHub Copilot and AI‑workflow skills as part of the Enterprise AI Instructor group.",
-      "Contributed to the Node.js mid‑tier, improving API logic, data handling, and payload efficiency.",
-      "Wrote extensive unit tests that run in CI/CD, improving stability and catching regressions early.",
+      "Helped roll out our Vue component library and design system.",
+      "Helped create a mock service system that let QE test even when backend services were down.",
+      "Taught developers practical GitHub Copilot workflow skills as part of the Enterprise AI Instructor group.",
+      "Developed LLM agents for identifying high quality tests to improve developer experience.",
+      "Created endpoints in our Node back end.",
+      "Wrote extensive unit tests.",
     ],
   },
   {
@@ -210,7 +212,7 @@ const experiences = [
     title: "Contract Front-End Developer",
     period: "05/2018 – 09/2019",
     points: [
-      "At Cargill, helped build a commodity trading app, contributing key Angular front‑end features.",
+      "At Cargill, helped build a commodity trading app in Angular.",
       "At NYU, built the full Vue front end for their teacher/student communication system.",
     ],
   },
@@ -219,14 +221,14 @@ const experiences = [
     title: "Front-End Developer",
     period: "04/2017 – 05/2018",
     description:
-      "Built an ADA‑compliant ecommerce platform and maintained fast, accessible WordPress marketing sites.",
+      "Built an ADA compliant ecommerce platform and maintained fast, accessible WordPress marketing sites.",
   },
   {
     company: "Iron Horse Interactive",
     title: "Front-End Developer",
     period: "10/2016 – 04/2017",
     description:
-      "Developed modular landing pages and analytics integrations for VR/AR marketing.",
+      "Developed modular landing pages and analytics integrations for VR/AR marketing sites.",
   },
   {
     company: "Lytics",

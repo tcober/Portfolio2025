@@ -13,7 +13,6 @@
 <script setup>
 import { fetchOgData } from "~/composables/useOgData";
 
-// SEO meta tags with useSeoMeta for better optimization
 useSeoMeta({
   title: "Thomas Cober's Feed",
   description: "My life, projects, and random thoughts.",
