@@ -49,54 +49,6 @@
   }
 }
 
-@layer utilities {
-  /* Custom Utilities */
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  .text-pretty {
-    text-wrap: pretty;
-  }
-
-  /* Token-based transition utilities */
-  .transition-fast {
-    transition: all var(--duration-fast) var(--ease-default);
-  }
-
-  .transition-normal {
-    transition: all var(--duration-normal) var(--ease-default);
-  }
-
-  .transition-slow {
-    transition: all var(--duration-slow) var(--ease-default);
-  }
-
-  .bg-gradient-primary {
-    background: linear-gradient(
-      to right,
-      var(--color-primary-light),
-      var(--color-primary)
-    );
-  }
-
-  .bg-gradient-secondary {
-    background: linear-gradient(
-      to right,
-      var(--color-secondary),
-      var(--color-secondary-hover)
-    );
-  }
-
-  .shadow-elevated {
-    box-shadow: var(--shadow-elevated);
-  }
-
-  .backdrop-blur-subtle {
-    backdrop-filter: blur(8px);
-  }
-}
-
 /* Custom scrollbar - matches dark theme */
 ::-webkit-scrollbar {
   width: 8px;

@@ -12,10 +12,7 @@
         :class="getGroupClasses(groupIndex)"
       >
         <!-- Date header for the group -->
-        <div
-          class="relative flex justify-center z-20 mb-6"
-          :style="postLoadingAnimation(group.startIndex)"
-        >
+        <div class="relative flex justify-center z-20 mb-6 animate-on-scroll">
           <div
             class="text-sm text-blue-900 bg-white px-2 py-1 whitespace-nowrap font-bold"
           >
@@ -29,7 +26,6 @@
             v-for="(post, postIndex) in group.posts"
             :key="post.id"
             :class="getArticleClasses(group.startIndex + postIndex)"
-            :style="postLoadingAnimation(group.startIndex + postIndex)"
           >
             <div :class="postOffset(group.startIndex + postIndex)">
               <div :class="getCardClass(post.content)">
@@ -54,8 +50,6 @@ const props = defineProps({
   },
 });
 
-const ANIMATION_DELAY_MS = 200;
-
 // Helper functions for styling
 const getGroupClasses = (index) => (index > 0 ? "mt-16" : "");
 
@@ -63,10 +57,6 @@ const getArticleClasses = (index) => [
   "relative animate-on-scroll",
   index % 2 === 0 ? "md:pr-1/2" : "md:pl-1/2 md:ml-auto",
 ];
-
-const postLoadingAnimation = (index) => ({
-  animationDelay: `${index * ANIMATION_DELAY_MS}ms`,
-});
 
 const postOffset = (index) => [
   "relative",

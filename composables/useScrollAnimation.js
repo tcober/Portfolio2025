@@ -6,18 +6,23 @@ export function useScrollAnimation(
 ) {
   const observer = shallowRef(null);
 
+  const STAGGER_MS = 60;
+  const MAX_STAGGER_STEPS = 3;
+
   const createObserver = () =>
     new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("in-view");
-          }
+      (entries, obs) => {
+        const visible = entries.filter((entry) => entry.isIntersecting);
+        visible.forEach((entry, index) => {
+          const step = Math.min(index, MAX_STAGGER_STEPS);
+          entry.target.style.transitionDelay = `${step * STAGGER_MS}ms`;
+          entry.target.classList.add("in-view");
+          obs.unobserve(entry.target);
         });
       },
       {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
+        threshold: 0,
+        rootMargin: "0px 0px -40px 0px",
       }
     );
 

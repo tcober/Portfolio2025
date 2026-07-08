@@ -1,36 +1,31 @@
 /**
  * Animation System
  *
- * Centralized animation definitions. Use these classes for consistent
- * scroll-triggered and transition animations across the site.
- *
- * Usage:
- * 1. Add .animate-on-scroll to elements
- * 2. Use IntersectionObserver to add .in-view class when visible
- * 3. Optionally add animation-delay via inline style
+ * Scroll-reveal via CSS transitions. Elements start hidden and slide/fade
+ * in as soon as the IntersectionObserver adds .in-view (see
+ * composables/useScrollAnimation.js, which also sets a small per-batch
+ * transition-delay for items that appear together).
  */
 
-/* Keyframe Definitions */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Scroll-triggered Animation Classes */
 @layer utilities {
   .animate-on-scroll {
     opacity: 0;
-    animation: fadeInUp var(--duration-animation) var(--ease-out) forwards;
-    animation-play-state: paused;
+    transform: translateY(12px);
+    transition:
+      opacity var(--duration-slow) var(--ease-out),
+      transform var(--duration-slow) var(--ease-out);
   }
 
   .animate-on-scroll.in-view {
-    animation-play-state: running;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-on-scroll {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
   }
 }

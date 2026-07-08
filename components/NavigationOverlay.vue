@@ -64,15 +64,15 @@ const menuOverlayClasses = computed(() =>
   props.isOpen ? "translate-x-0" : "-translate-x-full"
 );
 
-// Navigation link classes - active items get glow, inactive get blue hover
+// Navigation link classes - active items get the white highlight bar, inactive get blue hover
 const getLinkClasses = (path, isBold = false) => {
   const isActive = route.path === path;
-  const baseClasses = "block text-4xl text-white";
+  const baseClasses = "block text-4xl";
   const boldClass = isBold ? " font-bold" : "";
 
   return isActive
-    ? `${baseClasses}${boldClass} highlight-text-static`
-    : `${baseClasses}${boldClass} hover:text-blue-400`;
+    ? `${baseClasses}${boldClass} highlight-text`
+    : `${baseClasses}${boldClass} text-white hover:text-blue-400`;
 };
 
 const homeLinkClasses = computed(() => getLinkClasses("/", true));

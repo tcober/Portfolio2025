@@ -16,16 +16,6 @@
     transition-duration: var(--duration-normal);
   }
 
-  /* Glassmorphism card - frosted glass effect with gradient */
-  .glass-card-hover {
-    @apply bg-gradient-to-br from-slate-800/40 via-slate-700/40 to-slate-600/40;
-    @apply backdrop-blur-xl border border-slate-600/30 rounded-3xl;
-    @apply shadow-2xl shadow-blue-500/10;
-    @apply transition-all;
-    @apply hover:shadow-blue-500/20 hover:border-blue-400/30;
-    transition-duration: var(--duration-slow);
-  }
-
   /* Lightbox/overlay control buttons */
   .lightbox-btn {
     @apply text-white bg-black/60 hover:bg-black/80;
@@ -34,22 +24,9 @@
     transition-duration: var(--duration-normal);
   }
 
-  /* Highlight text - glowing emphasis effect */
-  .highlight-text,
-  .highlight-text-static {
-    @apply relative inline-block font-bold text-white;
-    text-shadow:
-      0 0 8px rgba(255, 255, 255, 0.6),
-      0 0 16px rgba(255, 255, 255, 0.4),
-      0 0 30px rgba(255, 255, 255, 0.25);
-    transition: all var(--duration-normal) var(--ease-default);
-  }
-
-  .highlight-text:hover {
-    transform: scale(1.05) rotate(-1deg);
-    text-shadow:
-      0 0 12px rgba(255, 255, 255, 0.8),
-      0 0 24px rgba(255, 255, 255, 0.6),
-      0 0 45px rgba(255, 255, 255, 0.4);
+  /* Highlight text - inverted white bar, the negative of the resume's black-bar heading */
+  .highlight-text {
+    @apply font-bold bg-white px-2 box-decoration-clone;
+    color: var(--color-bg-dark);
   }
 }

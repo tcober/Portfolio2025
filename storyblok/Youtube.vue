@@ -2,7 +2,7 @@
   <div
     v-if="videoId"
     ref="videoContainer"
-    class="relative w-full aspect-video overflow-hidden group rounded-3xl"
+    class="relative w-full aspect-video overflow-hidden group rounded-lg"
   >
     <!-- Facade: Show thumbnail until user clicks to play -->
     <button

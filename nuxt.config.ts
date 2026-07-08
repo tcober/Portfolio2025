@@ -73,7 +73,7 @@ export default defineNuxtConfig({
           content: "9Agzu25KvRoSoVnG79Lq6hpJUAQMJrlkA5Xn80Fgop4",
         },
         { name: "author", content: "Thomas Cober" },
-        { name: "theme-color", content: "#6366f1" },
+        { name: "theme-color", content: "#012987" },
         { name: "robots", content: "noai, noimageai" },
         { name: "googlebot", content: "noai, noimageai" },
       ],

@@ -108,7 +108,7 @@
           <!-- Core Skills -->
           <section>
             <h3
-              class="text-2xl font-bold text-white bg-black mb-4 px-2 py-1 [print-color-adjust:exact] mt-[2.4rem] print:mt-0"
+              class="text-2xl font-bold text-white bg-black mb-4 px-2 py-1 [print-color-adjust:exact] mt-[2.3rem]"
             >
               Core Skills
             </h3>

@@ -23,7 +23,7 @@
             :height="0"
             :modifiers="{ quality: 70 }"
             format="webp"
-            class="max-w-full max-h-[calc(100vh-2rem)] object-contain rounded-xl shadow-2xl"
+            class="max-w-full max-h-[calc(100vh-2rem)] object-contain rounded-lg shadow-2xl"
           />
 
           <!-- High-res overlay (loads in background, covers low-res when ready) -->
@@ -36,7 +36,7 @@
             :height="0"
             :modifiers="{ quality: 85 }"
             format="webp"
-            class="absolute inset-0 w-full h-full object-contain rounded-xl"
+            class="absolute inset-0 w-full h-full object-contain rounded-lg"
             @load="onHighResLoad"
           />
         </div>

@@ -13,8 +13,8 @@
           :src="image.filename"
           :alt="image.alt"
           :title="image.title"
-          :width="800"
-          :height="0"
+          :width="RENDER_WIDTH"
+          :height="image.renderHeight"
           :modifiers="{ quality: 70 }"
           format="webp"
           sizes="sm:100vw md:50vw lg:800px"
@@ -51,10 +51,22 @@ const props = defineProps({
   },
 });
 
+const RENDER_WIDTH = 800;
+
+// Storyblok asset filenames encode intrinsic dimensions (/f/space/800x600/...)
+const renderHeight = (filename) => {
+  const match = filename?.match(/\/(\d+)x(\d+)\//);
+  if (!match) return 0;
+  return Math.round((RENDER_WIDTH * Number(match[2])) / Number(match[1]));
+};
+
 // Handle the Multi-Assets field structure
-const images = computed(() => {
-  return props.blok.imageSet || [];
-});
+const images = computed(() =>
+  (props.blok.imageSet || []).map((image) => ({
+    ...image,
+    renderHeight: renderHeight(image.filename),
+  }))
+);
 
 // Image item classes based on count
 const imageClasses = computed(() => {

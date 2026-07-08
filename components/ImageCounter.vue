@@ -1,6 +1,6 @@
 <template>
   <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20">
-    <div class="bg-black bg-opacity-60 rounded-2xl px-4 py-2 backdrop-blur-sm">
+    <div class="bg-black bg-opacity-60 rounded-lg px-4 py-2 backdrop-blur-sm">
       <div class="text-white text-sm font-medium mb-2 text-center">
         {{ currentIndex + 1 }} / {{ total }}
       </div>
