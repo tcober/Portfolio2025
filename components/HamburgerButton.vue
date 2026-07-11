@@ -2,29 +2,30 @@
   <button
     @click="$emit('toggle')"
     :class="[
-      'fixed top-6 right-6 z-50 p-4 rounded-lg shadow-lg transition-all duration-300 backdrop-blur-sm',
+      'relative z-50 flex h-10 items-center gap-3 border px-3 transition-colors duration-300',
       menuButtonClasses,
     ]"
-    aria-label="Toggle Menu"
+    aria-label="Toggle menu"
+    aria-controls="site-menu"
+    :aria-expanded="isOpen"
   >
-    <div
-      class="w-6 h-6 flex flex-col justify-center items-center space-y-1.5"
-    >
+    <span class="text-xs font-black uppercase tracking-widest">Menu</span>
+    <div class="flex h-5 w-5 flex-col items-center justify-center space-y-1.5">
       <span
         :class="[
-          'block h-0.5 w-6 bg-white transition-all duration-300',
+          'block h-0.5 w-5 bg-current transition-all duration-300',
           topLineClasses,
         ]"
       ></span>
       <span
         :class="[
-          'block h-0.5 w-6 bg-white transition-all duration-300',
+          'block h-0.5 w-5 bg-current transition-all duration-300',
           middleLineClasses,
         ]"
       ></span>
       <span
         :class="[
-          'block h-0.5 w-6 bg-white transition-all duration-300',
+          'block h-0.5 w-5 bg-current transition-all duration-300',
           bottomLineClasses,
         ]"
       ></span>
@@ -45,18 +46,18 @@ defineEmits(["toggle"]);
 // Computed classes for menu button
 const menuButtonClasses = computed(() =>
   props.isOpen
-    ? "bg-blue-600 scale-110"
-    : "bg-slate-800 hover:bg-slate-700 hover:scale-105"
+    ? "border-blue-950 bg-blue-950 text-white"
+    : "border-white/60 bg-[var(--color-bg-dark)] text-white hover:border-white",
 );
 
 // Computed classes for hamburger icon lines
 const topLineClasses = computed(() =>
-  props.isOpen ? "rotate-45 translate-y-2" : ""
+  props.isOpen ? "rotate-45 translate-y-2" : "",
 );
 
 const middleLineClasses = computed(() => (props.isOpen ? "opacity-0" : ""));
 
 const bottomLineClasses = computed(() =>
-  props.isOpen ? "-rotate-45 -translate-y-2" : ""
+  props.isOpen ? "-rotate-45 -translate-y-2" : "",
 );
 </script>

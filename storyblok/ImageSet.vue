@@ -1,17 +1,20 @@
 <template>
   <div>
     <div class="image-gallery" :class="gridClasses">
-      <div
+      <button
         v-for="(image, index) in images"
         :key="image.id"
-        class="group overflow-hidden relative cursor-pointer"
+        type="button"
+        class="group relative overflow-hidden text-left"
         :class="imageClasses"
+        :aria-label="getOpenImageLabel(image, index)"
+        @click="openLightbox(index)"
       >
         <NuxtImg
           provider="storyblok"
           placeholder
           :src="image.filename"
-          :alt="image.alt"
+          :alt="getImageAlt(image)"
           :title="image.title"
           :width="RENDER_WIDTH"
           :height="image.renderHeight"
@@ -22,9 +25,8 @@
           :loading="isLcpCandidate && index === 0 ? 'eager' : 'lazy'"
           class="w-full transition-all duration-500 touch-manipulation relative z-10"
           :class="imageDisplayClasses"
-          @click="openLightbox(index)"
         />
-      </div>
+      </button>
     </div>
 
     <!-- Lightbox Component -->
@@ -52,6 +54,15 @@ const props = defineProps({
 });
 
 const RENDER_WIDTH = 800;
+
+const getImageAlt = (image) => image.alt || image.name || "";
+
+const getOpenImageLabel = (image, index) => {
+  const description = getImageAlt(image);
+  return description
+    ? `Open image ${index + 1}: ${description}`
+    : `Open image ${index + 1}`;
+};
 
 // Storyblok asset filenames encode intrinsic dimensions (/f/space/800x600/...)
 const renderHeight = (filename) => {

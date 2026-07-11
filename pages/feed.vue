@@ -1,11 +1,15 @@
 <template>
-  <div class="min-h-screen diamond-bg">
-    <main class="max-w-5xl mx-auto px-6 py-6">
+  <div class="min-h-screen timeline-page">
+    <main class="mx-auto max-w-5xl px-5 pb-16 pt-28 sm:px-8 sm:pb-24 sm:pt-32">
+      <header class="mb-14 border-b border-blue-950 pb-5 sm:mb-16">
+        <h1 class="timeline-title font-bold text-blue-950">Timeline</h1>
+      </header>
+
       <LoadingSpinner v-if="loading" />
 
       <WellFuck v-else-if="error" :error="error" />
 
-      <FeedFeed v-else class="mt-16" :posts="posts" />
+      <FeedFeed v-else :posts="posts" />
     </main>
   </div>
 </template>
@@ -62,10 +66,14 @@ const {
 </script>
 
 <style scoped>
-.diamond-bg {
-  background-color: #ffffff;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Crect x='10' y='0' width='7' height='7' transform='rotate(45 10 3.5)' fill='%23e5e5e5'/%3E%3C/svg%3E");
-  background-size: 20px 20px;
-  background-attachment: fixed;
+.timeline-page {
+  background-color: #f4f1e8;
+}
+
+.timeline-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.75rem, 6vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: 0;
 }
 </style>

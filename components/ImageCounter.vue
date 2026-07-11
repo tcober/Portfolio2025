@@ -10,10 +10,14 @@
           v-for="index in total"
           :key="index - 1"
           @click="$emit('navigate', index - 1)"
-          class="w-2 h-2 rounded-full transition-all duration-200 touch-manipulation"
+          type="button"
+          class="flex h-11 w-11 items-center justify-center rounded-full transition-all duration-200 touch-manipulation"
           :class="dotClass(index - 1)"
           :aria-label="`Go to image ${index}`"
-        ></button>
+          :aria-current="currentImageAriaCurrent(index - 1)"
+        >
+          <span class="h-2 w-2 rounded-full bg-current" aria-hidden="true"></span>
+        </button>
       </div>
     </div>
   </div>
@@ -35,7 +39,10 @@ defineEmits(["navigate"]);
 
 const dotClass = (index) => {
   return index === props.currentIndex
-    ? "bg-white"
-    : "bg-white bg-opacity-40 hover:bg-opacity-60";
+    ? "text-white"
+    : "text-white/40 hover:text-white/70";
 };
+
+const currentImageAriaCurrent = (index) =>
+  index === props.currentIndex ? "true" : undefined;
 </script>

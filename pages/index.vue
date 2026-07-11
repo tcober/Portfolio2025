@@ -1,51 +1,61 @@
 <template>
-  <div class="min-h-screen">
+  <div class="home-page min-h-screen overflow-hidden">
     <main
-      class="max-w-5xl mx-auto px-6 py-6 min-h-screen flex items-center"
+      class="home-shell mx-auto flex min-h-screen max-w-7xl flex-col px-5 pb-10 pt-28 sm:px-8 lg:px-12 lg:pb-12 lg:pt-32"
     >
-      <div class="w-full">
-        <div class="space-y-6">
-          <h1
-            class="inline-block text-7xl md:text-8xl font-bold text-white border-b-4 border-white pb-3 mb-4"
+      <div class="intro-grid flex flex-1 flex-col justify-center">
+        <div
+          class="intro-meta mb-7 flex items-center gap-3 text-xs font-bold uppercase sm:text-sm"
+        >
+          <span>Senior JavaScript engineer</span>
+          <span aria-hidden="true">/</span>
+          <span>Minneapolis</span>
+        </div>
+
+        <h1 class="intro-title font-bold text-white">
+          Thomas<br />Cober
+        </h1>
+
+        <div class="intro-copy mt-8 lg:mt-10">
+          <p
+            class="max-w-3xl text-xl font-medium leading-snug text-white sm:text-2xl lg:text-3xl"
           >
-            Hello!
-          </h1>
-
-          <div class="space-y-4">
-            <p class="text-white text-4xl md:text-5xl font-bold">
-              I'm <span class="highlight-text">Tom</span>,
-            </p>
-
-            <p
-              class="text-white/90 text-xl md:text-3xl leading-relaxed max-w-3xl"
-            >
-              a <span class="highlight-text">software developer</span> dude out
-              in the world. Right now I work for a bank making surprisingly cool
-              stuff.
-            </p>
-
-            <p
-              class="text-white/90 text-xl md:text-3xl leading-relaxed max-w-3xl"
-            >
-              I know a lot about
-              <span class="highlight-text">Javascript</span> but I am spending
-              the most time with <span class="highlight-text">Node</span> and
-              <span class="highlight-text">Vue</span> these days.
-            </p>
-
-            <p
-              class="text-white/90 text-xl md:text-3xl leading-relaxed max-w-3xl"
-            >
-              I have a wonderful partner and we are currently based in
-              <span class="highlight-text">Minneapolis</span>.
-            </p>
-
-            <p class="text-white text-3xl md:text-4xl font-bold mt-8">
-              Come on in and take a look around!
-            </p>
-          </div>
+            I’m a software developer dude making surprisingly cool things for a
+            bank. I work mostly with <span class="highlight-text">Vue</span>,
+            <span class="highlight-text">Node</span>, and
+            <span class="highlight-text">JavaScript</span>.
+          </p>
         </div>
       </div>
+
+      <nav
+        class="section-links mt-12 grid border-y border-white/30 sm:grid-cols-3"
+        aria-label="Explore the site"
+      >
+        <NuxtLink
+          to="/feed"
+          class="section-link group flex items-center justify-between px-4 py-4 sm:px-5"
+        >
+          <span>Timeline</span>
+          <span class="link-arrow" aria-hidden="true">↗</span>
+        </NuxtLink>
+        <NuxtLink
+          to="/resume"
+          class="section-link group flex items-center justify-between border-t border-white/30 px-4 py-4 sm:border-l sm:border-t-0 sm:px-5"
+        >
+          <span>Resume</span>
+          <span class="link-arrow" aria-hidden="true">↗</span>
+        </NuxtLink>
+        <a
+          href="https://github.com/tcober"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="section-link group flex items-center justify-between border-t border-white/30 px-4 py-4 sm:border-l sm:border-t-0 sm:px-5"
+        >
+          <span>GitHub</span>
+          <span class="link-arrow" aria-hidden="true">↗</span>
+        </a>
+      </nav>
     </main>
   </div>
 </template>
@@ -65,3 +75,50 @@ useSeoMeta({
   robots: "index, follow",
 });
 </script>
+
+<style scoped>
+.home-page {
+  background-color: var(--color-bg-dark);
+}
+
+.intro-meta {
+  color: rgb(255 255 255 / 0.68);
+  letter-spacing: 0.08em;
+}
+
+.section-link {
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.section-link:hover,
+.section-link:focus-visible {
+  color: var(--color-bg-dark);
+  background: #d7ff48;
+  outline: none;
+}
+
+.link-arrow {
+  font-size: 1.2rem;
+  transition: transform 180ms ease;
+}
+
+.section-link:hover .link-arrow,
+.section-link:focus-visible .link-arrow {
+  transform: translate(0.18rem, -0.18rem);
+}
+
+@media (max-width: 639px) {
+  .intro-meta span:last-child,
+  .intro-meta span:nth-last-child(2) {
+    display: none;
+  }
+}
+
+</style>

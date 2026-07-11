@@ -2,7 +2,12 @@
   <Teleport to="body">
     <div
       v-if="isOpen"
+      ref="dialogRef"
       class="fixed inset-0 z-[60] flex items-center justify-center bg-slate-900 bg-opacity-98 p-4 backdrop-blur-sm"
+      role="dialog"
+      aria-modal="true"
+      :aria-label="dialogLabel"
+      tabindex="-1"
       @click="handleBackdropClick"
     >
       <div
@@ -31,7 +36,8 @@
             v-show="highResLoaded"
             provider="storyblok"
             :src="currentImage?.filename"
-            :alt="currentImage?.alt || currentImage?.name"
+            alt=""
+            aria-hidden="true"
             :width="2400"
             :height="0"
             :modifiers="{ quality: 85 }"
@@ -47,7 +53,6 @@
           class="lightbox-btn absolute top-4 right-4 p-3 z-20"
           aria-label="Close lightbox"
           type="button"
-          tabindex="0"
         >
           <svg
             class="w-6 h-6"
@@ -97,7 +102,7 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted, onUnmounted } from "vue";
+import { computed, nextTick, ref, watch, onMounted, onUnmounted } from "vue";
 
 // ============================================
 // Props & Emits
@@ -127,6 +132,13 @@ const currentImage = ref(props.images[props.initialIndex] || null);
 const touchStartX = ref(0);
 const touchEndX = ref(0);
 const highResLoaded = ref(false);
+const dialogRef = ref(null);
+let previouslyFocusedElement = null;
+
+const dialogLabel = computed(() => {
+  const imageName = currentImage.value?.alt || currentImage.value?.name;
+  return imageName ? `Image viewer: ${imageName}` : "Image viewer";
+});
 
 const onHighResLoad = () => {
   highResLoaded.value = true;
@@ -166,10 +178,14 @@ const handleBackdropClick = (e) => {
 
 const handleOpenChange = (isOpen) => {
   if (isOpen) {
+    previouslyFocusedElement = document.activeElement;
     navigateTo(props.initialIndex);
     lockScroll();
+    nextTick(() => dialogRef.value?.querySelector("button")?.focus());
   } else {
     unlockScroll();
+    previouslyFocusedElement?.focus();
+    previouslyFocusedElement = null;
   }
 };
 
@@ -221,6 +237,19 @@ onMounted(() => {
     if (e.key === "Escape") close();
     if (e.key === "ArrowLeft") navigate(-1);
     if (e.key === "ArrowRight") navigate(1);
+    if (e.key === "Tab") {
+      const focusableElements = dialogRef.value?.querySelectorAll("button");
+      const firstElement = focusableElements?.[0];
+      const lastElement = focusableElements?.[focusableElements.length - 1];
+
+      if (e.shiftKey && document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement?.focus();
+      } else if (!e.shiftKey && document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement?.focus();
+      }
+    }
   };
 
   document.addEventListener("keydown", handleKeydown);

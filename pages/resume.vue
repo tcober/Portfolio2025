@@ -1,8 +1,12 @@
 <template>
-  <div class="min-h-screen bg-white pb-12 pt-24 print:pb-0 print:pt-12">
-    <div class="max-w-5xl mx-auto px-6">
-      <!-- Profile Section -->
-      <section class="w-full flex sm:flex-row gap-4 sm:gap-6 mb-4">
+  <div
+    class="resume-page min-h-screen bg-[#f4f1e8] pb-16 print:bg-white print:pb-0"
+  >
+    <!-- Profile Section -->
+    <section
+      class="resume-header px-6 pb-14 pt-32 text-white print:bg-white print:px-0 print:pb-4 print:pt-12 print:text-black"
+    >
+      <div class="mx-auto flex w-full max-w-5xl gap-5 sm:items-end sm:gap-8">
         <NuxtImg
           provider="storyblok"
           src="https://a-us.storyblok.com/f/1002617/800x800/3cde4e7148/profile-pic.jpg"
@@ -11,157 +15,161 @@
           height="128"
           :modifiers="{ quality: 80 }"
           format="webp"
-          class="w-32 h-32 sm:w-24 sm:h-24 rounded-full border-2 border-black object-cover flex-shrink-0"
+          class="resume-photo h-24 w-24 flex-shrink-0 object-cover sm:h-32 sm:w-32 print:h-24 print:w-24 print:rounded-full print:border-black"
         />
-        <div class="text-black flex-1 mt-1">
-          <h2 class="text-2xl sm:text-4xl font-bold">Thomas Cober</h2>
-          <p class="text-base sm:text-xl font-semibold">
+        <div class="min-w-0 flex-1">
+          <h1 class="resume-name font-bold">Thomas Cober</h1>
+          <p class="mt-2 text-base font-bold sm:text-xl print:mt-0">
             Senior JavaScript Engineer
           </p>
-          <div class="flex flex-col sm:flex-row sm:gap-8 text-sm">
+          <div
+            class="mt-2 flex flex-col text-sm text-white/75 sm:flex-row sm:gap-8 print:mt-0 print:text-black"
+          >
             <p>tcober5@gmail.com</p>
             <p>thomascober.com</p>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Main Content -->
-      <main
-        class="grid grid-cols-1 md:grid-cols-3 print:grid-cols-3 gap-8 md:gap-12"
-      >
-        <!-- Left Column (2/3) -->
-        <div class="md:col-span-2 print:col-span-2 space-y-4">
-          <!-- Experience -->
-          <section>
-            <h3
-              class="text-2xl print:text-lg font-bold text-black mb-2 pb-2 border-b-2 border-black"
+    <!-- Main Content -->
+    <main
+      class="mx-auto grid max-w-5xl grid-cols-1 gap-12 px-6 py-14 md:grid-cols-3 md:py-20 print:grid-cols-3 print:gap-12 print:py-0"
+    >
+      <!-- Left Column (2/3) -->
+      <div class="space-y-8 md:col-span-2 print:col-span-2 print:space-y-4">
+        <!-- Experience -->
+        <section>
+          <h2
+            class="section-heading mb-6 border-b-2 border-blue-950 pb-3 text-3xl font-bold text-blue-950 print:mb-2 print:border-black print:pb-2 print:text-lg print:text-black"
+          >
+            Experience
+          </h2>
+          <div class="space-y-6 print:space-y-4">
+            <article
+              v-for="exp in experiences"
+              :key="exp.company"
+              class="experience-item border-l-2 border-blue-900/20 pl-4 print:border-0 print:pl-0"
             >
-              Experience
-            </h3>
-            <div class="space-y-6 print:space-y-4">
-              <article v-for="exp in experiences" :key="exp.company">
-                <div class="flex justify-between items-start mb-2 print:mb-1">
-                  <div>
-                    <h4
-                      class="text-lg print:text-base font-bold text-black leading-tight mb-1"
-                    >
-                      {{ exp.company }}
-                    </h4>
-                    <p class="font-semibold text-black print:text-sm">
-                      {{ exp.title }}
-                    </p>
-                  </div>
-                  <span
-                    class="text-sm print:text-xs text-gray-700 italic text-nowrap"
+              <div class="flex justify-between items-start mb-2 print:mb-1">
+                <div>
+                  <h3
+                    class="text-lg print:text-base font-bold text-black leading-tight mb-1"
                   >
-                    {{ exp.period }}
-                  </span>
+                    {{ exp.company }}
+                  </h3>
+                  <p class="font-semibold text-black print:text-sm">
+                    {{ exp.title }}
+                  </p>
                 </div>
-                <ul
-                  v-if="exp.points"
-                  class="text-sm print:text-xs text-gray-800 space-y-1 list-disc pl-5"
+                <span
+                  class="text-sm print:text-xs text-gray-700 italic text-nowrap"
                 >
-                  <li v-for="(point, idx) in exp.points" :key="idx">
-                    {{ point }}
-                  </li>
-                </ul>
-                <p v-else class="text-sm print:text-xs text-gray-800">
-                  {{ exp.description }}
-                </p>
-              </article>
-            </div>
-          </section>
+                  {{ exp.period }}
+                </span>
+              </div>
+              <ul
+                v-if="exp.points"
+                class="text-sm print:text-xs text-gray-800 space-y-1 list-disc pl-5"
+              >
+                <li v-for="(point, idx) in exp.points" :key="idx">
+                  {{ point }}
+                </li>
+              </ul>
+              <p v-else class="text-sm print:text-xs text-gray-800">
+                {{ exp.description }}
+              </p>
+            </article>
+          </div>
+        </section>
 
-          <!-- Education -->
-          <section>
-            <h3
-              class="text-2xl print:text-lg font-bold text-black mb-2 pb-2 border-b-2 border-black"
-            >
-              Education
-            </h3>
-            <div class="space-y-4">
-              <article v-for="edu in education" :key="edu.school">
-                <div
-                  class="flex justify-between items-start mb-1 items-baseline"
+        <!-- Education -->
+        <section>
+          <h2
+            class="section-heading mb-6 border-b-2 border-blue-950 pb-3 text-3xl font-bold text-blue-950 print:mb-2 print:border-black print:pb-2 print:text-lg print:text-black"
+          >
+            Education
+          </h2>
+          <div class="space-y-4">
+            <article v-for="edu in education" :key="edu.school">
+              <div class="mb-1 flex items-baseline justify-between">
+                <h3
+                  class="text-lg print:text-base font-bold text-black leading-tight"
                 >
-                  <h4
-                    class="text-lg print:text-base font-bold text-black leading-tight"
-                  >
-                    {{ edu.school }}
-                  </h4>
-                  <span
-                    class="text-sm print:text-xs text-gray-700 italic text-nowrap"
-                  >
-                    {{ edu.period }}
-                  </span>
-                </div>
-                <p class="text-sm print:text-xs text-gray-800">
-                  {{ edu.degree }}
-                </p>
-              </article>
-            </div>
-          </section>
-        </div>
+                  {{ edu.school }}
+                </h3>
+                <span
+                  class="text-sm print:text-xs text-gray-700 italic text-nowrap"
+                >
+                  {{ edu.period }}
+                </span>
+              </div>
+              <p class="text-sm print:text-xs text-gray-800">
+                {{ edu.degree }}
+              </p>
+            </article>
+          </div>
+        </section>
+      </div>
 
-        <!-- Right Column (1/3) -->
-        <div class="md:col-span-1 print:col-span-1 space-y-6">
-          <!-- Core Skills -->
-          <section>
-            <h3
-              class="text-2xl font-bold text-white bg-black mb-4 px-2 py-1 [print-color-adjust:exact] mt-[2.3rem]"
-            >
-              Core Skills
-            </h3>
-            <div class="space-y-4 text-base print:text-base">
-              <div>
-                <p class="font-semibold text-black text-xl mb-2">Front-end</p>
-                <ul class="text-gray-800 list-none p-0 m-0 space-y-1">
-                  <li>Vue 3 / Nuxt</li>
-                  <li>Angular</li>
-                  <li>Javascript / TypeScript</li>
-                  <li>HTML / Markdown</li>
-                  <li>Tailwind / CSS</li>
-                </ul>
-              </div>
-              <div>
-                <p class="font-semibold text-black text-xl mb-2">Back-end</p>
-                <ul class="text-gray-800 list-none p-0 m-0 space-y-1">
-                  <li>Node.js</li>
-                  <li>Loopback</li>
-                  <li>Express</li>
-                </ul>
-              </div>
-              <div>
-                <p class="font-semibold text-black text-xl mb-2">Tooling</p>
-                <ul class="text-gray-800 list-none p-0 m-0 space-y-1">
-                  <li>Jest / Vitest</li>
-                  <li>Storybook</li>
-                  <li>Vite / Webpack</li>
-                  <li>GitHub Actions</li>
-                </ul>
-              </div>
-              <div>
-                <p class="font-semibold text-black text-xl mb-2">AI / LLM</p>
-                <ul class="text-gray-800 list-none p-0 m-0 space-y-1">
-                  <li>GitHub Copilot / Claude Code</li>
-                  <li>Agents / Subagents</li>
-                  <li>Workflows</li>
-                </ul>
-              </div>
-              <div>
-                <p class="font-semibold text-black text-xl mb-2">Practices</p>
-                <ul class="text-gray-800 list-none p-0 m-0 space-y-1">
-                  <li>Accessibility</li>
-                  <li>Design systems</li>
-                  <li>Performance tuning</li>
-                  <li>UX collaboration</li>
-                </ul>
-              </div>
+      <!-- Right Column (1/3) -->
+      <div class="space-y-6 md:col-span-1 print:col-span-1">
+        <!-- Core Skills -->
+        <section>
+          <h2
+            class="skills-heading mb-6 bg-blue-950 px-4 py-3 text-2xl font-bold text-white [print-color-adjust:exact] md:mt-[3.35rem] print:mb-4 print:mt-[2.3rem] print:bg-black print:px-2 print:py-1"
+          >
+            Core Skills
+          </h2>
+          <div class="space-y-4 text-base print:text-base">
+            <div>
+              <p class="font-semibold text-black text-xl mb-2">Front-end</p>
+              <ul class="text-gray-800 list-none p-0 m-0 space-y-1">
+                <li>Vue 3 / Nuxt</li>
+                <li>Angular</li>
+                <li>Javascript / TypeScript</li>
+                <li>HTML / Markdown</li>
+                <li>Tailwind / CSS</li>
+              </ul>
             </div>
-          </section>
-        </div>
-      </main>
-    </div>
+            <div>
+              <p class="font-semibold text-black text-xl mb-2">Back-end</p>
+              <ul class="text-gray-800 list-none p-0 m-0 space-y-1">
+                <li>Node.js</li>
+                <li>Loopback</li>
+                <li>Express</li>
+              </ul>
+            </div>
+            <div>
+              <p class="font-semibold text-black text-xl mb-2">Tooling</p>
+              <ul class="text-gray-800 list-none p-0 m-0 space-y-1">
+                <li>Jest / Vitest</li>
+                <li>Storybook</li>
+                <li>Vite / Webpack</li>
+                <li>GitHub Actions</li>
+              </ul>
+            </div>
+            <div>
+              <p class="font-semibold text-black text-xl mb-2">AI / LLM</p>
+              <ul class="text-gray-800 list-none p-0 m-0 space-y-1">
+                <li>GitHub Copilot / Claude Code</li>
+                <li>Agents / Subagents</li>
+                <li>Workflows</li>
+              </ul>
+            </div>
+            <div>
+              <p class="font-semibold text-black text-xl mb-2">Practices</p>
+              <ul class="text-gray-800 list-none p-0 m-0 space-y-1">
+                <li>Accessibility</li>
+                <li>Design systems</li>
+                <li>Performance tuning</li>
+                <li>UX collaboration</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
   </div>
 </template>
 
@@ -240,12 +248,58 @@ const education = [
 </script>
 
 <style scoped>
+.resume-header {
+  background-color: var(--color-bg-dark);
+}
+
+.resume-photo {
+  border: 2px solid white;
+  border-radius: 50%;
+  filter: grayscale(1) contrast(1.08);
+}
+
+.resume-name,
+.section-heading,
+.skills-heading {
+  font-family: Georgia, "Times New Roman", serif;
+  letter-spacing: 0;
+}
+
+.resume-name {
+  font-size: clamp(2.6rem, 7vw, 5.75rem);
+  line-height: 0.85;
+}
+
+.skills-heading {
+  box-shadow: none;
+}
+
 @page {
   margin: 0;
   padding: 0;
 }
 
 @media print {
+  .resume-header {
+    background: white;
+  }
+
+  .resume-photo {
+    filter: none;
+  }
+
+  .resume-name {
+    font-family: inherit;
+    font-size: 2.25rem;
+    line-height: 1;
+  }
+
+  .section-heading,
+  .skills-heading {
+    font-family: inherit;
+    box-shadow: none;
+  }
+
   @page {
     margin: -0.2in 0.2in -0.1in 0.2in;
   }
