@@ -4,7 +4,6 @@
 /* Component CSS imports */
 @import "./components.css";
 @import "./buttons.css";
-@import "./animations.css";
 @import "./print.css";
 
 @tailwind base;
@@ -42,6 +41,11 @@
 
   a {
     transition: color var(--duration-normal) var(--ease-default);
+  }
+
+  :where(a, button, [tabindex]):focus-visible {
+    outline: 3px solid currentColor;
+    outline-offset: 3px;
   }
 
   img {

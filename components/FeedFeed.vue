@@ -2,7 +2,7 @@
   <div class="relative mb-20">
     <!-- Timeline line -->
     <div
-      class="absolute left-1/2 transform -translate-x-1/2 h-full w-[1px] bg-gray-400 z-0"
+      class="absolute left-4 h-full w-[2px] bg-blue-900 md:left-1/2 md:-translate-x-1/2 z-0"
     ></div>
 
     <div>
@@ -12,9 +12,11 @@
         :class="getGroupClasses(groupIndex)"
       >
         <!-- Date header for the group -->
-        <div class="relative flex justify-center z-20 mb-6 animate-on-scroll">
+        <div
+          class="relative z-20 mb-7 flex justify-start pl-10 md:justify-center md:pl-0"
+        >
           <div
-            class="text-sm text-blue-900 bg-white px-2 py-1 whitespace-nowrap font-bold"
+            class="date-label whitespace-nowrap border-2 border-blue-900 bg-[#d7ff48] px-3 py-1 text-xs font-black uppercase text-blue-950"
           >
             {{ group.date }}
           </div>
@@ -29,7 +31,10 @@
           >
             <div :class="postOffset(group.startIndex + postIndex)">
               <div :class="getCardClass(post.content)">
-                <StoryblokComponent :blok="post.content" />
+                <StoryblokComponent
+                  :blok="post.content"
+                  :is-lcp-candidate="isFirstPost(group.startIndex + postIndex)"
+                />
               </div>
             </div>
           </article>
@@ -53,8 +58,10 @@ const props = defineProps({
 // Helper functions for styling
 const getGroupClasses = (index) => (index > 0 ? "mt-16" : "");
 
+const isFirstPost = (index) => index === 0;
+
 const getArticleClasses = (index) => [
-  "relative animate-on-scroll",
+  "relative pl-10 md:pl-0",
   index % 2 === 0 ? "md:pr-1/2" : "md:pl-1/2 md:ml-auto",
 ];
 
@@ -111,6 +118,11 @@ const groupedPosts = computed(() => {
   return groups;
 });
 
-// Scroll animation observer for posts
-useScrollAnimation(".animate-on-scroll", () => props.posts?.length || 0);
 </script>
+
+<style scoped>
+.date-label {
+  letter-spacing: 0.08em;
+  box-shadow: 4px 4px 0 #012987;
+}
+</style>

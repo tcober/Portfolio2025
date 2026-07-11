@@ -18,7 +18,8 @@
         :src="`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`"
         :alt="blok.title || 'YouTube video thumbnail'"
         class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-        loading="lazy"
+        :loading="thumbnailLoading"
+        :fetchpriority="thumbnailFetchPriority"
       />
       <!-- Play button overlay -->
       <div
@@ -58,12 +59,24 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+  isLcpCandidate: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const videoContainer = ref(null);
-const isVisible = ref(false);
+const isVisible = ref(props.isLcpCandidate);
 const isPlaying = ref(false);
 let observer = null;
+
+const thumbnailLoading = computed(() =>
+  props.isLcpCandidate ? "eager" : "lazy",
+);
+
+const thumbnailFetchPriority = computed(() =>
+  props.isLcpCandidate ? "high" : "auto",
+);
 
 // Extract video ID from various YouTube URL formats
 const videoId = computed(() => {
@@ -95,7 +108,9 @@ const playVideo = () => {
 
 // Lazy load thumbnail when it becomes visible
 onMounted(() => {
-  if (!import.meta.client || !videoContainer.value) return;
+  if (!import.meta.client || !videoContainer.value || props.isLcpCandidate) {
+    return;
+  }
 
   observer = new IntersectionObserver(
     (entries) => {
