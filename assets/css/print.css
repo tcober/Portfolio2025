@@ -24,9 +24,15 @@
   }
 
   /* Hide navigation elements when printing */
-  button[aria-label="Toggle Menu"],
+  button[aria-label="Toggle menu" i],
   nav {
     display: none !important;
+  }
+
+  /* Blueprint grids are screen-only */
+  .blueprint-grid-dark,
+  .blueprint-grid-light {
+    background-image: none !important;
   }
 }
 

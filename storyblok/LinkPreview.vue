@@ -3,7 +3,7 @@
     :href="blok.url"
     target="_blank"
     rel="noopener noreferrer"
-    class="flex h-32 rounded-lg border-2 border-black overflow-hidden hover:border-brand-600 transition-colors no-underline not-prose bg-white"
+    class="flex h-32 rounded-none border-2 border-brand-950 overflow-hidden hover:border-brand-600 transition-colors no-underline not-prose bg-white"
   >
     <img
       v-if="imageUrl"

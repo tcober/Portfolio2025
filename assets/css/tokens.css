@@ -15,18 +15,18 @@
      ============================================ */
 
   /* Brand Colors */
-  --color-primary: #1f5c3f;
-  --color-primary-hover: #194c34;
-  --color-primary-light: #2f7654;
-  --color-primary-dark: #143d2b;
+  --color-primary: #174832;
+  --color-primary-hover: #123a28;
+  --color-primary-light: #1d5a3f;
+  --color-primary-dark: #0e2f20;
 
   --color-secondary: #16a34a; /* green-600 */
   --color-secondary-hover: #15803d; /* green-700 */
 
   /* Dark brand surfaces */
-  --color-bg-dark: #1f5c3f;
-  --color-bg-dark-elevated: #194c34;
-  --color-bg-dark-surface: #143d2b;
+  --color-bg-dark: #174832;
+  --color-bg-dark-elevated: #123a28;
+  --color-bg-dark-surface: #0e2f20;
 
   /* Neutral Palette - Light backgrounds */
   --color-bg-light: #ffffff;
@@ -49,11 +49,18 @@
   --color-border-light-subtle: #f1f5f9; /* slate-100 */
 
   /* Accent/Highlight */
-  --color-accent: #1f5c3f;
+  --color-accent: #174832;
   --color-accent-pink: #f9a8d4; /* soft pink for dark surfaces */
   --color-accent-pink-strong: #db2777; /* deeper pink for light surfaces */
   --color-selection-bg: #fbcfe8;
-  --color-selection-text: #0c2b1d;
+  --color-selection-text: #071b12;
+
+  /* Blueprint grid + schematic marks */
+  --grid-line-dark-minor: rgb(255 255 255 / 0.05);
+  --grid-line-dark-major: rgb(255 255 255 / 0.11);
+  --grid-line-light-minor: rgb(23 72 50 / 0.05);
+  --grid-line-light-major: rgb(23 72 50 / 0.11);
+  --color-schematic-mark: rgb(23 72 50 / 0.4);
 
   /* ============================================
      TYPOGRAPHY TOKENS

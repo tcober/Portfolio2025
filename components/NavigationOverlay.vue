@@ -3,7 +3,7 @@
     <nav
       id="site-menu"
       :class="[
-        'site-menu fixed inset-0 z-40 transition-transform duration-500 ease-in-out',
+        'site-menu blueprint-grid-light fixed inset-0 z-40 transition-transform duration-500 ease-in-out',
         menuOverlayClasses,
       ]"
       :aria-hidden="menuAriaHidden"
@@ -75,7 +75,7 @@ const menuOverlayClasses = computed(() =>
 const menuAriaHidden = computed(() => String(!props.isOpen));
 const menuInert = computed(() => !props.isOpen);
 
-// Navigation link classes - active items get the white highlight bar, inactive get blue hover
+// Navigation link classes - active items stay inverted, inactive invert on hover
 const getLinkClasses = (path, isBold = false) => {
   const isActive = route.path === path;
   const baseClasses =

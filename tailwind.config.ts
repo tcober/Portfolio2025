@@ -8,11 +8,11 @@ export default <Partial<Config>>{
       colors: {
         brand: {
           50: "#f0fdf4",
-          600: "#1f5c3f",
-          700: "#194c34",
-          800: "#143d2b",
-          900: "#103323",
-          950: "#0c2b1d",
+          600: "#174832",
+          700: "#123a28",
+          800: "#0e2f20",
+          900: "#0a2418",
+          950: "#071b12",
         },
       },
       fontFamily: {
@@ -46,9 +46,9 @@ export default <Partial<Config>>{
               color: colors.gray[900],
             },
             a: {
-              color: "#1f5c3f",
+              color: "#174832",
               "&:hover": {
-                color: "#143d2b",
+                color: "#0e2f20",
               },
             },
           },

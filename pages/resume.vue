@@ -1,8 +1,10 @@
 <template>
-  <div class="resume-page min-h-screen bg-white pb-16 print:pb-0">
+  <div
+    class="resume-page blueprint-grid-light min-h-screen bg-white pb-16 print:pb-0"
+  >
     <!-- Profile Section -->
     <section
-      class="resume-header px-6 pb-14 pt-32 text-white print:bg-white print:px-0 print:pb-4 print:pt-12 print:text-black"
+      class="resume-header blueprint-grid-dark px-6 pb-14 pt-32 text-white print:bg-white print:px-0 print:pb-4 print:pt-12 print:text-black"
     >
       <div class="mx-auto flex w-full max-w-5xl gap-5 sm:items-end sm:gap-8">
         <NuxtImg
@@ -39,9 +41,14 @@
         <!-- Experience -->
         <section>
           <h2
-            class="section-heading mb-6 border-b-2 border-brand-950 pb-3 text-3xl font-bold text-brand-950 print:mb-2 print:border-black print:pb-2 print:text-lg print:text-black"
+            class="section-heading mb-6 flex items-baseline justify-between border-b-2 border-dashed border-brand-950 pb-3 text-3xl font-bold text-brand-950 print:mb-2 print:border-solid print:border-black print:pb-2 print:text-lg print:text-black"
           >
-            Experience
+            <span>Experience</span>
+            <span
+              class="font-mono text-xs font-normal tracking-widest text-brand-600/70 print:hidden"
+              aria-hidden="true"
+              >SEC. 01</span
+            >
           </h2>
           <div class="space-y-6 print:space-y-4">
             <article
@@ -86,9 +93,14 @@
         <!-- Education -->
         <section>
           <h2
-            class="section-heading mb-6 border-b-2 border-brand-950 pb-3 text-3xl font-bold text-brand-950 print:mb-2 print:border-black print:pb-2 print:text-lg print:text-black"
+            class="section-heading mb-6 flex items-baseline justify-between border-b-2 border-dashed border-brand-950 pb-3 text-3xl font-bold text-brand-950 print:mb-2 print:border-solid print:border-black print:pb-2 print:text-lg print:text-black"
           >
-            Education
+            <span>Education</span>
+            <span
+              class="font-mono text-xs font-normal tracking-widest text-brand-600/70 print:hidden"
+              aria-hidden="true"
+              >SEC. 02</span
+            >
           </h2>
           <div class="space-y-4">
             <article v-for="edu in education" :key="edu.school">
@@ -119,9 +131,14 @@
         <!-- Core Skills -->
         <section>
           <h2
-            class="skills-heading mb-6 bg-brand-950 px-4 py-3 text-2xl font-bold text-white [print-color-adjust:exact] md:mt-[3.35rem] print:mb-4 print:mt-[2.3rem] print:bg-black print:px-2 print:py-1"
+            class="skills-heading mb-6 flex items-baseline justify-between bg-brand-950 px-4 py-3 text-2xl font-bold text-white [print-color-adjust:exact] md:mt-[3.35rem] print:mb-4 print:mt-[2.3rem] print:bg-black print:px-2 print:py-1"
           >
-            Core Skills
+            <span>Core Skills</span>
+            <span
+              class="font-mono text-xs font-normal tracking-widest text-white/60 print:hidden"
+              aria-hidden="true"
+              >SEC. 03</span
+            >
           </h2>
           <div class="space-y-4 text-base print:text-base">
             <div>
@@ -250,10 +267,6 @@ const education = [
 </script>
 
 <style scoped>
-.resume-header {
-  background-color: var(--color-bg-dark);
-}
-
 .resume-photo {
   border: 2px solid white;
   border-radius: 50%;

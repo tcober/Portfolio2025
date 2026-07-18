@@ -2,7 +2,7 @@
   <div class="relative mb-20">
     <!-- Timeline line -->
     <div
-      class="absolute left-4 h-full w-[2px] bg-brand-900 md:left-1/2 md:-translate-x-1/2 z-0"
+      class="timeline-spine absolute left-4 h-full w-[2px] md:left-1/2 md:-translate-x-1/2 z-0"
     ></div>
 
     <div>
@@ -13,8 +13,14 @@
       >
         <!-- Date header for the group -->
         <div
-          class="relative z-20 mb-7 flex justify-start pl-10 md:justify-center md:pl-0"
+          class="relative z-20 mb-7 flex flex-col items-start gap-1 pl-10 md:items-center md:pl-0"
         >
+          <span
+            class="bg-white px-1.5 font-mono text-[10px] font-bold uppercase tracking-widest text-brand-600"
+            aria-hidden="true"
+          >
+            {{ group.figLabel }}
+          </span>
           <div
             class="date-label whitespace-nowrap border-2 border-brand-950 bg-brand-600 px-3 py-1 text-xs font-black uppercase text-white"
           >
@@ -100,6 +106,7 @@ const groupedPosts = computed(() => {
       currentDate = postDate;
       currentGroup = {
         date: postDate,
+        figLabel: `FIG. ${String(groups.length + 1).padStart(2, "0")}`,
         posts: [post],
         startIndex: globalIndex,
       };
@@ -122,6 +129,16 @@ const groupedPosts = computed(() => {
 <style scoped>
 .date-label {
   letter-spacing: 0.08em;
-  box-shadow: 4px 4px 0 #0c2b1d;
+  box-shadow: 4px 4px 0 #071b12;
+}
+
+.timeline-spine {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    #0a2418 0,
+    #0a2418 10px,
+    transparent 10px,
+    transparent 18px
+  );
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="home-page min-h-screen overflow-hidden">
+  <div class="home-page blueprint-grid-dark min-h-screen overflow-hidden">
     <main
       class="home-shell mx-auto flex min-h-screen max-w-7xl flex-col px-5 pb-10 pt-28 sm:px-8 lg:px-12 lg:pb-12 lg:pt-32"
     >
@@ -30,8 +30,15 @@
         </p>
       </div>
 
+      <p
+        class="mt-12 font-mono text-[10px] font-bold uppercase tracking-widest text-white/40"
+        aria-hidden="true"
+      >
+        FIG. 01 — NAVIGATION
+      </p>
+
       <nav
-        class="section-links mt-12 grid divide-y divide-white/30 border-y border-white/30 sm:grid-cols-3 sm:divide-x sm:divide-y-0"
+        class="section-links mt-2 grid divide-y divide-dashed divide-white/30 border-y border-dashed border-white/30 sm:grid-cols-3 sm:divide-x sm:divide-y-0"
         aria-label="Explore the site"
       >
         <NuxtLink
@@ -79,10 +86,6 @@ useSeoMeta({
 </script>
 
 <style scoped>
-.home-page {
-  background-color: var(--color-bg-dark);
-}
-
 .intro-title {
   font-family: var(--font-display);
   font-size: clamp(2.75rem, 10vw, 8.5rem);

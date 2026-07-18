@@ -10,11 +10,96 @@
  */
 
 @layer components {
+  /* Blueprint drafting grids - minor cells at 24px, major lines every 96px */
+  .blueprint-grid-dark {
+    background-color: var(--color-bg-dark);
+    background-image:
+      linear-gradient(
+        to bottom,
+        var(--grid-line-dark-major) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to right,
+        var(--grid-line-dark-major) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        var(--grid-line-dark-minor) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to right,
+        var(--grid-line-dark-minor) 1px,
+        transparent 1px
+      );
+    background-size:
+      96px 96px,
+      96px 96px,
+      24px 24px,
+      24px 24px;
+  }
+
+  .blueprint-grid-light {
+    background-color: white;
+    background-image:
+      linear-gradient(
+        to bottom,
+        var(--grid-line-light-major) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to right,
+        var(--grid-line-light-major) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        var(--grid-line-light-minor) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to right,
+        var(--grid-line-light-minor) 1px,
+        transparent 1px
+      );
+    background-size:
+      96px 96px,
+      96px 96px,
+      24px 24px,
+      24px 24px;
+  }
+
   /* Card - Reusable container with elevation */
   .card {
-    @apply rounded-none border-2 border-brand-950 bg-white p-3 md:p-6 transition-all;
-    box-shadow: 6px 6px 0 rgb(12 43 29 / 0.16);
+    @apply relative rounded-none border-2 border-brand-950 bg-white p-3 md:p-6 transition-all;
+    box-shadow: 6px 6px 0 rgb(7 27 18 / 0.16);
     transition-duration: var(--duration-normal);
+  }
+
+  /* Registration marks in opposite corners of cards */
+  .card::before,
+  .card::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    pointer-events: none;
+  }
+
+  .card::before {
+    top: 3px;
+    left: 3px;
+    border-top: 2px solid var(--color-schematic-mark);
+    border-left: 2px solid var(--color-schematic-mark);
+  }
+
+  .card::after {
+    bottom: 3px;
+    right: 3px;
+    border-bottom: 2px solid var(--color-schematic-mark);
+    border-right: 2px solid var(--color-schematic-mark);
   }
 
   /* Lightbox/overlay control buttons */
@@ -35,8 +120,8 @@
   }
 
   .site-menu {
-    color: #0c2b1d;
-    background: white;
+    color: #071b12;
+    background-color: white;
   }
 
   .menu-link {
