@@ -3,7 +3,7 @@
     <div
       v-if="isOpen"
       ref="dialogRef"
-      class="fixed inset-0 z-[60] flex items-center justify-center bg-slate-900 bg-opacity-98 p-4 backdrop-blur-sm"
+      class="fixed inset-0 z-[60] flex items-center justify-center bg-slate-900 bg-opacity-98 p-4"
       role="dialog"
       aria-modal="true"
       :aria-label="dialogLabel"
@@ -24,26 +24,42 @@
             provider="storyblok"
             :src="currentImage?.filename"
             :alt="currentImage?.alt || currentImage?.name"
-            :width="800"
-            :height="0"
+            :width="LOW_RES_WIDTH"
+            :height="lowResHeight"
             :modifiers="{ quality: 70 }"
             format="webp"
             class="max-w-full max-h-[calc(100vh-2rem)] object-contain rounded-lg shadow-2xl"
           />
 
-          <!-- High-res overlay (loads in background, covers low-res when ready) -->
+          <!-- High-res overlay (deferred until navigation settles, covers low-res when ready) -->
           <NuxtImg
+            v-if="highResImage"
             v-show="highResLoaded"
             provider="storyblok"
-            :src="currentImage?.filename"
+            :src="highResImage.filename"
             alt=""
             aria-hidden="true"
-            :width="2400"
-            :height="0"
+            :width="HIGH_RES_WIDTH"
+            :height="highResHeight"
             :modifiers="{ quality: 85 }"
             format="webp"
             class="absolute inset-0 w-full h-full object-contain rounded-lg"
             @load="onHighResLoad"
+          />
+        </div>
+
+        <!-- Hidden copies of adjacent images so the browser caches them before navigation -->
+        <div class="hidden" aria-hidden="true">
+          <NuxtImg
+            v-for="image in neighborImages"
+            :key="image.id"
+            provider="storyblok"
+            :src="image.filename"
+            alt=""
+            :width="LOW_RES_WIDTH"
+            :height="image.renderHeight"
+            :modifiers="{ quality: 70 }"
+            format="webp"
           />
         </div>
 
@@ -127,21 +143,48 @@ const emit = defineEmits(["close", "update:isOpen"]);
 // ============================================
 // State
 // ============================================
+const LOW_RES_WIDTH = 800;
+const HIGH_RES_WIDTH = 2400;
+const HIGH_RES_DELAY_MS = 250;
+
 const currentIndex = ref(props.initialIndex);
 const currentImage = ref(props.images[props.initialIndex] || null);
+const highResImage = ref(null);
 const touchStartX = ref(0);
 const touchEndX = ref(0);
 const highResLoaded = ref(false);
 const dialogRef = ref(null);
 let previouslyFocusedElement = null;
+let highResTimer = null;
 
 const dialogLabel = computed(() => {
   const imageName = currentImage.value?.alt || currentImage.value?.name;
   return imageName ? `Image viewer: ${imageName}` : "Image viewer";
 });
 
+// Heights derived from the intrinsic dimensions ImageSet parses from the filename
+const lowResHeight = computed(() => currentImage.value?.renderHeight || 0);
+const highResHeight = computed(
+  () => lowResHeight.value * (HIGH_RES_WIDTH / LOW_RES_WIDTH),
+);
+
+const neighborImages = computed(() =>
+  [currentIndex.value - 1, currentIndex.value + 1]
+    .filter((index) => index >= 0 && index < props.images.length)
+    .map((index) => props.images[index]),
+);
+
 const onHighResLoad = () => {
   highResLoaded.value = true;
+};
+
+// Defer the heavy high-res fetch until the user pauses on an image,
+// so rapid flipping doesn't queue up competing multi-MB downloads
+const scheduleHighRes = () => {
+  clearTimeout(highResTimer);
+  highResTimer = setTimeout(() => {
+    highResImage.value = currentImage.value;
+  }, HIGH_RES_DELAY_MS);
 };
 
 // ============================================
@@ -149,9 +192,11 @@ const onHighResLoad = () => {
 // ============================================
 const navigateTo = (index) => {
   if (index >= 0 && index < props.images.length) {
-    highResLoaded.value = false; // Reset for new image
+    highResLoaded.value = false;
+    highResImage.value = null;
     currentIndex.value = index;
     currentImage.value = props.images[index] || null;
+    scheduleHighRes();
   }
 };
 
@@ -183,6 +228,7 @@ const handleOpenChange = (isOpen) => {
     lockScroll();
     nextTick(() => dialogRef.value?.querySelector("button")?.focus());
   } else {
+    clearTimeout(highResTimer);
     unlockScroll();
     previouslyFocusedElement?.focus();
     previouslyFocusedElement = null;
@@ -256,6 +302,7 @@ onMounted(() => {
 
   onUnmounted(() => {
     document.removeEventListener("keydown", handleKeydown);
+    clearTimeout(highResTimer);
     unlockScroll();
   });
 });
