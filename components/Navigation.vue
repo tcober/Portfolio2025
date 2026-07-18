@@ -1,7 +1,7 @@
 <template>
   <div
     ref="navigationRoot"
-    class="fixed inset-x-0 top-0 z-50 flex items-center justify-end px-5 py-5 sm:px-8 lg:px-12"
+    class="site-nav fixed inset-x-0 top-0 z-50 flex items-center justify-end px-5 py-5 sm:px-8 lg:px-12"
   >
     <HamburgerButton :is-open="menuOpen" @toggle="toggleMenu" />
 
@@ -55,12 +55,14 @@ const handleKeydown = (event) => {
   }
 };
 
+const { lock, unlock } = useScrollLock();
+
 watch(menuOpen, (isOpen) => {
   if (isOpen) {
-    document.body.classList.add("menu-open");
+    lock();
     nextTick(() => document.querySelector("#site-menu a")?.focus());
   } else {
-    document.body.classList.remove("menu-open");
+    unlock();
     navigationRoot.value?.querySelector("button")?.focus();
   }
 });
@@ -71,6 +73,6 @@ onMounted(() => {
 
 onUnmounted(() => {
   document.removeEventListener("keydown", handleKeydown);
-  document.body.classList.remove("menu-open");
+  unlock();
 });
 </script>

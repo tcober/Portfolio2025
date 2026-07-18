@@ -142,7 +142,15 @@
     outline: none;
   }
 
-  body.menu-open {
+  /* Scroll lock (menu / lightbox). Reserve the scrollbar's width — set by
+     useScrollLock as --scrollbar-width — so hiding it doesn't shift the page. */
+  html.scroll-locked {
     overflow: hidden;
+    padding-right: var(--scrollbar-width, 0px);
+  }
+
+  /* The header is anchored to the viewport, so compensate it the same amount. */
+  html.scroll-locked .site-nav {
+    right: var(--scrollbar-width, 0px);
   }
 }

@@ -207,8 +207,7 @@ const navigate = (direction) => {
 // ============================================
 // Open / Close
 // ============================================
-const lockScroll = () => document.body.classList.add("scroll-lock");
-const unlockScroll = () => document.body.classList.remove("scroll-lock");
+const { lock: lockScroll, unlock: unlockScroll } = useScrollLock();
 
 const close = () => {
   emit("close");
@@ -315,10 +314,5 @@ onMounted(() => {
     min-width: 44px;
     min-height: 44px;
   }
-}
-
-/* Prevent body scroll when lightbox is open */
-:global(body.scroll-lock) {
-  overflow: hidden;
 }
 </style>
