@@ -50,7 +50,9 @@
 
   /* Accent/Highlight */
   --color-accent: #1f5c3f;
-  --color-selection-bg: #bbf7d0;
+  --color-accent-pink: #f9a8d4; /* soft pink for dark surfaces */
+  --color-accent-pink-strong: #db2777; /* deeper pink for light surfaces */
+  --color-selection-bg: #fbcfe8;
   --color-selection-text: #0c2b1d;
 
   /* ============================================

@@ -29,7 +29,7 @@
     @apply font-bold;
     color: white;
     text-decoration: underline;
-    text-decoration-color: white;
+    text-decoration-color: var(--color-accent-pink);
     text-decoration-thickness: 0.14em;
     text-underline-offset: 0.12em;
   }

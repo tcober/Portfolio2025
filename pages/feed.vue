@@ -2,7 +2,9 @@
   <div class="min-h-screen timeline-page">
     <main class="mx-auto max-w-5xl px-5 pb-16 pt-28 sm:px-8 sm:pb-24 sm:pt-32">
       <header class="mb-14 border-b border-brand-950 pb-5 sm:mb-16">
-        <h1 class="timeline-title font-bold text-brand-950">Timeline</h1>
+        <h1 class="timeline-title font-bold text-brand-950">
+          Timeline<span class="accent-mark">.</span>
+        </h1>
       </header>
 
       <LoadingSpinner v-if="loading" />
@@ -75,5 +77,9 @@ const {
   font-size: clamp(2.75rem, 6vw, 4.5rem);
   line-height: 1;
   letter-spacing: 0;
+}
+
+.accent-mark {
+  color: var(--color-accent-pink-strong);
 }
 </style>
