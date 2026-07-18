@@ -5,17 +5,19 @@ import typography from "@tailwindcss/typography";
 export default <Partial<Config>>{
   theme: {
     extend: {
+      colors: {
+        brand: {
+          50: "#f0fdf4",
+          600: "#1f5c3f",
+          700: "#194c34",
+          800: "#143d2b",
+          900: "#103323",
+          950: "#0c2b1d",
+        },
+      },
       fontFamily: {
-        serif: ["ui-serif", "Georgia", "Cambria", "Times New Roman", "serif"],
-        sans: [
-          "ui-sans-serif",
-          "system-ui",
-          "-apple-system",
-          "BlinkMacSystemFont",
-          "Segoe UI",
-          "Roboto",
-          "sans-serif",
-        ],
+        serif: ["Elms Sans", "ui-sans-serif", "system-ui", "sans-serif"],
+        sans: ["Elms Sans", "ui-sans-serif", "system-ui", "sans-serif"],
         mono: [
           "ui-monospace",
           "SFMono-Regular",
@@ -24,13 +26,7 @@ export default <Partial<Config>>{
           "Consolas",
           "monospace",
         ],
-        display: [
-          "ui-sans-serif",
-          "system-ui",
-          "-apple-system",
-          "BlinkMacSystemFont",
-          "sans-serif",
-        ],
+        display: ["Elms Sans", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       typography: {
         DEFAULT: {
@@ -50,9 +46,9 @@ export default <Partial<Config>>{
               color: colors.gray[900],
             },
             a: {
-              color: colors.blue[600],
+              color: "#1f5c3f",
               "&:hover": {
-                color: colors.blue[800],
+                color: "#143d2b",
               },
             },
           },

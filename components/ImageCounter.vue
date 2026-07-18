@@ -16,7 +16,10 @@
           :aria-label="`Go to image ${index}`"
           :aria-current="currentImageAriaCurrent(index - 1)"
         >
-          <span class="h-2 w-2 rounded-full bg-current" aria-hidden="true"></span>
+          <span
+            class="h-2 w-2 rounded-full bg-current"
+            aria-hidden="true"
+          ></span>
         </button>
       </div>
     </div>

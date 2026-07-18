@@ -3,7 +3,7 @@
     :href="blok.url"
     target="_blank"
     rel="noopener noreferrer"
-    class="flex h-32 rounded-lg border-2 border-black overflow-hidden hover:border-blue-600 transition-colors no-underline not-prose bg-white"
+    class="flex h-32 rounded-lg border-2 border-black overflow-hidden hover:border-brand-600 transition-colors no-underline not-prose bg-white"
   >
     <img
       v-if="imageUrl"
@@ -13,7 +13,7 @@
     />
     <div
       v-if="!imageUrl"
-      class="w-32 flex-shrink-0 bg-blue-700 flex items-center justify-center text-2xl font-bold text-white"
+      class="w-32 flex-shrink-0 bg-brand-700 flex items-center justify-center text-2xl font-bold text-white"
     >
       {{ siteInitial }}
     </div>

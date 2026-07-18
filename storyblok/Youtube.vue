@@ -44,7 +44,14 @@
       v-if="isPlaying"
       :src="`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&autoplay=1`"
       :title="blok.title || 'YouTube video'"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allow="
+        accelerometer;
+        autoplay;
+        clipboard-write;
+        encrypted-media;
+        gyroscope;
+        picture-in-picture;
+      "
       allowfullscreen
       class="absolute inset-0 w-full h-full border-0"
     ></iframe>
@@ -123,7 +130,7 @@ onMounted(() => {
     },
     {
       rootMargin: "50px",
-    }
+    },
   );
 
   observer.observe(videoContainer.value);

@@ -1,8 +1,8 @@
 <template>
   <div class="min-h-screen timeline-page">
     <main class="mx-auto max-w-5xl px-5 pb-16 pt-28 sm:px-8 sm:pb-24 sm:pt-32">
-      <header class="mb-14 border-b border-blue-950 pb-5 sm:mb-16">
-        <h1 class="timeline-title font-bold text-blue-950">Timeline</h1>
+      <header class="mb-14 border-b border-brand-950 pb-5 sm:mb-16">
+        <h1 class="timeline-title font-bold text-brand-950">Timeline</h1>
       </header>
 
       <LoadingSpinner v-if="loading" />
@@ -67,11 +67,11 @@ const {
 
 <style scoped>
 .timeline-page {
-  background-color: #f4f1e8;
+  background-color: white;
 }
 
 .timeline-title {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-display);
   font-size: clamp(2.75rem, 6vw, 4.5rem);
   line-height: 1;
   letter-spacing: 0;

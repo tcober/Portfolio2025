@@ -15,23 +15,23 @@
      ============================================ */
 
   /* Brand Colors */
-  --color-primary: #2563eb; /* blue-600 */
-  --color-primary-hover: #1d4ed8; /* blue-700 */
-  --color-primary-light: #3b82f6; /* blue-500 */
-  --color-primary-dark: #1e40af; /* blue-800 */
+  --color-primary: #1f5c3f;
+  --color-primary-hover: #194c34;
+  --color-primary-light: #2f7654;
+  --color-primary-dark: #143d2b;
 
   --color-secondary: #16a34a; /* green-600 */
   --color-secondary-hover: #15803d; /* green-700 */
 
-  /* Neutral Palette - Slate for dark backgrounds */
-  --color-bg-dark: #012987; /* deep brand blue */
-  --color-bg-dark-elevated: #1e293b; /* slate-800 */
-  --color-bg-dark-surface: #334155; /* slate-700 */
+  /* Dark brand surfaces */
+  --color-bg-dark: #1f5c3f;
+  --color-bg-dark-elevated: #194c34;
+  --color-bg-dark-surface: #143d2b;
 
   /* Neutral Palette - Light backgrounds */
   --color-bg-light: #ffffff;
-  --color-bg-light-elevated: #f8fafc; /* slate-50 */
-  --color-bg-light-surface: #f1f5f9; /* slate-100 */
+  --color-bg-light-elevated: #ffffff;
+  --color-bg-light-surface: #ffffff;
 
   /* Text Colors */
   --color-text-dark: #f1f5f9; /* slate-100 - for dark backgrounds */
@@ -49,20 +49,18 @@
   --color-border-light-subtle: #f1f5f9; /* slate-100 */
 
   /* Accent/Highlight */
-  --color-accent: #2563eb;
-  --color-selection-bg: #bfdbfe; /* blue-200 */
-  --color-selection-text: #1e3a8a; /* blue-900 */
+  --color-accent: #1f5c3f;
+  --color-selection-bg: #bbf7d0;
+  --color-selection-text: #0c2b1d;
 
   /* ============================================
      TYPOGRAPHY TOKENS
      ============================================ */
 
   /* Font Families */
-  --font-display: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    sans-serif;
-  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", serif;
-  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, sans-serif;
+  --font-display: "Elms Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Elms Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Elms Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   /* Font Sizes (using clamp for fluid typography) */
@@ -123,12 +121,12 @@
 
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
-    0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1),
-    0 8px 10px -6px rgb(0 0 0 / 0.1);
-  --shadow-elevated: 0 10px 25px -3px rgb(0 0 0 / 0.1),
-    0 4px 6px -2px rgb(0 0 0 / 0.05);
+  --shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl:
+    0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-elevated:
+    0 10px 25px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.05);
 
   /* ============================================
      BORDER RADIUS TOKENS

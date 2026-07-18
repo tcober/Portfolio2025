@@ -46,7 +46,7 @@ defineEmits(["toggle"]);
 // Computed classes for menu button
 const menuButtonClasses = computed(() =>
   props.isOpen
-    ? "border-blue-950 bg-blue-950 text-white"
+    ? "border-brand-950 bg-brand-950 text-white"
     : "border-white/60 bg-[var(--color-bg-dark)] text-white hover:border-white",
 );
 

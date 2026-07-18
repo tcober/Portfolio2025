@@ -16,7 +16,7 @@
         class="mx-auto flex h-full max-w-7xl flex-col justify-center px-6 py-24 sm:px-12"
       >
         <div
-          class="menu-links border-t border-blue-950 font-bold"
+          class="menu-links border-t border-brand-950 font-bold"
           role="navigation"
           aria-label="Primary navigation"
         >
@@ -45,7 +45,7 @@
             target="_blank"
             rel="noopener noreferrer"
             @click="$emit('navigate')"
-            class="menu-link block border-b border-blue-950 text-blue-950 hover:bg-blue-950 hover:text-white"
+            class="menu-link block border-b border-brand-950 text-brand-950 hover:bg-brand-950 hover:text-white"
           >
             GitHub
           </a>
@@ -79,12 +79,12 @@ const menuInert = computed(() => !props.isOpen);
 const getLinkClasses = (path, isBold = false) => {
   const isActive = route.path === path;
   const baseClasses =
-    "menu-link block border-b border-blue-950 text-blue-950";
+    "menu-link block border-b border-brand-950 text-brand-950";
   const boldClass = isBold ? " font-bold" : "";
 
   return isActive
-    ? `${baseClasses}${boldClass} bg-blue-950 text-white`
-    : `${baseClasses}${boldClass} hover:bg-blue-950 hover:text-white`;
+    ? `${baseClasses}${boldClass} bg-brand-950 text-white`
+    : `${baseClasses}${boldClass} hover:bg-brand-950 hover:text-white`;
 };
 
 const homeLinkClasses = computed(() => getLinkClasses("/", true));

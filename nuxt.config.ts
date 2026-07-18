@@ -73,11 +73,24 @@ export default defineNuxtConfig({
           content: "9Agzu25KvRoSoVnG79Lq6hpJUAQMJrlkA5Xn80Fgop4",
         },
         { name: "author", content: "Thomas Cober" },
-        { name: "theme-color", content: "#012987" },
+        { name: "theme-color", content: "#1f5c3f" },
         { name: "robots", content: "noai, noimageai" },
         { name: "googlebot", content: "noai, noimageai" },
       ],
       link: [
+        {
+          rel: "preconnect",
+          href: "https://fonts.googleapis.com",
+        },
+        {
+          rel: "preconnect",
+          href: "https://fonts.gstatic.com",
+          crossorigin: "anonymous",
+        },
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap",
+        },
         {
           rel: "icon",
           type: "image/png",
@@ -106,7 +119,7 @@ export default defineNuxtConfig({
   // Enable compression and optimization
   nitro: {
     compressPublicAssets: true,
-    preset: 'netlify',
+    preset: "netlify",
   },
 
   // Build optimizations

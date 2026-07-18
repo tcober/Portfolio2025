@@ -225,7 +225,7 @@ watch(
     if (props.isOpen) {
       navigateTo(newIndex);
     }
-  }
+  },
 );
 
 // ============================================
