@@ -8,13 +8,15 @@
           class="intro-meta flex flex-wrap items-center gap-3 text-xs font-bold uppercase sm:text-sm"
         >
           <span>Senior JavaScript engineer</span>
-          <span aria-hidden="true">/</span>
+          <span class="accent-mark" aria-hidden="true">/</span>
           <span>Minneapolis</span>
         </p>
 
         <h1 class="intro-title mt-5 font-bold text-white">
           <span class="block">Hello, I’m</span>
-          <span class="block">Thomas Cober.</span>
+          <span class="block"
+            >Thomas Cober<span class="accent-mark">.</span></span
+          >
         </h1>
 
         <p
@@ -93,6 +95,10 @@ useSeoMeta({
   letter-spacing: 0.08em;
 }
 
+.accent-mark {
+  color: var(--color-accent-pink);
+}
+
 .section-link {
   color: white;
   font-size: 0.8rem;
@@ -118,6 +124,7 @@ useSeoMeta({
 
 .section-link:hover .link-arrow,
 .section-link:focus-visible .link-arrow {
+  color: var(--color-accent-pink-strong);
   transform: translate(0.18rem, -0.18rem);
 }
 </style>
