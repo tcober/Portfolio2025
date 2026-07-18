@@ -3,33 +3,33 @@
     <main
       class="home-shell mx-auto flex min-h-screen max-w-7xl flex-col px-5 pb-10 pt-28 sm:px-8 lg:px-12 lg:pb-12 lg:pt-32"
     >
-      <div class="intro-grid flex flex-1 flex-col justify-center">
-        <div
-          class="intro-meta mb-7 flex items-center gap-3 text-xs font-bold uppercase sm:text-sm"
+      <div class="flex flex-1 flex-col justify-center">
+        <p
+          class="intro-meta flex flex-wrap items-center gap-3 text-xs font-bold uppercase sm:text-sm"
         >
           <span>Senior JavaScript engineer</span>
           <span aria-hidden="true">/</span>
           <span>Minneapolis</span>
-        </div>
+        </p>
 
-        <h1 class="intro-title font-bold text-white">
-          Thomas<br />Cober
+        <h1 class="intro-title mt-5 font-bold text-white">
+          <span class="block">Hello, I’m</span>
+          <span class="block">Thomas Cober.</span>
         </h1>
 
-        <div class="intro-copy mt-8 lg:mt-10">
-          <p
-            class="max-w-3xl text-xl font-medium leading-snug text-white sm:text-2xl lg:text-3xl"
-          >
-            I’m a software developer dude making surprisingly cool things for a
-            bank. I work mostly with <span class="highlight-text">Vue</span>,
-            <span class="highlight-text">Node</span>, and
-            <span class="highlight-text">JavaScript</span>.
-          </p>
-        </div>
+        <p
+          class="intro-copy mt-8 max-w-2xl text-xl font-medium leading-snug text-white sm:text-2xl lg:mt-10 lg:max-w-xl lg:self-end lg:text-3xl"
+        >
+          I’m a software developer dude making surprisingly cool things for a
+          bank. I work mostly with
+          <span class="highlight-text">Vue</span>,
+          <span class="highlight-text">Node</span>, and
+          <span class="highlight-text">JavaScript</span>.
+        </p>
       </div>
 
       <nav
-        class="section-links mt-12 grid border-y border-white/30 sm:grid-cols-3"
+        class="section-links mt-12 grid divide-y divide-white/30 border-y border-white/30 sm:grid-cols-3 sm:divide-x sm:divide-y-0"
         aria-label="Explore the site"
       >
         <NuxtLink
@@ -41,7 +41,7 @@
         </NuxtLink>
         <NuxtLink
           to="/resume"
-          class="section-link group flex items-center justify-between border-t border-white/30 px-4 py-4 sm:border-l sm:border-t-0 sm:px-5"
+          class="section-link group flex items-center justify-between px-4 py-4 sm:px-5"
         >
           <span>Resume</span>
           <span class="link-arrow" aria-hidden="true">↗</span>
@@ -50,7 +50,7 @@
           href="https://github.com/tcober"
           target="_blank"
           rel="noopener noreferrer"
-          class="section-link group flex items-center justify-between border-t border-white/30 px-4 py-4 sm:border-l sm:border-t-0 sm:px-5"
+          class="section-link group flex items-center justify-between px-4 py-4 sm:px-5"
         >
           <span>GitHub</span>
           <span class="link-arrow" aria-hidden="true">↗</span>
@@ -81,6 +81,13 @@ useSeoMeta({
   background-color: var(--color-bg-dark);
 }
 
+.intro-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 10vw, 8.5rem);
+  line-height: 1;
+  letter-spacing: 0;
+}
+
 .intro-meta {
   color: rgb(255 255 255 / 0.68);
   letter-spacing: 0.08em;
@@ -100,7 +107,7 @@ useSeoMeta({
 .section-link:hover,
 .section-link:focus-visible {
   color: var(--color-bg-dark);
-  background: #d7ff48;
+  background: white;
   outline: none;
 }
 
@@ -113,12 +120,4 @@ useSeoMeta({
 .section-link:focus-visible .link-arrow {
   transform: translate(0.18rem, -0.18rem);
 }
-
-@media (max-width: 639px) {
-  .intro-meta span:last-child,
-  .intro-meta span:nth-last-child(2) {
-    display: none;
-  }
-}
-
 </style>

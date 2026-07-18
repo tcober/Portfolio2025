@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="resume-page min-h-screen bg-[#f4f1e8] pb-16 print:bg-white print:pb-0"
-  >
+  <div class="resume-page min-h-screen bg-white pb-16 print:pb-0">
     <!-- Profile Section -->
     <section
       class="resume-header px-6 pb-14 pt-32 text-white print:bg-white print:px-0 print:pb-4 print:pt-12 print:text-black"
@@ -41,7 +39,7 @@
         <!-- Experience -->
         <section>
           <h2
-            class="section-heading mb-6 border-b-2 border-blue-950 pb-3 text-3xl font-bold text-blue-950 print:mb-2 print:border-black print:pb-2 print:text-lg print:text-black"
+            class="section-heading mb-6 border-b-2 border-brand-950 pb-3 text-3xl font-bold text-brand-950 print:mb-2 print:border-black print:pb-2 print:text-lg print:text-black"
           >
             Experience
           </h2>
@@ -49,9 +47,11 @@
             <article
               v-for="exp in experiences"
               :key="exp.company"
-              class="experience-item border-l-2 border-blue-900/20 pl-4 print:border-0 print:pl-0"
+              class="experience-item border-l-2 border-brand-900/20 pl-4 print:border-0 print:pl-0"
             >
-              <div class="flex justify-between items-start mb-2 print:mb-1">
+              <div
+                class="mb-2 flex flex-col items-start gap-1 sm:flex-row sm:justify-between print:mb-1 print:flex-row print:gap-0"
+              >
                 <div>
                   <h3
                     class="text-lg print:text-base font-bold text-black leading-tight mb-1"
@@ -86,13 +86,15 @@
         <!-- Education -->
         <section>
           <h2
-            class="section-heading mb-6 border-b-2 border-blue-950 pb-3 text-3xl font-bold text-blue-950 print:mb-2 print:border-black print:pb-2 print:text-lg print:text-black"
+            class="section-heading mb-6 border-b-2 border-brand-950 pb-3 text-3xl font-bold text-brand-950 print:mb-2 print:border-black print:pb-2 print:text-lg print:text-black"
           >
             Education
           </h2>
           <div class="space-y-4">
             <article v-for="edu in education" :key="edu.school">
-              <div class="mb-1 flex items-baseline justify-between">
+              <div
+                class="mb-1 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between print:flex-row print:gap-0"
+              >
                 <h3
                   class="text-lg print:text-base font-bold text-black leading-tight"
                 >
@@ -117,7 +119,7 @@
         <!-- Core Skills -->
         <section>
           <h2
-            class="skills-heading mb-6 bg-blue-950 px-4 py-3 text-2xl font-bold text-white [print-color-adjust:exact] md:mt-[3.35rem] print:mb-4 print:mt-[2.3rem] print:bg-black print:px-2 print:py-1"
+            class="skills-heading mb-6 bg-brand-950 px-4 py-3 text-2xl font-bold text-white [print-color-adjust:exact] md:mt-[3.35rem] print:mb-4 print:mt-[2.3rem] print:bg-black print:px-2 print:py-1"
           >
             Core Skills
           </h2>
@@ -261,7 +263,7 @@ const education = [
 .resume-name,
 .section-heading,
 .skills-heading {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-display);
   letter-spacing: 0;
 }
 

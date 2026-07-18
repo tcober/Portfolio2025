@@ -12,8 +12,8 @@
 @layer components {
   /* Card - Reusable container with elevation */
   .card {
-    @apply rounded-none border-2 border-blue-950 bg-white p-3 md:p-6 transition-all;
-    box-shadow: 6px 6px 0 rgb(1 41 135 / 0.16);
+    @apply rounded-none border-2 border-brand-950 bg-white p-3 md:p-6 transition-all;
+    box-shadow: 6px 6px 0 rgb(12 43 29 / 0.16);
     transition-duration: var(--duration-normal);
   }
 
@@ -29,43 +29,35 @@
     @apply font-bold;
     color: white;
     text-decoration: underline;
-    text-decoration-color: #d7ff48;
+    text-decoration-color: white;
     text-decoration-thickness: 0.14em;
     text-underline-offset: 0.12em;
   }
 
-.site-menu {
-  color: #012987;
-  background: #f4f1e8;
-}
+  .site-menu {
+    color: #0c2b1d;
+    background: white;
+  }
 
-.menu-link {
-  padding: 0.35rem 0.25rem 0.45rem;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(3rem, 8vw, 6.5rem);
-  line-height: 1;
-  letter-spacing: 0;
-  transition:
-    background-color 180ms ease,
-    color 180ms ease,
-    padding 180ms ease;
-}
+  .menu-link {
+    padding: 0.35rem 0.25rem 0.45rem;
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    line-height: 1;
+    letter-spacing: 0;
+    transition:
+      background-color 180ms ease,
+      color 180ms ease,
+      padding 180ms ease;
+  }
 
-.menu-link:hover,
-.menu-link:focus-visible {
-  padding-left: 1rem;
-  outline: none;
-}
+  .menu-link:hover,
+  .menu-link:focus-visible {
+    padding-left: 1rem;
+    outline: none;
+  }
 
-body.menu-open {
-  overflow: hidden;
-}
-}
-
-.intro-title {
-  max-width: 8ch;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(4.75rem, 14vw, 11rem);
-  line-height: 0.78;
-  letter-spacing: 0;
+  body.menu-open {
+    overflow: hidden;
+  }
 }

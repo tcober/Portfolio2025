@@ -2,7 +2,7 @@
   <div class="relative mb-20">
     <!-- Timeline line -->
     <div
-      class="absolute left-4 h-full w-[2px] bg-blue-900 md:left-1/2 md:-translate-x-1/2 z-0"
+      class="absolute left-4 h-full w-[2px] bg-brand-900 md:left-1/2 md:-translate-x-1/2 z-0"
     ></div>
 
     <div>
@@ -16,7 +16,7 @@
           class="relative z-20 mb-7 flex justify-start pl-10 md:justify-center md:pl-0"
         >
           <div
-            class="date-label whitespace-nowrap border-2 border-blue-900 bg-[#d7ff48] px-3 py-1 text-xs font-black uppercase text-blue-950"
+            class="date-label whitespace-nowrap border-2 border-brand-950 bg-brand-600 px-3 py-1 text-xs font-black uppercase text-white"
           >
             {{ group.date }}
           </div>
@@ -117,12 +117,11 @@ const groupedPosts = computed(() => {
 
   return groups;
 });
-
 </script>
 
 <style scoped>
 .date-label {
   letter-spacing: 0.08em;
-  box-shadow: 4px 4px 0 #012987;
+  box-shadow: 4px 4px 0 #0c2b1d;
 }
 </style>

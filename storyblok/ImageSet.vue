@@ -76,7 +76,7 @@ const images = computed(() =>
   (props.blok.imageSet || []).map((image) => ({
     ...image,
     renderHeight: renderHeight(image.filename),
-  }))
+  })),
 );
 
 // Image item classes based on count
@@ -155,7 +155,8 @@ const closeLightbox = () => {
 /* Enhanced hover effects */
 .group:hover {
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 </style>
