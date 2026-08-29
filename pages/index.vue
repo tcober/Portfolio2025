@@ -20,15 +20,15 @@
         </h1>
 
         <p
-          class="intro-copy mt-8 max-w-2xl text-xl font-medium leading-snug text-white sm:text-2xl lg:mt-10 lg:max-w-xl lg:self-end lg:text-3xl"
+          class="intro-copy mt-7 max-w-2xl text-lg font-medium leading-[1.45] text-white sm:text-xl lg:mt-8 lg:max-w-xl lg:self-end lg:text-[1.6rem] lg:leading-[1.4]"
         >
-          I am a senior JavaScript engineer with about thirteen years of
-          experience. I work mostly in
+          I’m a senior JavaScript engineer with about 13 years of experience. I
+          work mostly in
           <span class="highlight-text">Vue 3/Nuxt</span> with
           <span class="highlight-text">Node</span> on the back end, but these
-          days I am doing a lot with
+          days I spend a lot of time building
           <span class="highlight-text">agent</span> and
-          <span class="highlight-text">sub agent</span> systems.
+          <span class="highlight-text">sub-agent</span> systems.
         </p>
       </div>
 
