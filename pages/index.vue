@@ -22,8 +22,9 @@
         <p
           class="intro-copy mt-8 max-w-2xl text-xl font-medium leading-snug text-white sm:text-2xl lg:mt-10 lg:max-w-xl lg:self-end lg:text-3xl"
         >
-          I’m a software developer dude making surprisingly cool things for a
-          bank. I work mostly with
+          I am a senior JavaScript engineer with about thirteen years of
+          experience. I work mostly in Vue 3/Nuxt with Node on the back end, but
+          these days I am doing a lot with agent and sub agent systems.
           <span class="highlight-text">Vue</span>,
           <span class="highlight-text">Node</span>, and
           <span class="highlight-text">JavaScript</span>.
