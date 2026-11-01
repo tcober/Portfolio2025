@@ -1,135 +1,67 @@
 <template>
-  <div class="home-page blueprint-grid-dark min-h-screen overflow-hidden">
-    <main
-      class="home-shell mx-auto flex min-h-screen max-w-7xl flex-col px-5 pb-10 pt-28 sm:px-8 lg:px-12 lg:pb-12 lg:pt-32"
-    >
-      <div class="flex flex-1 flex-col justify-center">
-        <p
-          class="intro-meta flex flex-wrap items-center gap-3 text-xs font-bold uppercase sm:text-sm"
-        >
-          <span>Senior JavaScript engineer</span>
-          <span class="accent-mark" aria-hidden="true">/</span>
-          <span>Minneapolis</span>
-        </p>
+  <div>
+    <HomeIntro :inert="isResumeOpen" :class="introClasses" />
 
-        <h1 class="intro-title mt-5 font-bold text-white">
-          <span class="block">Hello, I’m</span>
-          <span class="block"
-            >Thomas Cober<span class="accent-mark">.</span></span
-          >
-        </h1>
-
-        <p
-          class="intro-copy mt-7 max-w-2xl text-lg font-medium leading-[1.45] text-white sm:text-xl lg:mt-8 lg:max-w-xl lg:self-end lg:text-[1.6rem] lg:leading-[1.4]"
-        >
-          I’m a senior JavaScript engineer with about 13 years of experience. I
-          work mostly in
-          <span class="highlight-text">Vue 3/Nuxt</span> with
-          <span class="highlight-text">Node</span> on the back end, but these
-          days I spend a lot of time building
-          <span class="highlight-text">agent</span> and
-          <span class="highlight-text">sub-agent</span> systems.
-        </p>
-      </div>
-
-      <p
-        class="mt-12 font-mono text-[10px] font-bold uppercase tracking-widest text-white/40"
-        aria-hidden="true"
-      >
-        FIG. 01 — NAVIGATION
-      </p>
-
-      <nav
-        class="section-links mt-2 grid divide-y divide-dashed divide-white/30 border-y border-dashed border-white/30 sm:grid-cols-3 sm:divide-x sm:divide-y-0"
-        aria-label="Explore the site"
-      >
-        <NuxtLink
-          to="/feed"
-          class="section-link group flex items-center justify-between px-4 py-4 sm:px-5"
-        >
-          <span>Timeline</span>
-          <span class="link-arrow" aria-hidden="true">↗</span>
-        </NuxtLink>
-        <NuxtLink
-          to="/resume"
-          class="section-link group flex items-center justify-between px-4 py-4 sm:px-5"
-        >
-          <span>Resume</span>
-          <span class="link-arrow" aria-hidden="true">↗</span>
-        </NuxtLink>
-        <a
-          href="https://github.com/tcober"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="section-link group flex items-center justify-between px-4 py-4 sm:px-5"
-        >
-          <span>GitHub</span>
-          <span class="link-arrow" aria-hidden="true">↗</span>
-        </a>
-      </nav>
-    </main>
+    <SidePanel label="Resume" :is-open="isResumeOpen" @close="closeResume">
+      <ResumeContent />
+    </SidePanel>
   </div>
 </template>
 
 <script setup>
-useSeoMeta({
+// The resume opens in a panel on this page. "/resume" is this same page with
+// the panel open, so the link can be shared and Back closes the panel.
+// (An alias won't work here: Vue Router treats it as the same location and
+// skips the navigation.)
+definePageMeta({
+  path: "/:panel(resume)?",
+  key: "home", // one page instance for both URLs, so the panel can slide in
+  scrollToTop: false,
+});
+
+const PROFILE_PHOTO =
+  "https://a-us.storyblok.com/f/1002617/800x800/3cde4e7148/profile-pic.jpg";
+
+const HOME_SEO = {
   title: "Thomas Cober Web Stuff",
   description:
     "Hello there! I'm Tom Cober, a software developer dude out in the world. Thanks for stopping by.",
-  ogTitle: "Thomas Cober Web Stuff",
-  ogDescription:
-    "Hello there! I'm Tom Cober, a software developer dude out in the world. Thanks for stopping by.",
+};
+
+const RESUME_SEO = {
+  title: "Thomas Cober's Resume",
+  description:
+    "Senior JavaScript Engineer with expertise in Vue, Node.js, and full-stack development.",
+};
+
+const route = useRoute();
+const router = useRouter();
+
+const isResumeOpen = computed(() => route.params.panel === "resume");
+
+const seo = computed(() => (isResumeOpen.value ? RESUME_SEO : HOME_SEO));
+
+// While the resume is open, it's the only thing that prints.
+const introClasses = computed(() => (isResumeOpen.value ? "print:hidden" : ""));
+
+// If we opened the panel, step back so Back doesn't reopen it.
+// If someone landed on /resume, swap the URL for "/" instead.
+const closeResume = () => {
+  if (router.options.history.state.back) {
+    router.back();
+  } else {
+    router.replace("/");
+  }
+};
+
+useSeoMeta({
+  title: () => seo.value.title,
+  description: () => seo.value.description,
+  ogTitle: () => seo.value.title,
+  ogDescription: () => seo.value.description,
   ogType: "website",
   twitterCard: "summary_large_image",
-  twitterImage:
-    "https://a-us.storyblok.com/f/1002617/800x800/3cde4e7148/profile-pic.jpg",
+  twitterImage: PROFILE_PHOTO,
   robots: "index, follow",
 });
 </script>
-
-<style scoped>
-.intro-title {
-  font-family: var(--font-display);
-  font-size: clamp(2.75rem, 10vw, 8.5rem);
-  line-height: 1;
-  letter-spacing: 0;
-}
-
-.intro-meta {
-  color: rgb(255 255 255 / 0.68);
-  letter-spacing: 0.08em;
-}
-
-.accent-mark {
-  color: var(--color-accent-pink);
-}
-
-.section-link {
-  color: white;
-  font-size: 0.8rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  transition:
-    background-color 180ms ease,
-    color 180ms ease;
-}
-
-.section-link:hover,
-.section-link:focus-visible {
-  color: var(--color-bg-dark);
-  background: white;
-  outline: none;
-}
-
-.link-arrow {
-  font-size: 1.2rem;
-  transition: transform 180ms ease;
-}
-
-.section-link:hover .link-arrow,
-.section-link:focus-visible .link-arrow {
-  color: var(--color-accent-pink-strong);
-  transform: translate(0.18rem, -0.18rem);
-}
-</style>

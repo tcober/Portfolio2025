@@ -1,42 +1,16 @@
 /**
- * Print Styles
- * 
- * Utility classes for print media.
- * Use .no-print to hide elements when printing.
- * Use .print-only to show elements only when printing.
+ * Print rules shared across the site. The resume's own print layout lives
+ * in components/ResumeContent.vue.
  */
 
 @media print {
-  .no-print {
-    display: none !important;
-  }
-
-  .print-only {
-    display: block !important;
-  }
-
-  .print-break-before {
-    page-break-before: always;
-  }
-
-  .print-break-after {
-    page-break-after: always;
-  }
-
-  /* Hide navigation elements when printing */
-  button[aria-label="Toggle menu" i],
   nav {
     display: none !important;
   }
 
-  /* Blueprint grids are screen-only */
+  /* Grid backgrounds are screen-only */
   .blueprint-grid-dark,
   .blueprint-grid-light {
     background-image: none !important;
   }
-}
-
-/* Hide print-only elements on screen */
-.print-only {
-  display: none;
 }

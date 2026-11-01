@@ -1,46 +1,26 @@
 /**
- * Locks page scroll without the horizontal shift caused by the scrollbar
- * disappearing when `overflow: hidden` is applied.
+ * Stops the page from scrolling while the resume panel is open.
  *
- * We measure the real scrollbar width and expose it as the `--scrollbar-width`
- * CSS variable so the page and the fixed header can reserve that space while
- * locked (see `html.scroll-locked` in components.css). Measuring beats
+ * Hiding the scrollbar would shift the page sideways, so we measure it and
+ * expose the width as the `--scrollbar-width` CSS variable for the page to
+ * reserve (see `html.scroll-locked` in components.css). Measuring beats
  * `scrollbar-gutter`, which doesn't reserve a matching gutter for the custom
  * `::-webkit-scrollbar` on macOS.
- *
- * Reference counted so overlapping locks (e.g. menu + lightbox) coexist without
- * one releasing the other's lock.
  */
-let holders = 0;
-
-function applyLock(): void {
-  const root = document.documentElement;
-  root.style.setProperty(
-    "--scrollbar-width",
-    `${window.innerWidth - root.clientWidth}px`,
-  );
-  root.classList.add("scroll-locked");
-}
-
-function releaseLock(): void {
-  const root = document.documentElement;
-  root.classList.remove("scroll-locked");
-  root.style.removeProperty("--scrollbar-width");
-}
-
 export function useScrollLock() {
-  let held = false;
-
   const lock = (): void => {
-    if (held) return;
-    held = true;
-    if (++holders === 1) applyLock();
+    const root = document.documentElement;
+    root.style.setProperty(
+      "--scrollbar-width",
+      `${window.innerWidth - root.clientWidth}px`,
+    );
+    root.classList.add("scroll-locked");
   };
 
   const unlock = (): void => {
-    if (!held) return;
-    held = false;
-    if (--holders === 0) releaseLock();
+    const root = document.documentElement;
+    root.classList.remove("scroll-locked");
+    root.style.removeProperty("--scrollbar-width");
   };
 
   return { lock, unlock };

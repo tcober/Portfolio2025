@@ -3,7 +3,6 @@
 
 /* Component CSS imports */
 @import "./components.css";
-@import "./buttons.css";
 @import "./print.css";
 
 @tailwind base;
@@ -24,10 +23,6 @@
   ::selection {
     background-color: var(--color-selection-bg);
     color: var(--color-selection-text);
-  }
-
-  .font-display {
-    font-family: var(--font-display);
   }
 
   h1,

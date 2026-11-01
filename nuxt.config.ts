@@ -7,7 +7,8 @@ export default defineNuxtConfig({
   routeRules: {
     "/": { prerender: true },
     "/resume": { prerender: true },
-    "/feed": { prerender: true },
+    // The feed is gone; send old links home.
+    "/feed": { redirect: { to: "/", statusCode: 301 } },
   },
 
   // Performance optimizations
@@ -20,32 +21,19 @@ export default defineNuxtConfig({
   },
   modules: [
     "@nuxt/image",
-    [
-      "@storyblok/nuxt",
-      {
-        accessToken: process.env.STORYBLOK_ACCESS_TOKEN,
-        apiOptions: {
-          region: "us",
-        },
-        // Only use the bridge in development, not in production builds
-        bridge: process.env.NODE_ENV !== "production",
-        // Use version parameter to control which content version to fetch
-        useApiClient: true,
-      },
-    ],
     "@nuxtjs/tailwindcss",
     "nuxt-gtag",
     "@nuxtjs/sitemap",
   ],
 
-  // NuxtImage configuration with Storyblok provider
+  // The profile photo is still served from Storyblok's image CDN
   image: {
     storyblok: {
       baseURL: "https://a-us.storyblok.com",
     },
   },
-  sitemap: {
-    siteUrl: "https://thomascober.com",
+  site: {
+    url: "https://thomascober.com",
   },
   gtag: {
     id: "G-ZJ8DPDM2QV",
@@ -53,9 +41,6 @@ export default defineNuxtConfig({
   },
   tailwindcss: {
     cssPath: "~/assets/css/tailwind.css",
-    config: {
-      content: ["content/**/*.md", "storyblok/**/*.vue"],
-    },
   },
 
   // App configuration for SEO and meta defaults
@@ -105,10 +90,6 @@ export default defineNuxtConfig({
           href: "https://a-us.storyblok.com",
           crossorigin: "anonymous",
         },
-        {
-          rel: "dns-prefetch",
-          href: "https://www.youtube.com",
-        },
       ],
     },
   },
@@ -120,20 +101,6 @@ export default defineNuxtConfig({
   nitro: {
     compressPublicAssets: true,
     preset: "netlify",
-  },
-
-  // Build optimizations
-  vite: {
-    build: {
-      cssCodeSplit: true,
-      rollupOptions: {
-        output: {
-          manualChunks: {
-            storyblok: ["@storyblok/vue"],
-          },
-        },
-      },
-    },
   },
 
   // Optimize CSS delivery

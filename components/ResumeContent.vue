@@ -4,9 +4,11 @@
   >
     <!-- Profile Section -->
     <section
-      class="resume-header blueprint-grid-dark px-6 pb-14 pt-32 text-white print:bg-white print:px-0 print:pb-4 print:pt-12 print:text-black"
+      class="resume-header blueprint-grid-dark px-6 pb-14 pt-32 text-white print:bg-white print:pb-4 print:pt-12 print:text-black"
     >
-      <div class="mx-auto flex w-full max-w-5xl gap-5 sm:items-end sm:gap-8">
+      <div
+        class="mx-auto flex w-full max-w-5xl gap-5 sm:items-end sm:gap-8 print:items-center print:gap-4"
+      >
         <NuxtImg
           provider="storyblok"
           src="https://a-us.storyblok.com/f/1002617/800x800/3cde4e7148/profile-pic.jpg"
@@ -15,7 +17,7 @@
           height="128"
           :modifiers="{ quality: 80 }"
           format="webp"
-          class="resume-photo h-24 w-24 flex-shrink-0 object-cover sm:h-32 sm:w-32 print:h-24 print:w-24 print:rounded-full print:border-black"
+          class="resume-photo h-24 w-24 flex-shrink-0 object-cover sm:h-32 sm:w-32 print:h-24 print:w-24"
         />
         <div class="min-w-0 flex-1">
           <h1 class="resume-name font-bold">Thomas Cober</h1>
@@ -33,7 +35,7 @@
     </section>
 
     <!-- Main Content -->
-    <main
+    <div
       class="mx-auto grid max-w-5xl grid-cols-1 gap-12 px-6 py-14 md:grid-cols-3 md:py-20 print:grid-cols-3 print:gap-12 print:py-0"
     >
       <!-- Left Column (2/3) -->
@@ -41,14 +43,9 @@
         <!-- Experience -->
         <section>
           <h2
-            class="section-heading mb-6 flex items-baseline justify-between border-b-2 border-dashed border-brand-950 pb-3 text-3xl font-bold text-brand-950 print:mb-2 print:border-solid print:border-black print:pb-2 print:text-lg print:text-black"
+            class="section-heading mb-6 border-b-2 border-brand-950 pb-3 text-3xl font-bold text-brand-950 print:mb-2 print:border-black print:pb-2 print:text-lg print:text-black"
           >
-            <span>Experience</span>
-            <span
-              class="font-mono text-xs font-normal tracking-widest text-brand-600/70 print:hidden"
-              aria-hidden="true"
-              >SEC. 01</span
-            >
+            Experience
           </h2>
           <div class="space-y-6 print:space-y-4">
             <article
@@ -93,14 +90,9 @@
         <!-- Education -->
         <section>
           <h2
-            class="section-heading mb-6 flex items-baseline justify-between border-b-2 border-dashed border-brand-950 pb-3 text-3xl font-bold text-brand-950 print:mb-2 print:border-solid print:border-black print:pb-2 print:text-lg print:text-black"
+            class="section-heading mb-6 border-b-2 border-brand-950 pb-3 text-3xl font-bold text-brand-950 print:mb-2 print:border-black print:pb-2 print:text-lg print:text-black"
           >
-            <span>Education</span>
-            <span
-              class="font-mono text-xs font-normal tracking-widest text-brand-600/70 print:hidden"
-              aria-hidden="true"
-              >SEC. 02</span
-            >
+            Education
           </h2>
           <div class="space-y-4">
             <article v-for="edu in education" :key="edu.school">
@@ -131,14 +123,9 @@
         <!-- Core Skills -->
         <section>
           <h2
-            class="skills-heading mb-6 flex items-baseline justify-between bg-brand-950 px-4 py-3 text-2xl font-bold text-white [print-color-adjust:exact] md:mt-[3.35rem] print:mb-4 print:mt-[2.3rem] print:bg-black print:px-2 print:py-1"
+            class="skills-heading mb-6 bg-brand-950 px-4 py-3 text-2xl font-bold text-white [print-color-adjust:exact] md:mt-[3.35rem] print:mb-4 print:mt-[2.3rem] print:bg-black print:px-2 print:py-1"
           >
-            <span>Core Skills</span>
-            <span
-              class="font-mono text-xs font-normal tracking-widest text-white/60 print:hidden"
-              aria-hidden="true"
-              >SEC. 03</span
-            >
+            Core Skills
           </h2>
           <div class="space-y-4 text-base print:text-base">
             <div>
@@ -188,24 +175,11 @@
           </div>
         </section>
       </div>
-    </main>
+    </div>
   </div>
 </template>
 
 <script setup>
-useSeoMeta({
-  title: "Thomas Cober's Resume",
-  description:
-    "Senior JavaScript Engineer with expertise in Vue, Node.js, and full-stack development.",
-  ogTitle: "Resume - Thomas Cober",
-  ogDescription:
-    "Senior JavaScript Engineer with expertise in Vue, Node.js, and full-stack development.",
-  ogType: "website",
-  twitterImage:
-    "https://a-us.storyblok.com/f/1002617/800x800/3cde4e7148/profile-pic.jpg",
-  twitterCard: "summary_large_image",
-});
-
 const experiences = [
   {
     company: "RBC — Royal Bank of Canada",
@@ -301,6 +275,7 @@ const education = [
 
   .resume-photo {
     filter: none;
+    border-color: black;
   }
 
   .resume-name {
