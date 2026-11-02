@@ -1,10 +1,10 @@
 <template>
   <div
-    class="resume-page blueprint-grid-light min-h-screen bg-white pb-16 print:pb-0"
+    class="resume-page blueprint-grid-light min-h-screen bg-white pb-10 print:pb-0"
   >
     <!-- Profile Section -->
     <section
-      class="resume-header blueprint-grid-dark px-6 pb-14 pt-32 text-white print:bg-white print:pb-4 print:pt-12 print:text-black"
+      class="resume-header blueprint-grid-dark px-6 pb-10 pt-20 sm:px-12 print:px-6 text-white print:bg-white print:pb-4 print:pt-12 print:text-black"
     >
       <div
         class="mx-auto flex w-full max-w-5xl gap-5 sm:items-end sm:gap-8 print:items-center print:gap-4"
@@ -36,7 +36,7 @@
 
     <!-- Main Content -->
     <div
-      class="mx-auto grid max-w-5xl grid-cols-1 gap-12 px-6 py-14 md:grid-cols-3 md:py-20 print:grid-cols-3 print:gap-12 print:py-0"
+      class="mx-auto grid max-w-5xl grid-cols-1 gap-12 px-6 py-10 sm:px-12 print:px-6 md:grid-cols-3 md:py-14 print:grid-cols-3 print:gap-12 print:py-0"
     >
       <!-- Left Column (2/3) -->
       <div class="space-y-8 md:col-span-2 print:col-span-2 print:space-y-4">

@@ -47,14 +47,6 @@
             >
               Resume
             </NuxtLink>
-            <a
-              href="https://github.com/tcober"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="font-semibold text-white underline decoration-white/40 underline-offset-4 transition-colors hover:decoration-[var(--color-accent-pink)]"
-            >
-              GitHub
-            </a>
           </nav>
         </div>
       </div>
@@ -65,6 +57,7 @@
 <style scoped>
 .intro-photo {
   border: 2px solid white;
+  border-radius: 50%;
   filter: grayscale(1) contrast(1.08);
 }
 
